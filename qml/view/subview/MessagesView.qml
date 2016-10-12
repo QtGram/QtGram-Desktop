@@ -22,12 +22,13 @@ ViewContainer
     {
         id: lvmessages
         clip: true
-        anchors { left: parent.left; top: dialogheader.bottom; right: parent.right; bottom: parent.bottom }
+        anchors { left: parent.left; top: dialogheader.bottom; right: parent.right; bottom: tisendmessage.top }
         verticalLayoutDirection: ListView.BottomToTop
         backgroundColor: "aliceblue"
         spacing: Theme.paddingLarge
 
         model: MessagesModel {
+            id: messagesmodel
             telegram: messagesview.context.telegram
             dialog: messagesview.tgDialog
         }
@@ -37,6 +38,18 @@ ViewContainer
             context: messagesview.context
             tgDialog: messagesview.tgDialog
             tgMessage: model.item
+        }
+    }
+
+    StyledTextInput
+    {
+        id: tisendmessage
+        anchors { left: parent.left; bottom: parent.bottom; right: parent.right }
+        placeholderText: qsTr("Send message...")
+
+        onReturnPressed: {
+            messagesmodel.sendMessage(tisendmessage.text);
+            tisendmessage.text = "";
         }
     }
 }

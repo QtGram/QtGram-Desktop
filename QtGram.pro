@@ -42,7 +42,8 @@ DISTFILES += \
     qml/item/MessageItem.qml \
     qml/component/message/MessageBubble.qml \
     qml/view/subview/MessagesView.qml \
-    qml/component/message/MessageImage.qml
+    qml/component/message/MessageImage.qml \
+    qml/component/StyledTextInput.qml
 
 HEADERS += \
     qtgram.h \
