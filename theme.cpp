@@ -15,17 +15,17 @@ Theme::Theme(QObject *parent) : QObject(parent)
 
 qreal Theme::paddingSmall() const
 {
-    return 5 * DevicePixelRatio;
+    return 5;
 }
 
 qreal Theme::paddingMedium() const
 {
-    return 10 * DevicePixelRatio;
+    return 10;
 }
 
 qreal Theme::paddingLarge() const
 {
-    return 15 * DevicePixelRatio;
+    return 15;
 }
 
 qreal Theme::fontSizeSmall() const
@@ -45,22 +45,22 @@ qreal Theme::fontSizeLarge() const
 
 qreal Theme::itemSizeExtraSmall() const
 {
-    return 20 * DevicePixelRatio;
+    return 20;
 }
 
 qreal Theme::itemSizeSmall() const
 {
-    return 40 * DevicePixelRatio;
+    return 40;
 }
 
 qreal Theme::itemSizeMedium() const
 {
-    return 60 * DevicePixelRatio;
+    return 60;
 }
 
 qreal Theme::itemSizeLarge() const
 {
-    return 80 * DevicePixelRatio;
+    return 80;
 }
 
 QColor Theme::primaryColor() const
