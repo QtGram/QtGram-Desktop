@@ -43,7 +43,10 @@ DISTFILES += \
     qml/component/message/MessageBubble.qml \
     qml/view/subview/MessagesView.qml \
     qml/component/message/MessageImage.qml \
-    qml/component/StyledTextInput.qml
+    qml/component/StyledTextInput.qml \
+    qml/component/message/MessageText.qml \
+    qml/js/Emoji.js \
+    qml/js/TextElaborator.js
 
 HEADERS += \
     qtgram.h \

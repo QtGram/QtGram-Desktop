@@ -21,6 +21,7 @@ ViewContainer
             id: lvdialogs
             spacing: Theme.paddingSmall
             backgroundColor: "aliceblue"
+            clip: true
 
             Layout.minimumWidth: parent.width * 0.35
             Layout.maximumWidth: parent.width * 0.35
@@ -33,6 +34,7 @@ ViewContainer
             */
 
             model: DialogsModel {
+                id: dialogsmodel
                 telegram: context.telegram
             }
 

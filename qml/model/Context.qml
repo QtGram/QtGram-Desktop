@@ -7,7 +7,7 @@ Item
 {
     readonly property int apiId: 27782
     readonly property string apiHash: "5ce096f34c8afab871edce728e6d64c9"
-    property QtGram qtGram: QtGram { }
+    property QtGram qtgram: QtGram { }
 
     property Telegram telegram: Telegram {
         initializer: TelegramInitializer {
@@ -16,7 +16,7 @@ Item
             apiHash: context.apiHash
             host: "149.154.167.50"
             port: 443
-            publicKey: qtGram.publicKey
+            publicKey: qtgram.publicKey
         }
 
         onLoginCompleted: {

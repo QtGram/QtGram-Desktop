@@ -20,6 +20,9 @@ Item
     height: content.height
 
     width: {
+        if(context.telegram.constructorIs(tgMessage, Message.CtorMessageService))
+            return maxWidth;
+
         var w = Math.max(lblhiddenfrom.contentWidth, lblhiddenmessage.contentWidth);
 
         if(foImage)
@@ -29,8 +32,8 @@ Item
     }
 
     anchors {
-        right: tgMessage.isOut ? undefined : parent.right
-        left: !tgMessage.isOut ? undefined : parent.left
+        right: !tgMessage.isOut ? undefined : parent.right
+        left: tgMessage.isOut ? undefined : parent.left
         rightMargin: Theme.paddingMedium
         leftMargin: Theme.paddingMedium
     }
@@ -39,6 +42,7 @@ Item
     {
         anchors { fill: parent; margins: -Theme.paddingSmall }
         tgMessage: messageitem.tgMessage
+        visible: !context.telegram.constructorIs(tgMessage, Message.CtorMessageService)
     }
 
     Column
@@ -66,12 +70,28 @@ Item
             tgMessage: messageitem.tgMessage
         }
 
-        Text
+        MessageText
         {
             id: lblmessage
             width: parent.width
-            horizontalAlignment: tgMessage.isOut ? Text.AlignRight : Text.AlignLeft
-            text: lblhiddenmessage.text
+            emojiPath: context.qtgram.emojiPath
+            rawText: lblhiddenmessage.text
+            wrapMode: Text.Wrap
+            font { italic: context.telegram.constructorIs(tgMessage, Message.CtorMessageService) }
+
+            color: {
+                if(context.telegram.constructorIs(tgMessage, Message.CtorMessageService))
+                    return "gray";
+
+                return "black";
+            }
+
+            horizontalAlignment: {
+                if(context.telegram.constructorIs(tgMessage, Message.CtorMessageService))
+                    return Text.AlignHCenter;
+
+                return tgMessage.isOut ? Text.AlignRight : Text.AlignLeft
+            }
         }
     }
 }

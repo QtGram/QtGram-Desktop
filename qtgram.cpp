@@ -10,3 +10,9 @@ QString QtGram::publicKey() const
 {
     return qApp->applicationDirPath() + "/../public.key";
 }
+
+QString QtGram::emojiPath() const
+{
+
+    return qApp->applicationDirPath() + "/emoji/";
+}

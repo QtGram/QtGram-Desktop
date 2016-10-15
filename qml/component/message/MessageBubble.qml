@@ -14,22 +14,22 @@ Item
         id: mainbubble
         color: tgMessage.isOut ? "darkgrey" : "lightskyblue"
         anchors.fill: parent
-        radius: 4
+        radius: 12
         smooth: true
     }
 
     Rectangle
     {
         id: flatangle
-        width: mainbubble.radius * 2
-        height: mainbubble.radius * 2
+        width: mainbubble.radius
+        height: mainbubble.radius
         color: mainbubble.color
 
         anchors {
-            top: tgMessage.isOut ? undefined : parent.top
-            right: tgMessage.isOut ? undefined : parent.right
-            bottom: !tgMessage.isOut ? undefined: parent.bottom
-            left: !tgMessage.isOut ? undefined : parent.left
+            top: !tgMessage.isOut ? undefined : parent.top
+            right: !tgMessage.isOut ? undefined : parent.right
+            bottom: tgMessage.isOut ? undefined: parent.bottom
+            left: tgMessage.isOut ? undefined : parent.left
         }
     }
 }
