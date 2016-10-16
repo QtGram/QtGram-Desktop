@@ -41,7 +41,7 @@ MouseArea
 
             text: {
                 if(tgMessage)
-                    return (tgMessage.isOut ? qsTr("You") : context.telegram.messageFrom(tgDialog.topMessage)) + ":";
+                    return (tgMessage.isOut ? qsTr("You") : context.telegram.messageFrom(tgMessage)) + ":";
 
                 return "";
             }
@@ -75,7 +75,7 @@ MouseArea
                 if(context.telegram.dialogHasDraftMessage(tgDialog))
                     msg = qsTr("Draft: %1").arg(context.telegram.dialogDraftMessage(tgDialog));
                 else
-                    msg = context.telegram.messageText(tgDialog.topMessage);
+                    msg = context.telegram.messagePreview(tgMessage);
 
                 return TelegramHelper.firstMessageLine(msg);
             }
