@@ -1,4 +1,5 @@
 import QtQuick 2.4
+import QtMultimedia 5.0
 import QtGraphicalEffects 1.0
 import LibQTelegram 1.0
 
@@ -35,12 +36,40 @@ Item
     width: size
     height: aspectRatio ? (size / aspectRatio) : 0
 
+    MediaPlayer
+    {
+        id: mediaplayer
+        loops: MediaPlayer.Infinite
+        autoPlay: context.telegram.messageIsAnimated(tgMessage)
+
+        source: {
+            if(!context.telegram.messageIsAnimated(tgMessage))
+                return "";
+
+            return foImage ? foImage.filePath : "";
+        }
+    }
+
+    VideoOutput
+    {
+        anchors.fill: parent
+        visible: context.telegram.messageIsAnimated(tgMessage)
+        source: mediaplayer
+    }
+
     Image
     {
         id: imgmedia
         anchors.fill: parent
-        source: foImage ? foImage.thumbnail : ""
         fillMode: Image.Stretch
+        visible: source.toString().length > 0
+
+        source: {
+            if(context.telegram.messageIsAnimated(tgMessage))
+                return "";
+
+            return foImage ? foImage.thumbnail : "";
+        }
     }
 
     FastBlur
@@ -48,6 +77,7 @@ Item
         id: thumbnailblur
         anchors.fill: imgmedia
         source: imgmedia
+        visible: imgmedia.visible
 
         radius: {
             if(foImage && !foImage.downloaded)
