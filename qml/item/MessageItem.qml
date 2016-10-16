@@ -26,7 +26,7 @@ Item
         var w = Math.max(lblhiddenfrom.contentWidth, lblhiddenmessage.contentWidth);
 
         if(foImage)
-            w = Math.max(w, foImage.imageSize.width);
+            w = Math.max(w, mediamessageitem.imageSize.width);
 
         return Math.min(w, maxWidth);
     }
@@ -62,12 +62,12 @@ Item
             text: lblhiddenfrom.text
         }
 
-        MessageImage
+        MediaMessageItem
         {
-            id: miimage
+            id: mediamessageitem
+            telegram: context.telegram
+            message: messageitem.tgMessage
             size: parent.width
-            context: messageitem.context
-            tgMessage: messageitem.tgMessage
         }
 
         MessageText
