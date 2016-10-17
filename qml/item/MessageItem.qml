@@ -9,13 +9,6 @@ Item
     property Message tgMessage
     property real maxWidth
 
-    property FileObject foImage: {
-        if(context.telegram.messageHasImage(tgMessage))
-            return context.telegram.fileObject(tgMessage);
-
-        return null;
-    }
-
     id: messageitem
     height: content.height
 
@@ -23,11 +16,7 @@ Item
         if(context.telegram.constructorIs(tgMessage, Message.CtorMessageService))
             return maxWidth;
 
-        var w = Math.max(lblhiddenfrom.contentWidth, lblhiddenmessage.contentWidth);
-
-        if(foImage)
-            w = Math.max(w, mediamessageitem.imageSize.width);
-
+        var w = Math.max(lblhiddenfrom.contentWidth, lblhiddenmessage.contentWidth, mediamessageitem.imageSize.width)
         return Math.min(w, maxWidth);
     }
 
@@ -42,7 +31,13 @@ Item
     {
         anchors { fill: parent; margins: -Theme.paddingSmall }
         tgMessage: messageitem.tgMessage
-        visible: !context.telegram.constructorIs(tgMessage, Message.CtorMessageService)
+
+        visible: {
+            if(mediamessageitem.isSticker || mediamessageitem.isAnimated)
+                return false;
+
+            return !context.telegram.constructorIs(tgMessage, Message.CtorMessageService);
+        }
     }
 
     Column
