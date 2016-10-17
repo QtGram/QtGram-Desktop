@@ -39,7 +39,7 @@ ViewContainer
             }
 
             delegate: DialogItem {
-                width: parent.width
+                width: lvdialogs.width
                 context: dialogsview.context
                 tgDialog: model.item
 
