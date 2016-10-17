@@ -65,7 +65,6 @@ Item
         MediaMessageItem
         {
             id: mediamessageitem
-            telegram: context.telegram
             message: messageitem.tgMessage
             size: parent.width
         }

@@ -1,4 +1,5 @@
 import QtQuick 2.4
+import LibQTelegram 1.0
 
 Item
 {
@@ -13,8 +14,10 @@ Item
         id: peerimage
         anchors { left: parent.left; top: parent.top }
         size: dialogheader.height
-        fallbackText: context.telegram.dialogTitle(tgDialog)
-        peerImage: context.telegram.fileObject(tgDialog)
+        peer: tgDialog
+        backgroundColor: "gray"
+        foregroundColor: "black"
+        fontPixelSize: Theme.fontSizeSmall
     }
 
     Text

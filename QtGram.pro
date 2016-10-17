@@ -28,7 +28,6 @@ DISTFILES += \
     qml/view/login/SignUpView.qml \
     qml/view/login/SignInView.qml \
     qml/view/dialog/DialogsView.qml \
-    qml/component/PeerImage.qml \
     qml/js/TelegramHelper.js \
     qml/item/DialogItem.qml \
     qml/component/topbar/TopBar.qml \
@@ -36,7 +35,6 @@ DISTFILES += \
     qml/dialogs/ContactsDialog.qml \
     qml/item/ContactItem.qml \
     qml/component/listview/StyledListView.qml \
-    qml/component/RoundedImage.qml \
     qml/view/subview/PlaceholderView.qml \
     qml/component/DialogHeader.qml \
     qml/item/MessageItem.qml \

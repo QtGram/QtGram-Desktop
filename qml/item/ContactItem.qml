@@ -1,5 +1,5 @@
 import QtQuick 2.4
-import "../component"
+import LibQTelegram 1.0
 import "../js/TelegramHelper.js" as TelegramHelper
 
 Item
@@ -15,7 +15,10 @@ Item
         id: peerimage
         anchors { left: parent.left; top: parent.top }
         size: contactitem.height
-        fallbackText: context.telegram.userFullName(tgUser)
+        peer: tgUser
+        backgroundColor: "gray"
+        foregroundColor: "black"
+        fontPixelSize: Theme.fontSizeSmall
     }
 
     Text
