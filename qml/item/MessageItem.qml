@@ -62,6 +62,10 @@ Item
             id: mediamessageitem
             message: messageitem.tgMessage
             size: parent.width
+
+            locationDelegate: function(latitude, longitude){
+                return context.locationThumbnail(latitude, longitude, maxWidth, maxWidth, 14);
+            }
         }
 
         MessageText
