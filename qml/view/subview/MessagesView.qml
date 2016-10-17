@@ -34,7 +34,7 @@ ViewContainer
         }
 
         delegate: MessageItem {
-            maxWidth: parent.width * 0.8
+            maxWidth: parent.width * 0.5
             context: messagesview.context
             tgDialog: messagesview.tgDialog
             tgMessage: model.item
