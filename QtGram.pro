@@ -28,22 +28,21 @@ DISTFILES += \
     qml/view/login/SignUpView.qml \
     qml/view/login/SignInView.qml \
     qml/view/dialog/DialogsView.qml \
-    qml/js/TelegramHelper.js \
-    qml/item/DialogItem.qml \
     qml/component/topbar/TopBar.qml \
     qml/component/topbar/TopBarItem.qml \
     qml/dialogs/ContactsDialog.qml \
-    qml/item/ContactItem.qml \
     qml/component/listview/StyledListView.qml \
     qml/view/subview/PlaceholderView.qml \
     qml/component/DialogHeader.qml \
-    qml/item/MessageItem.qml \
     qml/component/message/MessageBubble.qml \
     qml/view/subview/MessagesView.qml \
     qml/component/StyledTextInput.qml \
     qml/component/message/MessageText.qml \
     qml/js/Emoji.js \
-    qml/js/TextElaborator.js
+    qml/js/TextElaborator.js \
+    qml/item/DialogModelItem.qml \
+    qml/item/ContactModelItem.qml \
+    qml/item/MessageModelItem.qml
 
 HEADERS += \
     qtgram.h \

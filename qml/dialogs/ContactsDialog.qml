@@ -14,15 +14,26 @@ Dialog
     height: 400
 
     contentItem: ListView {
+        id: lvcontacts
         anchors.fill: parent
 
         model: LibQTelegram.ContactsModel {
+            id: contactsmodel
             telegram: context.telegram
         }
 
-        delegate: ContactItem {
+        section.property: "firstLetter"
+
+        section.delegate: Text {
+            x: Theme.paddingSmall
+            width: lvcontacts.width - (x * 2)
+            horizontalAlignment: Text.AlignRight
+            font { bold: true; pointSize: Theme.fontSizeLarge }
+            text: section
+        }
+
+        delegate: ContactModelItem {
             context: contactsdialog.context
-            tgUser: item
             width: parent.width
         }
     }

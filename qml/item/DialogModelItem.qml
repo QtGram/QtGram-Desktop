@@ -1,22 +1,20 @@
 import QtQuick 2.4
 import LibQTelegram 1.0
-import "../js/TelegramHelper.js" as TelegramHelper
 
 MouseArea
 {
     property var context
     property var tgDialog
-    property Message tgMessage: context.telegram.message(tgDialog.topMessage)
 
-    id: dialogitem
+    id: dialogmodelitem
     height: Theme.itemSizeSmall
 
     PeerImage
     {
         id: peerimage
         anchors { left: parent.left; top: parent.top }
-        size: dialogitem.height
-        peer: tgDialog
+        size: dialogmodelitem.height
+        peer: model.item
         backgroundColor: "gray"
         foregroundColor: "black"
         fontPixelSize: Theme.fontSizeSmall
@@ -26,7 +24,7 @@ MouseArea
     {
         id: lbltitle
         anchors { left: peerimage.right; top: parent.top; right: parent.right; leftMargin: Theme.paddingSmall }
-        text: context.telegram.dialogTitle(tgDialog)
+        text: model.title
         elide: Text.ElideRight
     }
 
@@ -41,21 +39,21 @@ MouseArea
             color: Theme.highlightColor
 
             text: {
-                if(tgMessage)
-                    return (tgMessage.isOut ? qsTr("You") : context.telegram.messageFrom(tgMessage)) + ":";
+                if(model.topMessage)
+                    return (model.topMessage.isOut ? qsTr("You") : model.topMessageFrom);
 
                 return "";
             }
 
             visible: {
-                if(context.telegram.dialogIsBroadcast(tgDialog))
+                if(model.isBroadcast)
                     return false;
 
-                if(context.telegram.dialogIsChat(tgDialog) || context.telegram.dialogIsChannel(tgDialog))
+                if(model.isChat || model.isMegaGroup)
                     return true;
 
-                if(tgMessage)
-                    return tgMessage.isOut;
+                if(model.topMessage)
+                    return model.topMessage.isOut;
 
                 return false;
             }
@@ -73,12 +71,12 @@ MouseArea
             text: {
                 var msg = "";
 
-                if(context.telegram.dialogHasDraftMessage(tgDialog))
-                    msg = qsTr("Draft: %1").arg(context.telegram.dialogDraftMessage(tgDialog));
+                if(model.draftMessage.length > 0)
+                    msg = qsTr("Draft: %1").arg(model.draftMessage);
                 else
-                    msg = context.telegram.messagePreview(tgMessage);
+                    msg = model.topMessageText;
 
-                return TelegramHelper.firstMessageLine(msg);
+                return msg;
             }
         }
     }

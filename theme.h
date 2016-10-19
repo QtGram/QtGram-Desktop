@@ -13,6 +13,7 @@ class Theme : public QObject
     Q_PROPERTY(qreal paddingLarge READ paddingLarge CONSTANT FINAL)
     Q_PROPERTY(qreal fontSizeSmall READ fontSizeSmall CONSTANT FINAL)
     Q_PROPERTY(qreal fontSizeMedium READ fontSizeMedium CONSTANT FINAL)
+    Q_PROPERTY(qreal fontSizeLarge READ fontSizeLarge CONSTANT FINAL)
     Q_PROPERTY(qreal itemSizeExtraSmall READ itemSizeExtraSmall CONSTANT FINAL)
     Q_PROPERTY(qreal itemSizeSmall READ itemSizeSmall CONSTANT FINAL)
     Q_PROPERTY(qreal itemSizeMedium READ itemSizeMedium CONSTANT FINAL)

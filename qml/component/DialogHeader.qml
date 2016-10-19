@@ -5,6 +5,8 @@ Item
 {
     property var context
     property var tgDialog
+    property alias title: lbltitle.text
+    property alias statusText: lblstatus.text
 
     id: dialogheader
     height: Theme.itemSizeSmall
@@ -24,7 +26,6 @@ Item
     {
         id: lbltitle
         anchors { left: peerimage.right; top: parent.top; right: parent.right; leftMargin: Theme.paddingSmall }
-        text: context.telegram.dialogTitle(tgDialog)
         elide: Text.ElideRight
     }
 
@@ -32,7 +33,6 @@ Item
     {
         id: lblstatus
         anchors { left: peerimage.right; top: lbltitle.bottom; right: parent.right; leftMargin: Theme.paddingSmall }
-        text: context.telegram.dialogStatusText(tgDialog)
         font.pointSize: Theme.fontSizeSmall
         elide: Text.ElideRight
     }

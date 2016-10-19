@@ -5,15 +5,13 @@ import "../component/message"
 Item
 {
     property var context
-    property var tgDialog
-    property Message tgMessage
     property real maxWidth
 
-    id: messageitem
+    id: messagemodelitem
     height: content.height
 
     width: {
-        if(context.telegram.constructorIs(tgMessage, Message.CtorMessageService))
+        if(model.isServiceMessage)
             return maxWidth;
 
         var w = Math.max(lblhiddenfrom.contentWidth, lblhiddenmessage.contentWidth, mediamessageitem.contentWidth)
@@ -21,8 +19,8 @@ Item
     }
 
     anchors {
-        right: !tgMessage.isOut ? undefined : parent.right
-        left: tgMessage.isOut ? undefined : parent.left
+        right: !model.item.isOut ? undefined : parent.right
+        left: model.item.isOut ? undefined : parent.left
         rightMargin: Theme.paddingMedium
         leftMargin: Theme.paddingMedium
     }
@@ -30,13 +28,13 @@ Item
     MessageBubble
     {
         anchors { fill: parent; margins: -Theme.paddingSmall }
-        tgMessage: messageitem.tgMessage
+        tgMessage: model.item
 
         visible: {
             if(mediamessageitem.isSticker || mediamessageitem.isAnimated)
                 return false;
 
-            return !context.telegram.constructorIs(tgMessage, Message.CtorMessageService);
+            return !model.isServiceMessage;
         }
     }
 
@@ -45,22 +43,22 @@ Item
         id: content
         width: parent.width
 
-        Text { id: lblhiddenfrom; text: context.telegram.messageFrom(tgMessage); visible: false }
-        Text { id: lblhiddenmessage; text: context.telegram.messageText(tgMessage); visible: false }
+        Text { id: lblhiddenfrom; text: model.messageFrom; visible: false }
+        Text { id: lblhiddenmessage; text: model.messageText; visible: false }
 
         Text
         {
             id: lblfrom
             width: parent.width
             horizontalAlignment: Text.AlignLeft
-            visible: context.telegram.dialogIsChat(tgDialog) && !tgMessage.isOut
+            visible: messagesmodel.isChat && !model.item.isOut
             text: lblhiddenfrom.text
         }
 
         MediaMessageItem
         {
             id: mediamessageitem
-            message: messageitem.tgMessage
+            message: model.item
             size: parent.width
 
             locationDelegate: function(latitude, longitude){
@@ -75,17 +73,17 @@ Item
             emojiPath: context.qtgram.emojiPath
             rawText: lblhiddenmessage.text
             wrapMode: Text.Wrap
-            font { italic: context.telegram.constructorIs(tgMessage, Message.CtorMessageService) }
+            font { italic: model.isServiceMessage }
 
             color: {
-                if(context.telegram.constructorIs(tgMessage, Message.CtorMessageService))
+                if(model.isServiceMessage)
                     return "gray";
 
                 return "black";
             }
 
             horizontalAlignment: {
-                if(context.telegram.constructorIs(tgMessage, Message.CtorMessageService))
+                if(model.isServiceMessage)
                     return Text.AlignHCenter;
 
                 return Text.AlignLeft;

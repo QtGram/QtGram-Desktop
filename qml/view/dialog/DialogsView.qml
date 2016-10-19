@@ -38,10 +38,9 @@ ViewContainer
                 telegram: context.telegram
             }
 
-            delegate: DialogItem {
+            delegate: DialogModelItem {
                 width: lvdialogs.width
                 context: dialogsview.context
-                tgDialog: model.item
 
                 onClicked: {
                     lvdialogs.currentIndex = index;

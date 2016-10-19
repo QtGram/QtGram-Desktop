@@ -10,12 +10,21 @@ ViewContainer
 
     id: messagesview
 
+    MessagesModel
+    {
+        id: messagesmodel
+        telegram: messagesview.context.telegram
+        dialog: messagesview.tgDialog
+    }
+
     DialogHeader
     {
         id: dialogheader
         width: parent.width
         context: messagesview.context
         tgDialog: messagesview.tgDialog
+        title: messagesmodel.title
+        statusText: messagesmodel.statusText
     }
 
     StyledListView
@@ -26,18 +35,11 @@ ViewContainer
         verticalLayoutDirection: ListView.BottomToTop
         backgroundColor: "aliceblue"
         spacing: Theme.paddingLarge
+        model: messagesmodel
 
-        model: MessagesModel {
-            id: messagesmodel
-            telegram: messagesview.context.telegram
-            dialog: messagesview.tgDialog
-        }
-
-        delegate: MessageItem {
+        delegate: MessageModelItem {
             maxWidth: parent.width * 0.5
             context: messagesview.context
-            tgDialog: messagesview.tgDialog
-            tgMessage: model.item
         }
     }
 
