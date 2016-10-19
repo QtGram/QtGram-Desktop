@@ -16,7 +16,7 @@ Item
         if(context.telegram.constructorIs(tgMessage, Message.CtorMessageService))
             return maxWidth;
 
-        var w = Math.max(lblhiddenfrom.contentWidth, lblhiddenmessage.contentWidth, mediamessageitem.imageSize.width)
+        var w = Math.max(lblhiddenfrom.contentWidth, lblhiddenmessage.contentWidth, mediamessageitem.contentWidth)
         return Math.min(w, maxWidth);
     }
 
@@ -88,7 +88,7 @@ Item
                 if(context.telegram.constructorIs(tgMessage, Message.CtorMessageService))
                     return Text.AlignHCenter;
 
-                return tgMessage.isOut ? Text.AlignRight : Text.AlignLeft
+                return Text.AlignLeft;
             }
         }
     }
