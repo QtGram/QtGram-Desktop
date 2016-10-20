@@ -37,6 +37,13 @@ ViewContainer
         spacing: Theme.paddingLarge
         model: messagesmodel
 
+        onAtYBeginningChanged: {
+            if(!atYBeginning)
+                return;
+
+            messagesmodel.loadMore();
+        }
+
         delegate: MessageModelItem {
             maxWidth: parent.width * 0.5
             context: messagesview.context
