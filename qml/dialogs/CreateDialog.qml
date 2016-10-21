@@ -2,6 +2,7 @@ import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import QtQuick.Dialogs 1.2
 import QtQuick.Controls 1.4
+import "../component/theme"
 
 Dialog
 {
@@ -32,7 +33,7 @@ Dialog
                 exclusiveGroup: exclusivegroup
             }
 
-            Label
+            Text
             {
                 id: lblgroups
                 text: qsTr("Groups are ideal for limited communities they can have up to 5000 members")
@@ -47,7 +48,7 @@ Dialog
                 exclusiveGroup: exclusivegroup
             }
 
-            Label
+            Text
             {
                 id: lblchannels
                 text: qsTr("Channels are a tool for broadcasting your messages to unlimited audiences")
@@ -55,7 +56,7 @@ Dialog
                 color: "gray"
             }
 
-            Button
+            ThemeButton
             {
                 text: qsTr("Create")
                 anchors { right: parent.right; rightMargin: Theme.paddingMedium }
