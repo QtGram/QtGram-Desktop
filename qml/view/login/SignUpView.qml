@@ -8,6 +8,13 @@ ViewContainer
 {
     id: signupview
 
+    Timer
+    {
+        id: timdisablebutton
+        running: false
+        interval: 2000
+    }
+
     ColumnLayout
     {
         readonly property real maxWidth: 256
@@ -53,16 +60,31 @@ ViewContainer
 
         Button
         {
-            id: btnsignin
+            id: btnsignup
             anchors.horizontalCenter: parent.horizontalCenter
             text: qsTr("Sign Up")
             enabled: (tffirstname.text.length > 0) && (tfcode.text.length > 0)
             Layout.preferredWidth: column.maxWidth
 
             onClicked: {
-                btnsignin.enabled = false;
-                btnsignin.text = qsTr("Sending request...");
+                btnsignup.enabled = false;
+                btnsignup.text = qsTr("Sending request...");
                 context.telegram.signUp(tffirstname.text, tflastname.text, tfcode.text);
+            }
+        }
+
+        Button
+        {
+            id: btnresendcode
+            anchors.horizontalCenter: parent.horizontalCenter
+            enabled: !timdisablebutton.running
+            Layout.preferredWidth: column.maxWidth
+
+            text: timdisablebutton.running ? qsTr("Requesting new code...") : qsTr("Resend code")
+
+            onClicked: {
+                timdisablebutton.start();
+                context.telegram.resendCode();
             }
         }
     }
