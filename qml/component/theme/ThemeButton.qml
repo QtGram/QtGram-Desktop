@@ -4,11 +4,18 @@ MouseArea
 {
     property alias text: txtcontent.text
     property alias font: txtcontent.font
+    property bool autoSize: false
 
     id: themebutton
     hoverEnabled: true
-    implicitWidth: Math.min(Theme.defaultWidth, txtcontent.contentWidth + (Theme.paddingLarge * 2))
     implicitHeight: Theme.defaultHeight
+
+    implicitWidth: {
+        if(autoSize)
+            return txtcontent.contentWidth + (Theme.paddingLarge * 2);
+
+        return Theme.defaultWidth;
+    }
 
     Rectangle
     {

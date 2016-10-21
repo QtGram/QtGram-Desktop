@@ -38,7 +38,7 @@ Dialog
                 id: lblgroups
                 text: qsTr("Groups are ideal for limited communities they can have up to 5000 members")
                 wrapMode: Text.Wrap
-                color: "gray"
+                color: Theme.placeholderTextColor
             }
 
             RadioButton
@@ -53,7 +53,7 @@ Dialog
                 id: lblchannels
                 text: qsTr("Channels are a tool for broadcasting your messages to unlimited audiences")
                 wrapMode: Text.Wrap
-                color: "gray"
+                color: Theme.placeholderTextColor
             }
 
             ThemeButton
@@ -61,6 +61,7 @@ Dialog
                 text: qsTr("Create")
                 anchors { right: parent.right; rightMargin: Theme.paddingMedium }
                 enabled: rbnewgroup.checked || rbnewchannel.checked
+                autoSize: true
 
                 onClicked: {
                     createdialog.createGroup(rbnewchannel.checked);
