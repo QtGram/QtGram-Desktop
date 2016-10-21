@@ -3,7 +3,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.4
 import LibQTelegram 1.0
 import "../../component"
-import "../../component/listview"
+import "../../component/theme"
 import "../../item"
 import "../subview"
 
@@ -11,27 +11,26 @@ ViewContainer
 {
     id: dialogsview
 
-    SplitView
+    Item
     {
-        anchors.fill: parent
-        orientation: Qt.Horizontal
+        id: leftpart
+        anchors { left: parent.left; top: parent.top; bottom: parent.bottom }
+        width: parent.width * 0.35
 
-        StyledListView
+        ThemeTextField
+        {
+            id: tfsearch
+            anchors { left: parent.left; top: parent.top; right: parent.right; topMargin: -1 }
+            placeholderText: qsTr("Search...")
+        }
+
+        ThemeListView
         {
             id: lvdialogs
+            anchors { left: parent.left; top: tfsearch.bottom; right: parent.right; bottom: parent.bottom; topMargin: -1 }
             spacing: Theme.paddingSmall
-            backgroundColor: "aliceblue"
+            placeholderText: qsTr("Chat list is empty")
             clip: true
-
-            Layout.minimumWidth: parent.width * 0.35
-            Layout.maximumWidth: parent.width * 0.35
-
-            /*
-            header: TextField {
-                width: parent.width
-                placeholderText: qsTr("Search...")
-            }
-            */
 
             model: DialogsModel {
                 id: dialogsmodel
@@ -52,14 +51,16 @@ ViewContainer
             }
         }
 
-        StackView
-        {
-            id: stackview
-            clip: true
+    }
 
-            initialItem: PlaceholderView {
-                context: dialogsview.context
-            }
+    StackView
+    {
+        id: stackview
+        anchors { left: leftpart.right; top: parent.top; bottom: parent.bottom; right: parent.right }
+        clip: true
+
+        initialItem: PlaceholderView {
+            context: dialogsview.context
         }
     }
 }

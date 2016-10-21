@@ -36,7 +36,7 @@ MouseArea
         Text
         {
             id: lblfrom
-            color: Theme.highlightColor
+            color: Theme.mainColor
 
             text: {
                 if(model.topMessage)

@@ -1,7 +1,6 @@
-import QtQuick 2.7
-import QtQuick.Controls 1.4
-import QtQuick.Layouts 1.1
+import QtQuick 2.0
 import "../../component"
+import "../../component/theme"
 import "../../js/CountryList.js" as CountryList
 
 ViewContainer
@@ -15,15 +14,31 @@ ViewContainer
         interval: 2000
     }
 
-    ColumnLayout
+    Image
     {
-        readonly property real maxWidth: 256
+        id: imglogo
+        source: "qrc:///res/app.png";
+        fillMode: Image.PreserveAspectFit
 
+        anchors {
+            left: parent.left
+            verticalCenter: parent.verticalCenter
+            leftMargin: Theme.paddingLarge
+        }
+    }
+
+    Column
+    {
         id: column
-        anchors { left: parent.left; top: parent.top; right: parent.right; topMargin: 20 }
-        width: column.maxWidth
+        spacing: Theme.paddingMedium
 
-        Image { source: "qrc:///res/app.png"; sourceSize: Qt.size(column.maxWidth, column.maxWidth); anchors.horizontalCenter: parent.horizontalCenter }
+        anchors {
+            left: imglogo.right
+            right: parent.right
+            verticalCenter: parent.verticalCenter
+            leftMargin: Theme.paddingMedium
+            rightMargin: Theme.paddingMedium
+        }
 
         Text
         {
@@ -31,40 +46,38 @@ ViewContainer
             anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.Wrap
-            Layout.preferredWidth: column.maxWidth
         }
 
-        TextField
+        ThemeTextField
         {
             id: tffirstname
+            width: parent.width * 0.8
             anchors.horizontalCenter: parent.horizontalCenter
             placeholderText: qsTr("First Name")
-            Layout.preferredWidth: column.maxWidth
         }
 
-        TextField
+        ThemeTextField
         {
             id: tflastname
+            width: parent.width * 0.8
             anchors.horizontalCenter: parent.horizontalCenter
             placeholderText: qsTr("Last Name (Optional)")
-            Layout.preferredWidth: column.maxWidth
         }
 
-        TextField
+        ThemeTextField
         {
             id: tfcode
+            width: parent.width * 0.8
             anchors.horizontalCenter: parent.horizontalCenter
             placeholderText: qsTr("Code")
-            Layout.preferredWidth: column.maxWidth
         }
 
-        Button
+        ThemeButton
         {
             id: btnsignup
             anchors.horizontalCenter: parent.horizontalCenter
             text: qsTr("Sign Up")
             enabled: (tffirstname.text.length > 0) && (tfcode.text.length > 0)
-            Layout.preferredWidth: column.maxWidth
 
             onClicked: {
                 btnsignup.enabled = false;
@@ -73,12 +86,11 @@ ViewContainer
             }
         }
 
-        Button
+        ThemeButton
         {
             id: btnresendcode
             anchors.horizontalCenter: parent.horizontalCenter
             enabled: !timdisablebutton.running
-            Layout.preferredWidth: column.maxWidth
 
             text: timdisablebutton.running ? qsTr("Requesting new code...") : qsTr("Resend code")
 

@@ -2,6 +2,7 @@ import QtQuick 2.4
 import QtQuick.Dialogs 1.2
 import QtQuick.Controls 1.4
 import LibQTelegram 1.0 as LibQTelegram
+import "../component"
 import "../item"
 
 Dialog
@@ -13,7 +14,7 @@ Dialog
     width: 500
     height: 400
 
-    contentItem: ListView {
+    contentItem: StyledListView {
         id: lvcontacts
         anchors.fill: parent
 
@@ -23,6 +24,7 @@ Dialog
         }
 
         section.property: "firstLetter"
+        placeholderText: qsTr("No contacts")
 
         section.delegate: Text {
             x: Theme.paddingSmall

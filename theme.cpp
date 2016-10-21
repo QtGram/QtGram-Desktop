@@ -63,12 +63,42 @@ qreal Theme::itemSizeLarge() const
     return 80;
 }
 
-QColor Theme::primaryColor() const
+qreal Theme::defaultWidth() const
 {
-   return ColorPalette.text().color();
+    return this->itemSizeSmall() * 4;
 }
 
-QColor Theme::highlightColor() const
+qreal Theme::defaultHeight() const
 {
-   return ColorPalette.highlight().color();
+    return this->itemSizeSmall();
+}
+
+qreal Theme::colorSweep() const
+{
+    return 1.2;
+}
+
+QColor Theme::backgroundColor() const
+{
+    return QColor("white");
+}
+
+QColor Theme::textColor() const
+{
+    return ColorPalette.text().color();
+}
+
+QColor Theme::mainColor() const
+{
+    return QColor("#5fa0c4");
+}
+
+QColor Theme::mainTextColor() const
+{
+    return QColor("white");
+}
+
+QColor Theme::placeholderTextColor() const
+{
+    return QColor("gray");
 }

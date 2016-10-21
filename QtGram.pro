@@ -28,21 +28,25 @@ DISTFILES += \
     qml/view/login/SignUpView.qml \
     qml/view/login/SignInView.qml \
     qml/view/dialog/DialogsView.qml \
-    qml/component/topbar/TopBar.qml \
-    qml/component/topbar/TopBarItem.qml \
     qml/dialogs/ContactsDialog.qml \
-    qml/component/listview/StyledListView.qml \
     qml/view/subview/PlaceholderView.qml \
     qml/component/DialogHeader.qml \
     qml/component/message/MessageBubble.qml \
     qml/view/subview/MessagesView.qml \
-    qml/component/StyledTextInput.qml \
     qml/component/message/MessageText.qml \
     qml/js/Emoji.js \
     qml/js/TextElaborator.js \
     qml/item/DialogModelItem.qml \
     qml/item/ContactModelItem.qml \
-    qml/item/MessageModelItem.qml
+    qml/item/MessageModelItem.qml \
+    qml/dialogs/CreateDialog.qml \
+    qml/dialogs/CreateGroupDialog.qml \
+    qml/component/theme/ThemeListView.qml \
+    qml/component/theme/ThemeButton.qml \
+    qml/component/theme/ThemeComboBox.qml \
+    qml/component/theme/ThemeFrame.qml \
+    qml/component/theme/ThemeTextField.qml \
+    qml/component/theme/menu/ThemeMenuBar.qml
 
 HEADERS += \
     qtgram.h \

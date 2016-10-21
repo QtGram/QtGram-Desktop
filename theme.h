@@ -18,11 +18,21 @@ class Theme : public QObject
     Q_PROPERTY(qreal itemSizeSmall READ itemSizeSmall CONSTANT FINAL)
     Q_PROPERTY(qreal itemSizeMedium READ itemSizeMedium CONSTANT FINAL)
     Q_PROPERTY(qreal itemSizeLarge READ itemSizeLarge CONSTANT FINAL)
-    Q_PROPERTY(QColor primaryColor READ primaryColor CONSTANT FINAL)
-    Q_PROPERTY(QColor highlightColor READ highlightColor CONSTANT FINAL)
+    Q_PROPERTY(qreal defaultWidth READ defaultWidth CONSTANT FINAL)
+    Q_PROPERTY(qreal defaultHeight READ defaultHeight CONSTANT FINAL)
+
+    Q_PROPERTY(qreal colorSweep READ colorSweep CONSTANT FINAL)
+
+    Q_PROPERTY(QColor backgroundColor READ backgroundColor CONSTANT FINAL)
+    Q_PROPERTY(QColor textColor READ textColor CONSTANT FINAL)
+    Q_PROPERTY(QColor mainColor READ mainColor CONSTANT FINAL)
+    Q_PROPERTY(QColor mainTextColor READ mainTextColor CONSTANT FINAL)
+    Q_PROPERTY(QColor placeholderTextColor READ placeholderTextColor CONSTANT FINAL)
 
     public:
         explicit Theme(QObject *parent = 0);
+
+    public: // Metrics
         qreal paddingSmall() const;
         qreal paddingMedium() const;
         qreal paddingLarge() const;
@@ -33,8 +43,18 @@ class Theme : public QObject
         qreal itemSizeSmall() const;
         qreal itemSizeMedium() const;
         qreal itemSizeLarge() const;
-        QColor primaryColor() const;
-        QColor highlightColor() const;
+        qreal defaultWidth() const;
+        qreal defaultHeight() const;
+
+    public: // Color transformation
+        qreal colorSweep() const;
+
+    public: // Colors
+        QColor backgroundColor() const;
+        QColor textColor() const;
+        QColor mainColor() const;
+        QColor mainTextColor() const;
+        QColor placeholderTextColor() const;
 };
 
 #endif // THEME_H

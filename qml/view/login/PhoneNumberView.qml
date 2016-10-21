@@ -1,54 +1,81 @@
-import QtQuick 2.7
-import QtQuick.Controls 1.4
-import QtQuick.Layouts 1.1
+import QtQuick 2.0
 import "../../component"
+import "../../component/theme"
 import "../../js/CountryList.js" as CountryList
 
 ViewContainer
 {
-    id: registerview
+    id: phonenumberview
 
-    ColumnLayout
+    Image
     {
-        readonly property real maxWidth: 256
+        id: imglogo
+        source: "qrc:///res/app.png";
+        fillMode: Image.PreserveAspectFit
 
+        anchors {
+            left: parent.left
+            verticalCenter: parent.verticalCenter
+            leftMargin: Theme.paddingLarge
+        }
+    }
+
+    Column
+    {
         id: column
-        anchors { left: parent.left; top: parent.top; right: parent.right; topMargin: 20 }
-        width: column.maxWidth
+        spacing: Theme.paddingMedium
 
-        Image { source: "qrc:///res/app.png"; sourceSize: Qt.size(column.maxWidth, column.maxWidth); anchors.horizontalCenter: parent.horizontalCenter }
-        Label { text: "QtGram"; font.pixelSize: 50; horizontalAlignment: Text.AlignHCenter; Layout.preferredWidth: column.maxWidth; anchors.horizontalCenter: parent.horizontalCenter }
-        ComboBox { id: cbcountries; anchors.horizontalCenter: parent.horizontalCenter; model: CountryList.countries; Layout.preferredWidth: column.maxWidth }
+        anchors {
+            left: imglogo.right
+            right: parent.right
+            verticalCenter: parent.verticalCenter
+            leftMargin: Theme.paddingMedium
+            rightMargin: Theme.paddingMedium
+        }
 
-        RowLayout
+        Text
         {
+            text: qsTr("Insert your phone number:")
             width: parent.width
+            horizontalAlignment: Text.AlignHCenter
+        }
+
+        ThemeComboBox
+        {
+            id: cbcountries
+            width: parent.width * 0.6
             anchors.horizontalCenter: parent.horizontalCenter
+            model: CountryList.countries
+        }
 
-            TextField
+        Row
+        {
+            id: row
+            width: parent.width * 0.6
+            anchors.horizontalCenter: parent.horizontalCenter
+            spacing: Theme.paddingSmall
+
+            ThemeTextField
             {
-                readonly property real maxWidth: font.pixelSize * 4
-
-                id: tfccode
+                id: tfcode
+                width: Theme.itemSizeSmall
                 text: "+" + CountryList.countries[cbcountries.currentIndex].code
-                Layout.preferredWidth: tfccode.maxWidth
             }
 
-            TextField
+            ThemeTextField
             {
                 id: tfphonenumber
+                width: parent.width - tfcode.width - row.spacing
                 placeholderText: qsTr("Phone Number")
-                Layout.preferredWidth: column.maxWidth - tfccode.maxWidth
             }
         }
 
-        Button
+        ThemeButton
         {
             id: btnnext
             anchors.horizontalCenter: parent.horizontalCenter
             text: qsTr("Next")
             enabled: tfphonenumber.text.length > 0
-            Layout.preferredWidth: column.maxWidth
 
             onClicked: {
                 btnnext.enabled = false;
