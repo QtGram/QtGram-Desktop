@@ -1,12 +1,20 @@
 import QtQuick 2.4
 import LibQTelegram 1.0
 
-Item
+MouseArea
 {
     property var context
+    property bool highlighted: false
 
     id: contactmodelitem
     height: Theme.itemSizeSmall
+
+    Rectangle
+    {
+        anchors.fill: parent
+        color: Theme.mainColor
+        visible: contactmodelitem.highlighted
+    }
 
     PeerImage
     {
@@ -25,6 +33,7 @@ Item
         anchors { left: peerimage.right; top: parent.top; right: parent.right; leftMargin: Theme.paddingSmall }
         elide: Text.ElideRight
         text: model.fullName
+        color: highlighted ? Theme.mainTextColor : Theme.textColor
     }
 
     Text
@@ -34,7 +43,7 @@ Item
         wrapMode: Text.NoWrap
         elide: Text.ElideRight
         font.pixelSize: lbluserfullname.font.pixelSize - 2
-        color: "gray"
+        color: highlighted ? Theme.mainTextColor : Theme.placeholderTextColor
         text: model.statusText
     }
 }

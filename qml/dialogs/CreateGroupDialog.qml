@@ -8,10 +8,16 @@ import "../item"
 Dialog
 {
     property var context
+    property var users
+    property int usersCount: 0
     property bool isChannel: false
 
     id: creategroupdialog
     title: isChannel ? qsTr("Create channel...") : qsTr("Create group...")
+
+    Component.onCompleted: {
+        users = new Object;
+    }
 
     contentItem: Item {
         implicitWidth: 500
@@ -36,6 +42,19 @@ Dialog
             delegate: ContactModelItem {
                 context: creategroupdialog.context
                 width: parent.width
+
+                onClicked: {
+                    if(creategroupdialog.users[model.item.id]) {
+                        delete creategroupdialog.users[model.item.id];
+                        creategroupdialog.usersCount--;
+                        highlighted = false;
+                        return;
+                    }
+
+                    creategroupdialog.users[model.item.id] = model.item;
+                    creategroupdialog.usersCount++;
+                    highlighted = true;
+                }
             }
         }
 
@@ -54,13 +73,21 @@ Dialog
                 rightMargin: Theme.paddingMedium
             }
 
-
             ThemeButton
             {
                 autoSize: true
-                enabled: false
+                enabled: (lvcontacts.headerItem.text.length > 0) && (creategroupdialog.usersCount > 0)
                 anchors.verticalCenter: parent.verticalCenter
                 text: qsTr("Create")
+
+                onClicked: {
+                    var userlist = []
+
+                    for(var key in creategroupdialog.users)
+                        userlist.push(creategroupdialog.users[key]);
+
+                    contactsmodel.createGroup(lvcontacts.headerItem.text, userlist);
+                }
             }
 
             ThemeButton
@@ -68,6 +95,8 @@ Dialog
                 autoSize: true
                 anchors.verticalCenter: parent.verticalCenter
                 text: qsTr("Cancel")
+
+                onClicked: creategroupdialog.close()
             }
         }
     }
