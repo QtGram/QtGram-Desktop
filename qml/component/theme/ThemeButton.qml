@@ -7,7 +7,7 @@ MouseArea
 
     id: themebutton
     hoverEnabled: true
-    implicitWidth: Math.max(Theme.defaultWidth, txtcontent.contentWidth + (Theme.paddingLarge * 2))
+    implicitWidth: Math.min(Theme.defaultWidth, txtcontent.contentWidth + (Theme.paddingLarge * 2))
     implicitHeight: Theme.defaultHeight
 
     Rectangle
