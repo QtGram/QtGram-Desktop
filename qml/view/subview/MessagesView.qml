@@ -2,6 +2,7 @@ import QtQuick 2.4
 import LibQTelegram 1.0
 import "../../component"
 import "../../component/theme"
+import "../../component/message"
 import "../../item"
 
 ViewContainer
@@ -31,7 +32,7 @@ ViewContainer
     {
         id: lvmessages
         clip: true
-        anchors { left: parent.left; top: dialogheader.bottom; right: parent.right; bottom: tisendmessage.top }
+        anchors { left: parent.left; top: dialogheader.bottom; right: parent.right; bottom: messagetextinput.top }
         verticalLayoutDirection: ListView.BottomToTop
         frameVisible: false
         spacing: Theme.paddingLarge
@@ -50,22 +51,16 @@ ViewContainer
         }
     }
 
-    ThemeTextField
+    MessageTextInput
     {
-        id: tisendmessage
-        placeholderText: qsTr("Send message...")
+        id: messagetextinput
 
         anchors {
             left: parent.left
             bottom: parent.bottom
             right: parent.right
-            leftMargin: -1
-            rightMargin: -1
         }
 
-        onReturnPressed: {
-            messagesmodel.sendMessage(tisendmessage.text);
-            tisendmessage.text = "";
-        }
+        onSendRequested: messagesmodel.sendMessage(content)
     }
 }

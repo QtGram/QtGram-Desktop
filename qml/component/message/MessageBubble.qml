@@ -12,7 +12,7 @@ Item
     Rectangle
     {
         id: mainbubble
-        color: tgMessage.isOut ? "darkgrey" : "lightskyblue"
+        color: tgMessage.isOut ? "darkgrey" : Theme.mainColor
         anchors.fill: parent
         radius: 12
         smooth: true

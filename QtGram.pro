@@ -46,7 +46,8 @@ DISTFILES += \
     qml/component/theme/ThemeComboBox.qml \
     qml/component/theme/ThemeFrame.qml \
     qml/component/theme/ThemeTextField.qml \
-    qml/component/theme/menu/ThemeMenuBar.qml
+    qml/component/theme/menu/ThemeMenuBar.qml \
+    qml/component/message/MessageTextInput.qml
 
 HEADERS += \
     qtgram.h \
