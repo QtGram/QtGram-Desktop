@@ -1,4 +1,4 @@
-import QtQuick 2.7
+import QtQuick 2.4
 import QtGram 1.0
 import LibQTelegram 1.0
 import "../js/Settings.js" as Settings
