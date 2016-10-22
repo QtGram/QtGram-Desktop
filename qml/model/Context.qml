@@ -19,6 +19,7 @@ Item
             apiHash: context.apiHash
             host: "149.154.167.50"
             port: 443
+            dcId: 2
             publicKey: qtgram.publicKey
         }
 
