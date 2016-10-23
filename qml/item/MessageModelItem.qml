@@ -11,7 +11,7 @@ Item
     height: content.height
 
     width: {
-        if(model.isServiceMessage)
+        if(model.isMessageService)
             return maxWidth;
 
         var w = Math.max(lblhiddenfrom.contentWidth, lblhiddenmessage.contentWidth, mediamessageitem.contentWidth)
@@ -34,7 +34,7 @@ Item
             if(mediamessageitem.isSticker || mediamessageitem.isAnimated)
                 return false;
 
-            return !model.isServiceMessage;
+            return !model.isMessageService;
         }
     }
 
@@ -51,7 +51,7 @@ Item
             id: lblfrom
             width: parent.width
             horizontalAlignment: Text.AlignLeft
-            visible: messagesmodel.isChat && !model.item.isOut
+            visible: messagesmodel.isChat && !model.isMessageOut && !model.isMessageService
             text: lblhiddenfrom.text
         }
 
@@ -73,17 +73,17 @@ Item
             emojiPath: context.qtgram.emojiPath
             rawText: lblhiddenmessage.text
             wrapMode: Text.Wrap
-            font { italic: model.isServiceMessage }
+            font { italic: model.isMessageService }
 
             color: {
-                if(model.isServiceMessage)
+                if(model.isMessageService)
                     return "gray";
 
                 return "black";
             }
 
             horizontalAlignment: {
-                if(model.isServiceMessage)
+                if(model.isMessageService)
                     return Text.AlignHCenter;
 
                 return Text.AlignLeft;
