@@ -14,10 +14,10 @@ MouseArea
         id: peerimage
         anchors { left: parent.left; top: parent.top }
         size: dialogmodelitem.height
+        backgroundColor: Theme.mainColor
+        foregroundColor: Theme.mainTextColor
+        fontPixelSize: Theme.fontSizeLarge
         peer: model.item
-        backgroundColor: "gray"
-        foregroundColor: "black"
-        fontPixelSize: Theme.fontSizeSmall
     }
 
     Text
@@ -40,20 +40,20 @@ MouseArea
 
             text: {
                 if(model.topMessage)
-                    return (model.topMessage.isOut ? qsTr("You") : model.topMessageFrom);
+                    return (model.topMessage.isOut ? qsTr("You") : model.topMessageFrom) + ":";
 
                 return "";
             }
 
             visible: {
-                if(model.isBroadcast)
+                if(model.isBroadcast || model.isTopMessageService)
                     return false;
 
                 if(model.isChat || model.isMegaGroup)
                     return true;
 
                 if(model.topMessage)
-                    return model.topMessage.isOut;
+                    return model.isTopMessageOut;
 
                 return false;
             }
@@ -66,7 +66,8 @@ MouseArea
             wrapMode: Text.NoWrap
             elide: Text.ElideRight
             verticalAlignment: Text.AlignHCenter
-            color: "gray"
+            color: model.isTopMessageService ? Theme.mainColor : Theme.placeholderTextColor
+            font { italic: model.isTopMessageService }
 
             text: {
                 var msg = "";
