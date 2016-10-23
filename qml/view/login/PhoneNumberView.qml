@@ -81,7 +81,7 @@ ViewContainer
                 btnnext.enabled = false;
                 btnnext.text = qsTr("Sending request...");
 
-                context.telegram.initializer.phoneNumber = tfccode.text + tfphonenumber.text;
+                context.telegram.initializer.phoneNumber = tfcode.text + tfphonenumber.text;
             }
         }
     }
