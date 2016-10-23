@@ -19,8 +19,8 @@ Item
     }
 
     anchors {
-        right: !model.item.isOut ? undefined : parent.right
-        left: model.item.isOut ? undefined : parent.left
+        right: !model.isMessageOut ? undefined : parent.right
+        left: model.isMessageOut ? undefined : parent.left
         rightMargin: Theme.paddingMedium
         leftMargin: Theme.paddingMedium
     }
