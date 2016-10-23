@@ -40,6 +40,9 @@ Item
             bottom: parent.bottom
         }
 
-        onClicked: messagetextinput.sendRequested()
+        onClicked: {
+            messagetextinput.sendRequested(tisendmessage.text);
+            tisendmessage.text = "";
+        }
     }
 }
