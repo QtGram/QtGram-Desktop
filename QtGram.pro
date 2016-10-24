@@ -4,7 +4,8 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     qtgram.cpp \
-    theme.cpp
+    theme.cpp \
+    debugcaller.cpp
 
 RESOURCES += \
     resources.qrc
@@ -47,8 +48,10 @@ DISTFILES += \
     qml/component/theme/ThemeFrame.qml \
     qml/component/theme/ThemeTextField.qml \
     qml/component/theme/menu/ThemeMenuBar.qml \
-    qml/component/message/MessageTextInput.qml
+    qml/component/message/MessageTextInput.qml \
+    qml/dialogs/DebugDialog.qml
 
 HEADERS += \
     qtgram.h \
-    theme.h
+    theme.h \
+    debugcaller.h

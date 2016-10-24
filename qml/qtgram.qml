@@ -51,7 +51,8 @@ ApplicationWindow
             ListElement { text: qsTr("Telegram"); value: 0 }
             ListElement { text: qsTr("Contacts"); value: 1 }
             ListElement { text: qsTr("Settings"); value: 2 }
-            ListElement { text: qsTr("Info"); value: 3 }
+            ListElement { text: qsTr("Debug"); value: 3 }
+            ListElement { text: qsTr("Info"); value: 4 }
         }
 
         onMenuClicked: {
@@ -67,6 +68,12 @@ ApplicationWindow
                 component = Qt.createComponent("dialogs/ContactsDialog.qml");
                 var dlgcontacts = component.createObject(applicationwindow, { context: applicationwindow.context });
                 dlgcontacts.open()
+            }
+            else if(value === 3) {
+                component = Qt.createComponent("dialogs/DebugDialog.qml");
+                var dlgdebug = component.createObject(applicationwindow);
+                dlgdebug.open()
+
             }
         }
     }
