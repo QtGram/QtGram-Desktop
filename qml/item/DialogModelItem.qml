@@ -86,7 +86,7 @@ MouseArea
     {
         id: rectunreadcount
         anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: Theme.paddingSmall }
-        width: Theme.itemSizeSmall * 0.6
+        width: visible ? (Theme.itemSizeSmall * 0.6) : 0
         height: Theme.itemSizeSmall * 0.6
         color: Theme.mainColor
         radius: width * 0.5
