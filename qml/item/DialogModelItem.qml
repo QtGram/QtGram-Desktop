@@ -46,7 +46,7 @@ MouseArea
             }
 
             visible: {
-                if(model.isBroadcast || model.isTopMessageService)
+                if(model.draftMessage.length > 0 || model.isBroadcast || model.isTopMessageService)
                     return false;
 
                 if(model.isChat || model.isMegaGroup)
