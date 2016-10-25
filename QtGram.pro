@@ -49,7 +49,8 @@ DISTFILES += \
     qml/component/theme/ThemeTextField.qml \
     qml/component/theme/menu/ThemeMenuBar.qml \
     qml/component/message/MessageTextInput.qml \
-    qml/dialogs/DebugDialog.qml
+    qml/dialogs/DebugDialog.qml \
+    qml/component/message/MessageStatus.qml
 
 HEADERS += \
     qtgram.h \

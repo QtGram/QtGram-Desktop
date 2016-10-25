@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import LibQTelegram 1.0
+import "../component/message"
 
 MouseArea
 {
@@ -20,17 +21,36 @@ MouseArea
         peer: model.item
     }
 
-    Text
+    Row
     {
-        id: lbltitle
+        id: headerrow
         anchors { left: peerimage.right; top: parent.top; right: parent.right; leftMargin: Theme.paddingSmall }
-        text: model.title
-        elide: Text.ElideRight
+        height: lbltitle.contentHeight
+
+        Text
+        {
+            id: lbltitle
+            text: model.title
+            elide: Text.ElideRight
+            width: parent.width - lblstatus.contentWidth - Theme.paddingSmall
+        }
+
+        MessageStatus
+        {
+            id: lblstatus
+            horizontalAlignment: Text.AlignRight
+            visible: !model.isTopMessageService
+            ticksColor: Theme.mainColor
+            messageDate: model.topMessageDate
+            isMessageOut: model.isTopMessageOut
+            isMessageUnread: model.isTopMessageUnread
+            dateFirst: false
+        }
     }
 
     Row
     {
-        anchors { left: peerimage.right; top: lbltitle.bottom; bottom: parent.bottom; right: rectunreadcount.left; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
+        anchors { left: peerimage.right; top: headerrow.bottom; bottom: parent.bottom; right: parent.right; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
         spacing: Theme.paddingSmall
 
         Text
@@ -62,12 +82,23 @@ MouseArea
         Text
         {
             id: lbllastmessage
-            width: parent.width - (lblfrom.visible ? lblfrom.contentWidth : 0)
             wrapMode: Text.NoWrap
             elide: Text.ElideRight
-            verticalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
             color: model.isTopMessageService ? Theme.mainColor : Theme.placeholderTextColor
             font { italic: model.isTopMessageService }
+
+            width: {
+                var w = parent.width - Theme.paddingSmall;
+
+                if(lblfrom.visible)
+                    w -= lblfrom.contentWidth;
+
+                if(rectunreadcount.visible)
+                    w -= rectunreadcount.width;
+
+                return w;
+            }
 
             text: {
                 var msg = "";
@@ -80,23 +111,22 @@ MouseArea
                 return msg;
             }
         }
-    }
 
-    Rectangle
-    {
-        id: rectunreadcount
-        anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: Theme.paddingSmall }
-        width: visible ? (Theme.itemSizeSmall * 0.6) : 0
-        height: Theme.itemSizeSmall * 0.6
-        color: Theme.mainColor
-        radius: width * 0.5
-        visible: model.unreadCount > 0
+        Rectangle
+        {
+            id: rectunreadcount
+            width: parent.height
+            height: parent.height
+            color: Theme.mainColor
+            radius: width * 0.5
+            visible: model.unreadCount > 0
 
-        Text {
-            text: model.unreadCount
-            color: Theme.mainTextColor
-            anchors.centerIn: parent
-            font.pointSize: Theme.fontSizeSmall
+            Text {
+                text: model.unreadCount
+                color: Theme.mainTextColor
+                anchors.centerIn: parent
+                font.pointSize: Theme.fontSizeSmall
+            }
         }
     }
 }
