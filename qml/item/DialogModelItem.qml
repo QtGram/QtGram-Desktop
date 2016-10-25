@@ -30,7 +30,7 @@ MouseArea
 
     Row
     {
-        anchors { left: peerimage.right; top: lbltitle.bottom; bottom: parent.bottom; right: parent.right; leftMargin: Theme.paddingSmall }
+        anchors { left: peerimage.right; top: lbltitle.bottom; bottom: parent.bottom; right: rectunreadcount.left; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
         spacing: Theme.paddingSmall
 
         Text
@@ -79,6 +79,24 @@ MouseArea
 
                 return msg;
             }
+        }
+    }
+
+    Rectangle
+    {
+        id: rectunreadcount
+        anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: Theme.paddingSmall }
+        width: Theme.itemSizeSmall * 0.6
+        height: Theme.itemSizeSmall * 0.6
+        color: Theme.mainColor
+        radius: width * 0.5
+        visible: model.unreadCount > 0
+
+        Text {
+            text: model.unreadCount
+            color: Theme.mainTextColor
+            anchors.centerIn: parent
+            font.pointSize: Theme.fontSizeSmall
         }
     }
 }
