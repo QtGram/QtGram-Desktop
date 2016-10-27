@@ -122,5 +122,16 @@ Item
                 return Text.AlignLeft;
             }
         }
+
+        MessageStatus
+        {
+            id: messagestatus
+            width: parent.width
+            visible: !model.isMessageService
+            horizontalAlignment: Text.AlignRight
+            isMessageOut: model.isMessageOut
+            isMessageUnread: model.isMessageUnread
+            messageDate: model.messageDate
+        }
     }
 }

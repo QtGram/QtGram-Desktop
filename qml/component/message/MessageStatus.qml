@@ -2,7 +2,7 @@ import QtQuick 2.4
 
 Text
 {
-    property color ticksColor
+    property color ticksColor: "black"
     property string messageDate
     property bool isMessageUnread
     property bool isMessageOut
