@@ -6,6 +6,7 @@ Text
     property string messageDate
     property bool isMessageUnread
     property bool isMessageOut
+    property bool isMessageEdited: false
     property bool dateFirst: true
     property bool dateOnly: false
 
@@ -19,6 +20,9 @@ Text
             return messageDate;
 
         var status = "";
+
+        if(isMessageEdited)
+            status += qsTr("edited") + " ";
 
         if(dateFirst)
             status += messageDate + " ";

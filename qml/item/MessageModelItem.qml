@@ -132,6 +132,7 @@ Item
             horizontalAlignment: Text.AlignRight
             isMessageOut: model.isMessageOut
             isMessageUnread: model.isMessageUnread
+            isMessageEdited: model.isMessageEdited
             messageDate: model.messageDate
         }
     }
