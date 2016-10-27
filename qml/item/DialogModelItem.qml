@@ -96,6 +96,7 @@ MouseArea
             color: model.isTopMessageService ? Theme.mainColor : Theme.placeholderTextColor
             font { italic: model.isTopMessageService }
             emojiPath: context.qtgram.emojiPath
+            openUrls: false
 
             width: {
                 var w = parent.width;
