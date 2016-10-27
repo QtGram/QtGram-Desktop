@@ -64,6 +64,7 @@ Item
 
             imageDelegate: ImageMessage {
                 anchors.fill: parent
+                needsBlur: !mediamessageitem.downloaded
                 source: mediamessageitem.source
             }
 

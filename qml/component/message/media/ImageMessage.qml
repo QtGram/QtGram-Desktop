@@ -1,7 +1,24 @@
 import QtQuick 2.4
+import QtGraphicalEffects 1.0
 
-Image
+Item
 {
+    property alias source: image.source
+    property bool needsBlur: false
+
     id: imagemessage
-    asynchronous: true
+
+    Image
+    {
+        id: image
+        anchors.fill: parent
+        asynchronous: true
+    }
+
+    FastBlur
+    {
+        anchors.fill: image
+        source: image
+        radius: needsBlur ? 32.0 : 0.0
+    }
 }
