@@ -85,12 +85,17 @@ QColor Theme::backgroundColor() const
 
 QColor Theme::textColor() const
 {
-    return ColorPalette.text().color();
+    return QColor("black");
 }
 
 QColor Theme::mainColor() const
 {
     return QColor("#5fa0c4");
+}
+
+QColor Theme::alternateMainColor() const
+{
+    return QColor("#16a085");
 }
 
 QColor Theme::mainTextColor() const

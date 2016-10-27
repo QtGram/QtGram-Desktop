@@ -50,7 +50,15 @@ MouseArea
 
     Row
     {
-        anchors { left: peerimage.right; top: headerrow.bottom; bottom: parent.bottom; right: parent.right; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
+        anchors {
+            left: peerimage.right
+            top: headerrow.bottom
+            bottom: parent.bottom
+            right: parent.right
+            leftMargin: Theme.paddingSmall
+            rightMargin: Theme.paddingMedium
+        }
+
         spacing: Theme.paddingSmall
 
         Text
@@ -79,7 +87,7 @@ MouseArea
             }
         }
 
-        Text
+        MessageText
         {
             id: lbllastmessage
             wrapMode: Text.NoWrap
@@ -87,20 +95,21 @@ MouseArea
             verticalAlignment: Text.AlignVCenter
             color: model.isTopMessageService ? Theme.mainColor : Theme.placeholderTextColor
             font { italic: model.isTopMessageService }
+            emojiPath: context.qtgram.emojiPath
 
             width: {
-                var w = parent.width - Theme.paddingSmall;
+                var w = parent.width;
 
                 if(lblfrom.visible)
-                    w -= lblfrom.contentWidth;
+                    w -= lblfrom.contentWidth + Theme.paddingSmall;
 
                 if(rectunreadcount.visible)
-                    w -= rectunreadcount.width;
+                    w -= rectunreadcount.width + Theme.paddingSmall;
 
                 return w;
             }
 
-            text: {
+            rawText: {
                 var msg = "";
 
                 if(model.draftMessage.length > 0)

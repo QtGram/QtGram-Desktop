@@ -8,6 +8,7 @@ Column
     property alias title: wptitle.text
     property alias description: wpdescription.text
     property alias source: imgthumbnail.source
+    property alias quoteColor: quoterect.color
 
     id: webpageelement
     spacing: Theme.paddingSmall
@@ -30,7 +31,7 @@ Column
 
         Rectangle
         {
-            color: "green"
+            id: quoterect
             width: Theme.paddingSmall
             height: parent.height
         }

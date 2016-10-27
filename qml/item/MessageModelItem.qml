@@ -15,7 +15,7 @@ Item
         if(model.isMessageService)
             return maxWidth;
 
-        var w = Math.max(lblhiddenfrom.contentWidth, lblhiddenmessage.contentWidth, mediamessageitem.contentWidth)
+        var w = Math.max(lblhiddenfrom.contentWidth, lblhiddenmessage.contentWidth, mediamessageitem.contentWidth, messagestatus.contentWidth);
         return Math.min(w, maxWidth);
     }
 
@@ -44,8 +44,8 @@ Item
         id: content
         width: parent.width
 
-        Text { id: lblhiddenfrom; text: model.messageFrom; visible: false }
-        Text { id: lblhiddenmessage; text: model.messageText; visible: false }
+        MessageText { id: lblhiddenfrom;  emojiPath: context.qtgram.emojiPath; rawText: model.messageFrom; visible: false }
+        MessageText { id: lblhiddenmessage; emojiPath: context.qtgram.emojiPath; rawText: model.messageText; visible: false }
 
         Text
         {
@@ -86,6 +86,7 @@ Item
 
             webPageDelegate: WebPageMessage {
                 width: parent.width
+                quoteColor: model.isMessageOut ? Theme.mainColor : Theme.alternateMainColor
                 context: messagemodelitem.context
                 title: mediamessageitem.webPageTitle
                 description: mediamessageitem.webPageDescription
@@ -100,20 +101,19 @@ Item
             }
         }
 
-        MessageText
+        Text
         {
             id: lblmessage
             width: parent.width
-            emojiPath: context.qtgram.emojiPath
-            rawText: lblhiddenmessage.text
+            text: lblhiddenmessage.text
             wrapMode: Text.Wrap
             font { italic: model.isMessageService }
 
             color: {
                 if(model.isMessageService)
-                    return "gray";
+                    return Theme.placeholderTextColor;
 
-                return "black";
+                return Theme.textColor;
             }
 
             horizontalAlignment: {

@@ -26,6 +26,7 @@ class Theme : public QObject
     Q_PROPERTY(QColor backgroundColor READ backgroundColor CONSTANT FINAL)
     Q_PROPERTY(QColor textColor READ textColor CONSTANT FINAL)
     Q_PROPERTY(QColor mainColor READ mainColor CONSTANT FINAL)
+    Q_PROPERTY(QColor alternateMainColor READ alternateMainColor CONSTANT FINAL)
     Q_PROPERTY(QColor mainTextColor READ mainTextColor CONSTANT FINAL)
     Q_PROPERTY(QColor placeholderTextColor READ placeholderTextColor CONSTANT FINAL)
 
@@ -53,6 +54,7 @@ class Theme : public QObject
         QColor backgroundColor() const;
         QColor textColor() const;
         QColor mainColor() const;
+        QColor alternateMainColor() const;
         QColor mainTextColor() const;
         QColor placeholderTextColor() const;
 };

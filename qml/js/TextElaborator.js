@@ -61,7 +61,7 @@ function elaborate(s, emojipath, height, highlightcolor, openurls)
     res = Emoji.emojify(res, height, emojipath, false);
     res = linkify(res, openurls);
     res = mentionify(res, highlightcolor);
-    return "<span>" + res + "</span>";
+    return res;
 }
 
 function elaborateNotify(s, emojipath, height)
