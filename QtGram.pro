@@ -50,7 +50,12 @@ DISTFILES += \
     qml/component/theme/menu/ThemeMenuBar.qml \
     qml/component/message/MessageTextInput.qml \
     qml/dialogs/DebugDialog.qml \
-    qml/component/message/MessageStatus.qml
+    qml/component/message/MessageStatus.qml \
+    qml/component/message/media/AnimatedMessage.qml \
+    qml/component/message/media/ImageMessage.qml \
+    qml/component/message/media/LocationMessage.qml \
+    qml/component/message/media/WebPageMessage.qml \
+    qml/component/message/media/FileMessage.qml
 
 HEADERS += \
     qtgram.h \

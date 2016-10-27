@@ -1,6 +1,7 @@
 import QtQuick 2.4
 import LibQTelegram 1.0
 import "../component/message"
+import "../component/message/media"
 
 Item
 {
@@ -61,8 +62,39 @@ Item
             message: model.item
             size: parent.width
 
-            locationDelegate: function(latitude, longitude){
-                return context.locationThumbnail(latitude, longitude, maxWidth, maxWidth, 14);
+            imageDelegate: ImageMessage {
+                anchors.fill: parent
+                source: mediamessageitem.source
+            }
+
+            animatedDelegate: AnimatedMessage {
+                anchors.fill: parent
+                source: mediamessageitem.source
+            }
+
+            locationDelegate: LocationMessage {
+                title: mediamessageitem.venueTitle
+                address: mediamessageitem.venueAddress
+
+                source: {
+                    return context.locationThumbnail(mediamessageitem.geoPoint.latitude,
+                                                     mediamessageitem.geoPoint.longitude,
+                                                     maxWidth, maxWidth, 14)
+                }
+            }
+
+            webPageDelegate: WebPageMessage {
+                width: parent.width
+                title: mediamessageitem.webPageTitle
+                description: mediamessageitem.webPageDescription
+                url: mediamessageitem.webPageUrl
+                source: mediamessageitem.source
+            }
+
+            fileDelegate: FileMessage {
+                width: Math.min(contentWidth, maxWidth)
+                fileName: mediamessageitem.fileName
+                fileSize: mediamessageitem.fileSize
             }
         }
 

@@ -34,6 +34,7 @@ ViewContainer
         clip: true
         anchors { left: parent.left; top: dialogheader.bottom; right: parent.right; bottom: messagetextinput.top }
         verticalLayoutDirection: ListView.BottomToTop
+        cacheBuffer: messagesmodel.loadCount
         frameVisible: false
         spacing: Theme.paddingLarge
         model: messagesmodel
