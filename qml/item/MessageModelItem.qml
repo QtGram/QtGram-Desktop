@@ -85,6 +85,7 @@ Item
 
             webPageDelegate: WebPageMessage {
                 width: parent.width
+                context: messagemodelitem.context
                 title: mediamessageitem.webPageTitle
                 description: mediamessageitem.webPageDescription
                 url: mediamessageitem.webPageUrl

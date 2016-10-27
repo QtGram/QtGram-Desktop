@@ -1,42 +1,69 @@
 import QtQuick 2.4
+import "../../message"
 
 Column
 {
-    property alias url: wpurl.text
+    property var context
+    property alias url: wpurl.rawText
     property alias title: wptitle.text
     property alias description: wpdescription.text
     property alias source: imgthumbnail.source
 
     id: webpageelement
+    spacing: Theme.paddingSmall
 
-    Text
+    MessageText
     {
         id: wpurl
-        width: parent.width
-        wrapMode: Text.Wrap
-    }
-
-    Text
-    {
-        id: wptitle
+        emojiPath: context.qtgram.emojiPath
         width: parent.width
         wrapMode: Text.NoWrap
         elide: Text.ElideRight
     }
 
-    Text
+    Row
     {
-        id: wpdescription
+        id: preview
         width: parent.width
-        wrapMode: Text.NoWrap
-        elide: Text.ElideRight
-    }
+        height: previewcontent.height
+        spacing: Theme.paddingSmall
 
-    Image
-    {
-        id: imgthumbnail
-        width: parent.width
-        asynchronous: true
-        fillMode: Image.PreserveAspectFit
+        Rectangle
+        {
+            color: "green"
+            width: Theme.paddingSmall
+            height: parent.height
+        }
+
+        Column
+        {
+            id: previewcontent
+            width: parent.width - (Theme.paddingSmall * 2)
+            spacing: Theme.paddingMedium
+
+            Text
+            {
+                id: wptitle
+                width: parent.width
+                wrapMode: Text.Wrap
+                font { bold: true; pointSize: Theme.fontSizeMedium }
+            }
+
+            Text
+            {
+                id: wpdescription
+                width: parent.width
+                wrapMode: Text.Wrap
+                font { pointSize: Theme.fontSizeSmall; italic: true }
+            }
+
+            Image
+            {
+                id: imgthumbnail
+                width: parent.width
+                asynchronous: true
+                fillMode: Image.PreserveAspectFit
+            }
+        }
     }
 }
