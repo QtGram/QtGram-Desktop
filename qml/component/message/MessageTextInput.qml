@@ -6,7 +6,7 @@ Item
     signal sendRequested(string content)
 
     id: messagetextinput
-    height: Theme.defaultHeight
+    height: visible ? Theme.defaultHeight : 0
 
     ThemeTextField
     {

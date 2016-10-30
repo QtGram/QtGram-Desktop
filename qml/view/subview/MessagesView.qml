@@ -56,6 +56,7 @@ ViewContainer
     MessageTextInput
     {
         id: messagetextinput
+        visible: messagesmodel.isWritable
 
         anchors {
             left: parent.left
