@@ -5,7 +5,6 @@ import "../component/message"
 MouseArea
 {
     property var context
-    property var tgDialog
 
     id: dialogmodelitem
     height: Theme.itemSizeSmall
