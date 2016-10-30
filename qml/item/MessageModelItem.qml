@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import LibQTelegram 1.0
+import "../component/theme"
 import "../component/message"
 import "../component/message/media"
 
@@ -9,26 +10,19 @@ Item
     property real maxWidth
 
     id: messagemodelitem
-    height: content.height
 
-    width: {
-        if(model.isMessageService)
-            return maxWidth;
+    height: {
+        var h = content.height;
 
-        var w = Math.max(lblhiddenfrom.contentWidth, lblhiddenmessage.contentWidth, mediamessageitem.contentWidth, messagestatus.contentWidth);
-        return Math.min(w, maxWidth);
-    }
+        if(newmessageframe.visible)
+            h += newmessageframe.height
 
-    anchors {
-        right: !model.isMessageOut ? undefined : parent.right
-        left: model.isMessageOut ? undefined : parent.left
-        rightMargin: Theme.paddingMedium
-        leftMargin: Theme.paddingMedium
+        return h;
     }
 
     MessageBubble
     {
-        anchors { fill: parent; margins: -Theme.paddingSmall }
+        anchors { fill: content; leftMargin: -Theme.paddingSmall; rightMargin: -Theme.paddingSmall}
         tgMessage: model.item
 
         visible: {
@@ -39,10 +33,42 @@ Item
         }
     }
 
+    ThemeFrame
+    {
+        id: newmessageframe
+        x: -1
+        width: parent.width + 2
+        visible: model.isMessageNew
+        height: model.isMessageNew ? Theme.paddingLarge : 0
+
+        Text {
+            text: qsTr("New messages")
+            width: parent.width
+            color: Theme.mainColor
+            font.pointSize: Theme.fontSizeSmall
+            horizontalAlignment: Text.AlignHCenter
+        }
+    }
+
     Column
     {
         id: content
-        width: parent.width
+        anchors { top: newmessageframe.bottom; topMargin: newmessageframe.visible ? Theme.paddingSmall : 0 }
+
+        width: {
+            if(model.isMessageService)
+                return maxWidth;
+
+            var w = Math.max(lblhiddenfrom.contentWidth, lblhiddenmessage.contentWidth, mediamessageitem.contentWidth, messagestatus.contentWidth);
+            return Math.min(w, maxWidth);
+        }
+
+        anchors {
+            right: !model.isMessageOut ? undefined : parent.right
+            left: model.isMessageOut ? undefined : parent.left
+            rightMargin: Theme.paddingMedium
+            leftMargin: Theme.paddingMedium
+        }
 
         MessageText { id: lblhiddenfrom;  emojiPath: context.qtgram.emojiPath; rawText: model.messageFrom; visible: false }
         MessageText { id: lblhiddenmessage; emojiPath: context.qtgram.emojiPath; rawText: model.messageText; visible: false }

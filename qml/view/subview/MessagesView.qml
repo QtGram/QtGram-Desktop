@@ -47,6 +47,7 @@ ViewContainer
         }
 
         delegate: MessageModelItem {
+            width: parent.width
             maxWidth: parent.width * 0.5
             context: messagesview.context
         }
