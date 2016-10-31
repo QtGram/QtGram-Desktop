@@ -7,6 +7,20 @@ ViewContainer
 {
     id: signupview
 
+    Connections
+    {
+        target: context.telegram
+
+        onPhoneCodeError: {
+            txterrormsg.text = qsTr("ERROR: %1").arg(errormessage);
+
+            btnsignup.enabled = true;
+            btnsignup.text = qsTr("Sign Up");
+
+            timdisablebutton.restart();
+        }
+    }
+
     Timer
     {
         id: timdisablebutton
@@ -43,6 +57,17 @@ ViewContainer
         Text
         {
             text: qsTr("Wait for the SMS containing the activation code and press 'Sign Up'")
+            anchors.horizontalCenter: parent.horizontalCenter
+            horizontalAlignment: Text.AlignHCenter
+            wrapMode: Text.Wrap
+        }
+
+        Text
+        {
+            id: txterrormsg
+            font { bold: true; underline: true }
+            color: Theme.mainColor
+            visible: txterrormsg.visible
             anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.Wrap
