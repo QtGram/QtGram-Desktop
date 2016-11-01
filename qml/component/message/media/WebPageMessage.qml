@@ -3,10 +3,15 @@ import "../../message"
 
 Column
 {
+    readonly property real calculatedWidth: Math.max(wpurl.calculatedWidth,
+                                                     wptitle.calculatedWidth,
+                                                     wpdescription.calculatedWidth,
+                                                     imgthumbnail.sourceSize.width)
+
     property var context
     property alias url: wpurl.rawText
-    property alias title: wptitle.text
-    property alias description: wpdescription.text
+    property alias title: wptitle.rawText
+    property alias description: wpdescription.rawText
     property alias source: imgthumbnail.source
     property alias quoteColor: quoterect.color
 
@@ -18,8 +23,7 @@ Column
         id: wpurl
         emojiPath: context.qtgram.emojiPath
         width: parent.width
-        wrapMode: Text.NoWrap
-        elide: Text.ElideRight
+        wrapMode: Text.Wrap
     }
 
     Row
@@ -42,17 +46,19 @@ Column
             width: parent.width - (Theme.paddingSmall * 2)
             spacing: Theme.paddingMedium
 
-            Text
+            MessageText
             {
                 id: wptitle
+                emojiPath: context.qtgram.emojiPath
                 width: parent.width
                 wrapMode: Text.Wrap
                 font { bold: true; pointSize: Theme.fontSizeMedium }
             }
 
-            Text
+            MessageText
             {
                 id: wpdescription
+                emojiPath: context.qtgram.emojiPath
                 width: parent.width
                 wrapMode: Text.Wrap
                 font { pointSize: Theme.fontSizeSmall; italic: true }

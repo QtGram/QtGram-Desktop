@@ -59,7 +59,7 @@ Item
             if(model.isMessageService)
                 return maxWidth;
 
-            var w = Math.max(lblhiddenfrom.contentWidth, lblhiddenmessage.contentWidth, mediamessageitem.contentWidth, messagestatus.contentWidth);
+            var w = Math.max(lblfrom.calculatedWidth, lblmessage.calculatedWidth, mediamessageitem.contentWidth, messagestatus.contentWidth);
             return Math.min(w, maxWidth);
         }
 
@@ -70,17 +70,15 @@ Item
             leftMargin: Theme.paddingMedium
         }
 
-        MessageText { id: lblhiddenfrom;  emojiPath: context.qtgram.emojiPath; rawText: model.messageFrom; visible: false }
-        MessageText { id: lblhiddenmessage; emojiPath: context.qtgram.emojiPath; rawText: model.messageText; visible: false }
-
-        Text
+        MessageText
         {
             id: lblfrom
             font.bold: true
+            emojiPath: context.qtgram.emojiPath
             width: parent.width
             horizontalAlignment: Text.AlignLeft
             visible: messagesmodel.isChat && !model.isMessageOut && !model.isMessageService
-            text: lblhiddenfrom.text
+            rawText: model.messageFrom
         }
 
         MediaMessageItem
@@ -112,7 +110,7 @@ Item
             }
 
             webPageDelegate: WebPageMessage {
-                width: parent.width
+                width: Math.min(calculatedWidth, maxWidth)
                 quoteColor: model.isMessageOut ? Theme.mainColor : Theme.alternateMainColor
                 context: messagemodelitem.context
                 title: mediamessageitem.webPageTitle
@@ -128,11 +126,12 @@ Item
             }
         }
 
-        Text
+        MessageText
         {
             id: lblmessage
+            emojiPath: context.qtgram.emojiPath
             width: parent.width
-            text: lblhiddenmessage.text
+            rawText: model.messageText
             wrapMode: Text.Wrap
             font { italic: model.isMessageService }
 
