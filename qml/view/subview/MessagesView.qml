@@ -43,6 +43,13 @@ ViewContainer
             if(!atYBeginning)
                 return;
 
+            messagesmodel.loadHistory();
+        }
+
+        onAtYEndChanged: {
+            if(!atYEnd)
+                return;
+
             messagesmodel.loadMore();
         }
 
