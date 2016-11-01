@@ -76,6 +76,7 @@ Item
         Text
         {
             id: lblfrom
+            font.bold: true
             width: parent.width
             horizontalAlignment: Text.AlignLeft
             visible: messagesmodel.isChat && !model.isMessageOut && !model.isMessageService
