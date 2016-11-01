@@ -7,7 +7,7 @@ import "../../item"
 
 ViewContainer
 {
-    property var tgDialog
+    property var dialog
 
     id: messagesview
 
@@ -15,7 +15,7 @@ ViewContainer
     {
         id: messagesmodel
         telegram: messagesview.context.telegram
-        dialog: messagesview.tgDialog
+        dialog: messagesview.dialog
     }
 
     DialogHeader
@@ -23,7 +23,7 @@ ViewContainer
         id: dialogheader
         width: parent.width
         context: messagesview.context
-        tgDialog: messagesview.tgDialog
+        dialog: messagesview.dialog
         title: messagesmodel.title
         statusText: messagesmodel.statusText
     }
@@ -34,24 +34,12 @@ ViewContainer
         clip: true
         anchors { left: parent.left; top: dialogheader.bottom; right: parent.right; bottom: messagetextinput.top }
         verticalLayoutDirection: ListView.BottomToTop
-        cacheBuffer: messagesmodel.loadCount
+        cacheBuffer: parent.height * 2
         frameVisible: false
         spacing: Theme.paddingLarge
         model: messagesmodel
 
-        onAtYBeginningChanged: {
-            if(!atYBeginning)
-                return;
-
-            messagesmodel.loadHistory();
-        }
-
-        onAtYEndChanged: {
-            if(!atYEnd)
-                return;
-
-            messagesmodel.loadMore();
-        }
+        Component.onCompleted: lvmessages.positionViewAtIndex(messagesmodel.newMessageIndex, ListView.Center);
 
         delegate: MessageModelItem {
             width: parent.width

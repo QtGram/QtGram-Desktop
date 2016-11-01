@@ -44,7 +44,7 @@ ViewContainer
                     lvdialogs.currentIndex = index;
 
                     stackview.push({ item: Qt.resolvedUrl("../subview/MessagesView.qml"),
-                                     properties: { context: dialogsview.context, tgDialog: model.item },
+                                     properties: { context: dialogsview.context, dialog: model.item },
                                      replace: true });
                 }
             }

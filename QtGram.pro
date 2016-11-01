@@ -55,7 +55,10 @@ DISTFILES += \
     qml/component/message/media/ImageMessage.qml \
     qml/component/message/media/LocationMessage.qml \
     qml/component/message/media/WebPageMessage.qml \
-    qml/component/message/media/FileMessage.qml
+    qml/component/message/media/FileMessage.qml \
+    qml/component/message/reply/MessageReplyItem.qml \
+    qml/component/message/MessageQuote.qml \
+    qml/component/message/reply/MessageReplyImage.qml
 
 HEADERS += \
     qtgram.h \

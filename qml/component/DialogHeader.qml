@@ -4,7 +4,7 @@ import LibQTelegram 1.0
 Rectangle
 {
     property var context
-    property var tgDialog
+    property var dialog
     property alias title: lbltitle.text
     property alias statusText: lblstatus.text
 
@@ -37,7 +37,7 @@ Rectangle
         id: peerimage
         anchors { top: parent.top; right: parent.right; rightMargin: Theme.paddingSmall }
         size: dialogheader.height
-        peer: tgDialog
+        peer: dialog
         backgroundColor: "gray"
         foregroundColor: "black"
         fontPixelSize: Theme.fontSizeSmall

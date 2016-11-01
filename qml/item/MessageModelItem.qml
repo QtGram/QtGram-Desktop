@@ -2,6 +2,7 @@ import QtQuick 2.4
 import LibQTelegram 1.0
 import "../component/theme"
 import "../component/message"
+import "../component/message/reply"
 import "../component/message/media"
 
 Item
@@ -23,7 +24,7 @@ Item
     MessageBubble
     {
         anchors { fill: content; leftMargin: -Theme.paddingSmall; rightMargin: -Theme.paddingSmall}
-        tgMessage: model.item
+        message: model.item
 
         visible: {
             if(mediamessageitem.isSticker || mediamessageitem.isAnimated)
@@ -59,7 +60,12 @@ Item
             if(model.isMessageService)
                 return maxWidth;
 
-            var w = Math.max(lblfrom.calculatedWidth, lblmessage.calculatedWidth, mediamessageitem.contentWidth, messagestatus.contentWidth);
+            var w = Math.max(messagereply.calculatedWidth,
+                             lblfrom.calculatedWidth,
+                             lblmessage.calculatedWidth,
+                             mediamessageitem.contentWidth,
+                             messagestatus.contentWidth);
+
             return Math.min(w, maxWidth);
         }
 
@@ -73,12 +79,20 @@ Item
         MessageText
         {
             id: lblfrom
+            visible: !model.isMessageService
             font.bold: true
             emojiPath: context.qtgram.emojiPath
             width: parent.width
             horizontalAlignment: Text.AlignLeft
-            visible: messagesmodel.isChat && !model.isMessageOut && !model.isMessageService
             rawText: model.messageFrom
+        }
+
+        MessageReplyItem
+        {
+            id: messagereply
+            width: parent.width
+            quoteColor: model.isMessageOut ? Theme.mainColor : Theme.alternateMainColor
+            visible: model.messageHasReply
         }
 
         MediaMessageItem

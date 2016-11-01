@@ -13,7 +13,7 @@ Column
     property alias title: wptitle.rawText
     property alias description: wpdescription.rawText
     property alias source: imgthumbnail.source
-    property alias quoteColor: quoterect.color
+    property alias quoteColor: messagequote.color
 
     id: webpageelement
     spacing: Theme.paddingSmall
@@ -33,12 +33,7 @@ Column
         height: previewcontent.height
         spacing: Theme.paddingSmall
 
-        Rectangle
-        {
-            id: quoterect
-            width: Theme.paddingSmall
-            height: parent.height
-        }
+        MessageQuote { id: messagequote; height: parent.height }
 
         Column
         {

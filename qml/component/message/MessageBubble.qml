@@ -3,7 +3,7 @@ import LibQTelegram 1.0
 
 Item
 {
-    property Message tgMessage
+    property Message message
 
     id: messagebubble
     layer.enabled: true
@@ -12,7 +12,7 @@ Item
     Rectangle
     {
         id: mainbubble
-        color: tgMessage.isOut ? Theme.alternateMainColor : Theme.mainColor
+        color: message.isOut ? Theme.alternateMainColor : Theme.mainColor
         anchors.fill: parent
         radius: 12
         smooth: true
@@ -26,10 +26,10 @@ Item
         color: mainbubble.color
 
         anchors {
-            top: !tgMessage.isOut ? undefined : parent.top
-            right: !tgMessage.isOut ? undefined : parent.right
-            bottom: tgMessage.isOut ? undefined: parent.bottom
-            left: tgMessage.isOut ? undefined : parent.left
+            top: !message.isOut ? undefined : parent.top
+            right: !message.isOut ? undefined : parent.right
+            bottom: message.isOut ? undefined: parent.bottom
+            left: message.isOut ? undefined : parent.left
         }
     }
 }
