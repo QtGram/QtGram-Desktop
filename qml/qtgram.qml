@@ -31,7 +31,6 @@ ApplicationWindow
     function openChatDialog(ischannel) {
         var component = Qt.createComponent("dialogs/chat/CreateChatDialog.qml");
         var dlgcreatechat = component.createObject(applicationwindow, { context: applicationwindow.context });
-        dlgcreatechat.dialogCreated.connect(context.dialogCreated);
         dlgcreatechat.open();
     }
 

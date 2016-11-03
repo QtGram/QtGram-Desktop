@@ -20,7 +20,7 @@ ViewContainer
 
     Connections
     {
-        target: context
+        target: context.contacts
         onDialogCreated: openDialog(context.dialogs.indexOf(dialog), dialog)
     }
 

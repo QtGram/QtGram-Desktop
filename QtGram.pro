@@ -58,7 +58,8 @@ DISTFILES += \
     qml/component/message/reply/MessageReplyItem.qml \
     qml/component/message/MessageQuote.qml \
     qml/component/message/reply/MessageReplyImage.qml \
-    qml/dialogs/chat/CreateChatDialog.qml
+    qml/dialogs/chat/CreateChatDialog.qml \
+    qml/component/view/ContactList.qml
 
 HEADERS += \
     qtgram.h \

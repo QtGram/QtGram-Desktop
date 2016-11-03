@@ -40,11 +40,13 @@ Item
         telegram: context.telegram
     }
 
-    property TelegramNotifications notifications: TelegramNotifications {
+    property ContactsModel contacts: ContactsModel {
         telegram: context.telegram
     }
 
-    signal dialogCreated(var dialog)
+    property TelegramNotifications notifications: TelegramNotifications {
+        telegram: context.telegram
+    }
 
     id: context
 }
