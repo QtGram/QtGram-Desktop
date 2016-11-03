@@ -7,6 +7,8 @@ ThemeListView
 {
     property var context
 
+    signal contactSelected()
+
     id: contactlist
     spacing: Theme.paddingSmall
     placeholderText: qsTr("No contacts")
@@ -32,5 +34,10 @@ ThemeListView
     delegate: ContactModelItem {
         context: contactsdialog.context
         width: parent.width
+
+        onClicked: {
+            context.contacts.createDialog(model.item);
+            contactSelected();
+        }
     }
 }

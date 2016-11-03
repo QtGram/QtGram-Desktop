@@ -21,5 +21,7 @@ Dialog
             width: lvcontacts.width
             placeholderText: qsTr("Search...")
         }
+
+        onContactSelected: contactsdialog.close()
     }
 }
