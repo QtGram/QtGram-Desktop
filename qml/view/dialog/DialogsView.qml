@@ -10,6 +10,20 @@ ViewContainer
 {
     id: dialogsview
 
+    function openDialog(index, dialog) {
+        lvdialogs.currentIndex = index;
+
+        stackview.push({ item: Qt.resolvedUrl("../subview/MessagesView.qml"),
+                         properties: { context: dialogsview.context, dialog: dialog },
+                         replace: true });
+    }
+
+    Connections
+    {
+        target: context
+        onDialogCreated: openDialog(context.dialogs.indexOf(dialog), dialog)
+    }
+
     Item
     {
         id: leftpart
@@ -29,24 +43,13 @@ ViewContainer
             anchors { left: parent.left; top: tfsearch.bottom; right: parent.right; bottom: parent.bottom; topMargin: -1 }
             spacing: Theme.paddingSmall
             placeholderText: qsTr("Chat list is empty")
+            model: context.dialogs
             clip: true
-
-            model: DialogsModel {
-                id: dialogsmodel
-                telegram: context.telegram
-            }
 
             delegate: DialogModelItem {
                 width: lvdialogs.width
                 context: dialogsview.context
-
-                onClicked: {
-                    lvdialogs.currentIndex = index;
-
-                    stackview.push({ item: Qt.resolvedUrl("../subview/MessagesView.qml"),
-                                     properties: { context: dialogsview.context, dialog: model.item },
-                                     replace: true });
-                }
+                onClicked: openDialog(model.index, model.item)
             }
         }
 

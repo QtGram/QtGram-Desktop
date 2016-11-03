@@ -1,19 +1,20 @@
 import QtQuick 2.4
 import QtQuick.Dialogs 1.2
 import LibQTelegram 1.0 as LibQTelegram
-import "../component"
-import "../component/theme"
-import "../item"
+import "../../component"
+import "../../component/theme"
+import "../../item"
 
 Dialog
 {
     property var context
     property var users
     property int usersCount: 0
-    property bool isChannel: false
 
-    id: creategroupdialog
-    title: isChannel ? qsTr("Create channel...") : qsTr("Create group...")
+    signal dialogCreated(var dialog)
+
+    id: createchat
+    title: qsTr("Create group...")
 
     Component.onCompleted: {
         users = new Object;
@@ -37,22 +38,27 @@ Dialog
             model: LibQTelegram.ContactsModel {
                 id: contactsmodel
                 telegram: context.telegram
+
+                onDialogCreated: {
+                    createchat.dialogCreated(dialog);
+                    createchat.close();
+                }
             }
 
             delegate: ContactModelItem {
-                context: creategroupdialog.context
+                context: createchat.context
                 width: parent.width
 
                 onClicked: {
-                    if(creategroupdialog.users[model.item.id]) {
-                        delete creategroupdialog.users[model.item.id];
-                        creategroupdialog.usersCount--;
+                    if(createchat.users[model.item.id]) {
+                        delete createchat.users[model.item.id];
+                        createchat.usersCount--;
                         highlighted = false;
                         return;
                     }
 
-                    creategroupdialog.users[model.item.id] = model.item;
-                    creategroupdialog.usersCount++;
+                    createchat.users[model.item.id] = model.item;
+                    createchat.usersCount++;
                     highlighted = true;
                 }
             }
@@ -76,17 +82,18 @@ Dialog
             ThemeButton
             {
                 autoSize: true
-                enabled: (lvcontacts.headerItem.text.length > 0) && (creategroupdialog.usersCount > 0)
+                enabled: (lvcontacts.headerItem.text.length > 0) && (createchat.usersCount > 0)
                 anchors.verticalCenter: parent.verticalCenter
                 text: qsTr("Create")
 
                 onClicked: {
                     var userlist = []
 
-                    for(var key in creategroupdialog.users)
-                        userlist.push(creategroupdialog.users[key]);
+                    for(var key in createchat.users)
+                        userlist.push(createchat.users[key]);
 
-                    contactsmodel.createGroup(lvcontacts.headerItem.text, userlist);
+                    enabled = false;
+                    contactsmodel.createChat(lvcontacts.headerItem.text, userlist);
                 }
             }
 
@@ -95,8 +102,7 @@ Dialog
                 autoSize: true
                 anchors.verticalCenter: parent.verticalCenter
                 text: qsTr("Cancel")
-
-                onClicked: creategroupdialog.close()
+                onClicked: createchat.close()
             }
         }
     }

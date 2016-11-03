@@ -41,7 +41,6 @@ DISTFILES += \
     qml/item/ContactModelItem.qml \
     qml/item/MessageModelItem.qml \
     qml/dialogs/CreateDialog.qml \
-    qml/dialogs/CreateGroupDialog.qml \
     qml/component/theme/ThemeListView.qml \
     qml/component/theme/ThemeButton.qml \
     qml/component/theme/ThemeComboBox.qml \
@@ -58,7 +57,8 @@ DISTFILES += \
     qml/component/message/media/FileMessage.qml \
     qml/component/message/reply/MessageReplyItem.qml \
     qml/component/message/MessageQuote.qml \
-    qml/component/message/reply/MessageReplyImage.qml
+    qml/component/message/reply/MessageReplyImage.qml \
+    qml/dialogs/chat/CreateChatDialog.qml
 
 HEADERS += \
     qtgram.h \

@@ -28,10 +28,11 @@ ApplicationWindow
         }
     }
 
-    function openGroupDialog(ischannel) {
-        var component = Qt.createComponent("dialogs/CreateGroupDialog.qml");
-        var dlgcreategroup = component.createObject(applicationwindow, { context: applicationwindow.context, isChannel: ischannel });
-        dlgcreategroup.open();
+    function openChatDialog(ischannel) {
+        var component = Qt.createComponent("dialogs/chat/CreateChatDialog.qml");
+        var dlgcreatechat = component.createObject(applicationwindow, { context: applicationwindow.context });
+        dlgcreatechat.dialogCreated.connect(context.dialogCreated);
+        dlgcreatechat.open();
     }
 
     id: applicationwindow
@@ -61,7 +62,7 @@ ApplicationWindow
             if(value === 0) {
                 component = Qt.createComponent("dialogs/CreateDialog.qml");
                 var dlgcreate = component.createObject(applicationwindow, { context: applicationwindow.context });
-                dlgcreate.createGroup.connect(applicationwindow.openGroupDialog);
+                dlgcreate.createGroup.connect(applicationwindow.openChatDialog);
                 dlgcreate.open()
             }
             else if(value === 1) {

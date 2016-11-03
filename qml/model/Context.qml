@@ -36,5 +36,15 @@ Item
                                                              + "w=" + width + "&h=" + height + "&z=" + z;
     }
 
+    property DialogsModel dialogs: DialogsModel {
+        telegram: context.telegram
+    }
+
+    property TelegramNotifications notifications: TelegramNotifications {
+        telegram: context.telegram
+    }
+
+    signal dialogCreated(var dialog)
+
     id: context
 }
