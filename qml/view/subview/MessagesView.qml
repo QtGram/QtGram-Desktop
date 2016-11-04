@@ -41,10 +41,26 @@ ViewContainer
 
         Component.onCompleted: lvmessages.positionViewAtIndex(messagesmodel.newMessageIndex, ListView.Center);
 
-        delegate: MessageModelItem {
+        delegate: Row {
             width: parent.width
-            maxWidth: parent.width * 0.5
-            context: messagesview.context
+            spacing: Theme.paddingSmall
+
+            PeerImage
+            {
+                id: peerimage
+                size: Theme.itemSizeSmall
+                peer: model.item
+                visible: messagesmodel.isChat && !model.isMessageOut && !model.isMessageService
+                backgroundColor: "gray"
+                foregroundColor: "black"
+                fontPixelSize: Theme.fontSizeSmall
+            }
+
+            MessageModelItem {
+                width: parent.width - (peerimage.visible ? (peerimage.width - (Theme.paddingSmall * 2)) : 0)
+                maxWidth: width * 0.5
+                context: messagesview.context
+            }
         }
     }
 
