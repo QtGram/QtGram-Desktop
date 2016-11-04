@@ -123,6 +123,9 @@ ThemeListItem
             }
 
             rawText: {
+                if(model.peerAction.length > 0)
+                    return model.peerAction;
+
                 var msg = "";
 
                 if(model.draftMessage.length > 0)
