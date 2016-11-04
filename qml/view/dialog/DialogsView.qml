@@ -49,7 +49,13 @@ ViewContainer
             delegate: DialogModelItem {
                 width: lvdialogs.width
                 context: dialogsview.context
-                onClicked: openDialog(model.index, model.item)
+
+                onClicked: {
+                    if(mouse.button !== Qt.LeftButton)
+                        return;
+
+                    openDialog(model.index, model.item);
+                }
             }
         }
 

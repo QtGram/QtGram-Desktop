@@ -1,19 +1,32 @@
 import QtQuick 2.4
 import LibQTelegram 1.0
 import "../component/message"
+import "../component/theme/listview"
 
-MouseArea
+ThemeListItem
 {
     property var context
 
     id: dialogmodelitem
-    height: Theme.itemSizeSmall
+    contentHeight: Theme.itemSizeSmall
+
+    menu: ThemeListMenu {
+        ThemeListMenuItem {
+            text: qsTr("Clear history")
+            onClicked: context.dialogs.clearHistory(model.index)
+        }
+
+        ThemeListMenuItem {
+            text: qsTr("Delete")
+            onClicked: context.dialogs.removeDialog(model.index)
+        }
+    }
 
     PeerImage
     {
         id: peerimage
         anchors { left: parent.left; top: parent.top }
-        size: dialogmodelitem.height
+        size: dialogmodelitem.contentHeight
         backgroundColor: Theme.mainColor
         foregroundColor: Theme.mainTextColor
         fontPixelSize: Theme.fontSizeLarge
