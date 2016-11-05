@@ -43,21 +43,33 @@ ViewContainer
 
         delegate: Row {
             width: parent.width
-            spacing: Theme.paddingSmall
 
-            PeerImage
+            Item
             {
-                id: peerimage
-                size: Theme.itemSizeSmall
-                peer: model.item
-                visible: messagesmodel.isChat && !model.isMessageOut && !model.isMessageService
-                backgroundColor: "gray"
-                foregroundColor: "black"
-                fontPixelSize: Theme.fontSizeSmall
+                id: picontainer
+                height: peerimage.height
+
+                width: {
+                    if(messagesmodel.isChat && !model.isMessageOut && !model.isMessageService)
+                        return peerimage.size;
+
+                    return 0;
+                }
+
+                PeerImage
+                {
+                    id: peerimage
+                    size: Theme.itemSizeSmall
+                    peer: model.needsPeerImage ? model.item : null
+                    visible: model.needsPeerImage
+                    backgroundColor: "gray"
+                    foregroundColor: "black"
+                    fontPixelSize: Theme.fontSizeSmall
+                }
             }
 
             MessageModelItem {
-                width: parent.width - (peerimage.visible ? (peerimage.width - (Theme.paddingSmall * 2)) : 0)
+                width: parent.width - picontainer.width
                 maxWidth: width * 0.5
                 context: messagesview.context
             }
