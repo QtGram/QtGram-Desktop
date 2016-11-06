@@ -9,6 +9,7 @@ Item
                                                      lblmessage.calculatedWidth)
 
     property alias quoteColor: messagequote.color
+    property alias fromColor: lblfrom.color
 
     id: messagereplyitem
     height: Math.max(previewcontent.height, mediamessageitem.height)

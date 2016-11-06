@@ -4,6 +4,7 @@ import "../component/theme"
 import "../component/message"
 import "../component/message/reply"
 import "../component/message/media"
+import "../js/Colors.js" as Colors
 
 Item
 {
@@ -85,6 +86,7 @@ Item
             width: parent.width
             horizontalAlignment: Text.AlignLeft
             rawText: model.messageFrom
+            color: Colors.getColor(model.item.fromId)
         }
 
         MessageReplyItem
@@ -92,6 +94,7 @@ Item
             id: messagereply
             width: parent.width
             quoteColor: model.isMessageOut ? Theme.mainColor : Theme.alternateMainColor
+            fromColor: model.messageHasReply ? Colors.getColor(model.replyItem.fromId) : "black"
             visible: model.messageHasReply
         }
 
