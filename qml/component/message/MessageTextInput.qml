@@ -1,4 +1,5 @@
-import QtQuick 2.0
+import QtQuick 2.4
+import LibQTelegram 1.0
 import "../theme"
 
 Item
@@ -20,6 +21,13 @@ Item
             right: btnsend.left
             leftMargin: -1
             rightMargin: -1
+        }
+
+        onTextChanged: {
+            if(text.length < 2)
+                return;
+
+            messagesmodel.sendAction(MessagesModel.TypingAction);
         }
 
         onReturnPressed: {
