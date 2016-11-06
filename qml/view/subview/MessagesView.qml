@@ -4,6 +4,7 @@ import "../../component"
 import "../../component/theme"
 import "../../component/message"
 import "../../item"
+import "../../js/Colors.js" as Colors
 
 ViewContainer
 {
@@ -60,11 +61,11 @@ ViewContainer
                 {
                     id: peerimage
                     size: Theme.itemSizeSmall
-                    peer: model.needsPeerImage ? model.item : null
                     visible: model.needsPeerImage
-                    backgroundColor: "gray"
+                    backgroundColor: Colors.getColor(model.item.fromId)
                     foregroundColor: "black"
                     fontPixelSize: Theme.fontSizeSmall
+                    peer: model.needsPeerImage ? model.item : null
                 }
             }
 
