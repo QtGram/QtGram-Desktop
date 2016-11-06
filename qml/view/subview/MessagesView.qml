@@ -61,7 +61,7 @@ ViewContainer
                 {
                     id: peerimage
                     size: Theme.itemSizeSmall
-                    visible: model.needsPeerImage
+                    visible: model.needsPeerImage && !model.isMessageOut && messagesmodel.isChat
                     backgroundColor: Colors.getColor(model.item.fromId)
                     foregroundColor: "black"
                     fontPixelSize: Theme.fontSizeSmall
