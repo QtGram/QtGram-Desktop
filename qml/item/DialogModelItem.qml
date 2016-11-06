@@ -86,7 +86,7 @@ ThemeListItem
             }
 
             visible: {
-                if(model.draftMessage.length > 0 || model.isBroadcast || model.isTopMessageService)
+                if((model.peerAction.length > 0) || (model.draftMessage.length > 0) || model.isBroadcast || model.isTopMessageService)
                     return false;
 
                 if(model.isChat || model.isMegaGroup)

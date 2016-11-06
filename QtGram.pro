@@ -62,7 +62,8 @@ DISTFILES += \
     qml/component/view/ContactList.qml \
     qml/component/theme/listview/ThemeListItem.qml \
     qml/component/theme/listview/ThemeListMenuItem.qml \
-    qml/component/theme/listview/ThemeListMenu.qml
+    qml/component/theme/listview/ThemeListMenu.qml \
+    qml/js/Colors.js
 
 HEADERS += \
     qtgram.h \
