@@ -72,6 +72,7 @@ ViewContainer
             MessageModelItem {
                 width: parent.width - picontainer.width
                 maxWidth: width * 0.5
+                maxMediaWidth: 512
                 context: messagesview.context
             }
         }

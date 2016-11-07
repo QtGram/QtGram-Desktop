@@ -3,6 +3,7 @@ import QtQuick 2.0
 ThemeFrame
 {
     property alias placeholderText: tiplaceholder.text
+    property alias echoMode: titextinput.echoMode
     property alias text: titextinput.text
     signal returnPressed()
 

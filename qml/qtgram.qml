@@ -11,6 +11,7 @@ ApplicationWindow
         telegram {
             onSignInRequested: loader.setSource(Qt.resolvedUrl("view/login/SignInView.qml"), { "context": context });
             onSignUpRequested: loader.setSource(Qt.resolvedUrl("view/login/SignUpView.qml"), { "context": context });
+            onSessionPasswordNeeded: loader.setSource(Qt.resolvedUrl("view/login/TwoFactorView.qml"), { "context": context, "hint": hint });
             onLoginCompleted: loader.setSource(Qt.resolvedUrl("view/dialog/DialogsView.qml"), { "context": context });
         }
 

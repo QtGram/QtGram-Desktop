@@ -4,27 +4,19 @@ import "../../component/theme"
 
 ViewContainer
 {
-    id: signinview
+    property string hint
+
+    id: twofactorview
 
     Connections
     {
         target: context.telegram
 
-        onPhoneCodeError: {
-            txterrormsg.text = qsTr("ERROR: %1").arg(errormessage);
-
-            btnsignin.enabled = true;
-            btnsignin.text = qsTr("Sign In");
-
-            timdisablebutton.restart();
+        onInvalidPassword: {
+            txtinvalidpassword.visible = true;
+            btnsubmit.text = qsTr("Submit");
+            btnsubmit.enabled = true;
         }
-    }
-
-    Timer
-    {
-        id: timdisablebutton
-        running: false
-        interval: 2000
     }
 
     Image
@@ -55,7 +47,7 @@ ViewContainer
 
         Text
         {
-            text: qsTr("Wait for the SMS containing the activation code and press 'Sign In'")
+            text: qsTr("Please enter your cloud password")
             anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.Wrap
@@ -63,10 +55,11 @@ ViewContainer
 
         Text
         {
-            id: txterrormsg
+            id: txtinvalidpassword
             font { bold: true; underline: true }
             color: Theme.mainColor
-            visible: txterrormsg.visible
+            text: qsTr("Invalid password")
+            visible: false
             anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.Wrap
@@ -74,36 +67,33 @@ ViewContainer
 
         ThemeTextField
         {
-            id: tfcode
+            id: tfcloudpassword
             anchors.horizontalCenter: parent.horizontalCenter
-            placeholderText: qsTr("Code")
+            placeholderText: qsTr("Your cloud password")
+            echoMode: TextInput.Password
+        }
+
+        Text
+        {
+            text: qsTr("Hint: %1").arg(hint)
+            visible: hint.length > 0
+            anchors.horizontalCenter: parent.horizontalCenter
+            horizontalAlignment: Text.AlignHCenter
+            wrapMode: Text.Wrap
         }
 
         ThemeButton
         {
-            id: btnsignin
+            id: btnsubmit
             anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTr("Sign In")
-            enabled: tfcode.text.length > 0
+            text: qsTr("Submit")
+            enabled: tfcloudpassword.text.length > 0
 
             onClicked: {
-                btnsignin.enabled = false;
-                btnsignin.text = qsTr("Sending request...");
-                context.telegram.signIn(tfcode.text);
-            }
-        }
-
-        ThemeButton
-        {
-            id: btnresendcode
-            anchors.horizontalCenter: parent.horizontalCenter
-            enabled: !timdisablebutton.running
-
-            text: timdisablebutton.running ? qsTr("Requesting new code...") : qsTr("Resend code")
-
-            onClicked: {
-                timdisablebutton.start();
-                context.telegram.resendCode();
+                txtinvalidpassword.visible = false;
+                btnsubmit.enabled = false;
+                btnsubmit.text = qsTr("Sending request...");
+                context.telegram.sendPassword(tfcloudpassword.text);
             }
         }
     }

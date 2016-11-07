@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.4
 import "../../component"
 import "../../component/theme"
 import "../../js/CountryList.js" as CountryList

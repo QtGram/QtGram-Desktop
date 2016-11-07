@@ -10,6 +10,7 @@ Item
 {
     property var context
     property real maxWidth
+    property real maxMediaWidth
 
     id: messagemodelitem
 
@@ -66,6 +67,9 @@ Item
                              lblmessage.calculatedWidth,
                              mediamessageitem.contentWidth,
                              messagestatus.contentWidth);
+
+            if(model.isMessageMedia)
+                return Math.min(w, maxMediaWidth, maxWidth);
 
             return Math.min(w, maxWidth);
         }
