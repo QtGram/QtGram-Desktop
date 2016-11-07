@@ -61,7 +61,7 @@ ViewContainer
                 {
                     id: peerimage
                     size: Theme.itemSizeSmall
-                    visible: model.needsPeerImage
+                    visible: model.needsPeerImage && !model.isMessageOut && messagesmodel.isChat
                     backgroundColor: Colors.getColor(model.item.fromId)
                     foregroundColor: "black"
                     fontPixelSize: Theme.fontSizeSmall
@@ -76,7 +76,30 @@ ViewContainer
                 context: messagesview.context
             }
         }
+
+        Rectangle {
+            height: Theme.itemSizeSmall
+            width: height
+            radius: width / 2
+            color: Qt.rgba(Theme.placeholderTextColor.r, Theme.placeholderTextColor.g, Theme.placeholderTextColor.b, .3)
+            anchors { right: parent.right; bottom: parent.bottom; margins: Theme.paddingMedium }
+            opacity: lvmessages.contentY - lvmessages.originY < lvmessages.contentHeight - lvmessages.height * 1.5 ? 1 : 0
+            Behavior on opacity { NumberAnimation { duration: 200; } }
+            Text {
+                anchors.centerIn: parent
+                text: " 🠋"
+                font.pixelSize: parent.height / 2
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                color: "white"
+            }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: lvmessages.positionViewAtIndex(0, ListView.bottom)
+            }
+        }
     }
+
 
     MessageTextInput
     {
