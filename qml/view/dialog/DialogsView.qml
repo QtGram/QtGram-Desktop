@@ -8,7 +8,15 @@ import "../subview"
 
 ViewContainer
 {
+    readonly property bool isDialogsView: true
+
     id: dialogsview
+
+    function openCloud() {
+        stackview.push({ item: Qt.resolvedUrl("../subview/MessagesView.qml"),
+                         properties: { context: dialogsview.context, dialog: context.dialogs.cloudDialog },
+                         replace: true });
+    }
 
     function openDialog(index, dialog) {
         lvdialogs.currentIndex = index;
