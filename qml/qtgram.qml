@@ -13,6 +13,7 @@ ApplicationWindow
             onSignUpRequested: loader.setSource(Qt.resolvedUrl("view/login/SignUpView.qml"), { "context": context });
             onSessionPasswordNeeded: loader.setSource(Qt.resolvedUrl("view/login/TwoFactorView.qml"), { "context": context, "hint": hint });
             onLoginCompleted: loader.setSource(Qt.resolvedUrl("view/dialog/DialogsView.qml"), { "context": context });
+            onFloodLock: loader.setSource(Qt.resolvedUrl("view/FloodLockView.qml"), { "context": context, "seconds": seconds });
         }
 
         Component.onCompleted: {

@@ -43,6 +43,16 @@ qreal Theme::fontSizeLarge() const
     return DefaultFont + 2;
 }
 
+qreal Theme::fontSizeExtraLarge() const
+{
+    return DefaultFont + 4;
+}
+
+qreal Theme::fontSizeHuge() const
+{
+    return DefaultFont + 6;
+}
+
 qreal Theme::itemSizeExtraSmall() const
 {
     return 20;
