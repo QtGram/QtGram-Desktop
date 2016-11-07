@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>res/app.png</file>
+        <file>res/cloud.png</file>
+        <file>res/channel.png</file>
+        <file>res/chat.png</file>
     </qresource>
 </RCC>

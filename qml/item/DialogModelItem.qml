@@ -42,9 +42,21 @@ ThemeListItem
         Text
         {
             id: lbltitle
-            text: model.title
             elide: Text.ElideRight
             width: parent.width - lblstatus.contentWidth - Theme.paddingSmall
+
+            text: {
+                if(model.isCloud)
+                    return "<img align='middle' width='" + font.pixelSize + "' height='" + font.pixelSize + "' src='qrc:///res/cloud.png'> " + model.title;
+
+                if(model.isBroadcast)
+                    return "<img align='middle' width='" + font.pixelSize + "' height='" + font.pixelSize + "' src='qrc:///res/channel.png'> " + model.title;
+
+                if(model.isChat || model.isMegaGroup)
+                    return "<img align='middle' width='" + font.pixelSize + "' height='" + font.pixelSize + "' src='qrc:///res/chat.png'> " + model.title;
+
+                return model.title;
+            }
         }
 
         MessageStatus
