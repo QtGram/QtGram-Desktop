@@ -14,7 +14,7 @@ Rectangle
     color: {
         var color = Qt.rgba(Theme.placeholderTextColor.r, Theme.placeholderTextColor.g, Theme.placeholderTextColor.b, .3);
 
-        if(mousearea.pressed)
+        if(mousearea.containsMouse)
             return Qt.darker(color, Theme.colorSweep);
 
         return color;
