@@ -65,7 +65,9 @@ DISTFILES += \
     qml/component/theme/listview/ThemeListMenu.qml \
     qml/js/Colors.js \
     qml/view/login/TwoFactorView.qml \
-    qml/view/FloodLockView.qml
+    qml/view/FloodLockView.qml \
+    qml/component/message/NewMessage.qml \
+    qml/component/message/FirstMessageButton.qml
 
 HEADERS += \
     qtgram.h \

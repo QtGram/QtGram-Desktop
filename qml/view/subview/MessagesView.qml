@@ -42,64 +42,48 @@ ViewContainer
 
         Component.onCompleted: lvmessages.positionViewAtIndex(messagesmodel.newMessageIndex, ListView.Center);
 
-        delegate: Row {
+        delegate: Column {
             width: parent.width
+            spacing: Theme.paddingSmall
 
-            Item
-            {
-                id: picontainer
-                height: peerimage.height
+            NewMessage { id: newmessage; visible: model.isMessageNew }
 
-                width: {
-                    if(messagesmodel.isChat && !model.isMessageOut && !model.isMessageService)
-                        return peerimage.size;
+            Row {
+                width: parent.width
 
-                    return 0;
+                Item {
+                    id: picontainer
+                    height: peerimage.height
+
+                    width: {
+                        if(messagesmodel.isChat && !model.isMessageOut && !model.isMessageService)
+                            return peerimage.size;
+
+                        return 0;
+                    }
+
+                    PeerImage {
+                        id: peerimage
+                        size: Theme.itemSizeSmall
+                        visible: model.needsPeerImage && !model.isMessageOut && messagesmodel.isChat
+                        backgroundColor: Colors.getColor(model.item.fromId)
+                        foregroundColor: "black"
+                        fontPixelSize: Theme.fontSizeSmall
+                        peer: model.needsPeerImage ? model.item : null
+                    }
                 }
 
-                PeerImage
-                {
-                    id: peerimage
-                    size: Theme.itemSizeSmall
-                    visible: model.needsPeerImage && !model.isMessageOut && messagesmodel.isChat
-                    backgroundColor: Colors.getColor(model.item.fromId)
-                    foregroundColor: "black"
-                    fontPixelSize: Theme.fontSizeSmall
-                    peer: model.needsPeerImage ? model.item : null
+                MessageModelItem {
+                    width: parent.width - picontainer.width
+                    maxWidth: width * 0.5
+                    maxMediaWidth: 512
+                    context: messagesview.context
                 }
-            }
-
-            MessageModelItem {
-                width: parent.width - picontainer.width
-                maxWidth: width * 0.5
-                maxMediaWidth: 512
-                context: messagesview.context
             }
         }
 
-        Rectangle {
-            height: Theme.itemSizeSmall
-            width: height
-            radius: width / 2
-            color: Qt.rgba(Theme.placeholderTextColor.r, Theme.placeholderTextColor.g, Theme.placeholderTextColor.b, .3)
-            anchors { right: parent.right; bottom: parent.bottom; margins: Theme.paddingMedium }
-            opacity: lvmessages.contentY - lvmessages.originY < lvmessages.contentHeight - lvmessages.height * 1.5 ? 1 : 0
-            Behavior on opacity { NumberAnimation { duration: 200; } }
-            Text {
-                anchors.centerIn: parent
-                text: " 🠋"
-                font.pixelSize: parent.height / 2
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                color: "white"
-            }
-            MouseArea {
-                anchors.fill: parent
-                onClicked: lvmessages.positionViewAtIndex(0, ListView.bottom)
-            }
-        }
+        FirstMessageButton { id: btnfirstmessage; flickable: lvmessages }
     }
-
 
     MessageTextInput
     {

@@ -13,15 +13,7 @@ Item
     property real maxMediaWidth
 
     id: messagemodelitem
-
-    height: {
-        var h = content.height;
-
-        if(newmessageframe.visible)
-            h += newmessageframe.height
-
-        return h;
-    }
+    height: content.height
 
     MessageBubble
     {
@@ -36,27 +28,9 @@ Item
         }
     }
 
-    ThemeFrame
-    {
-        id: newmessageframe
-        x: -1
-        width: parent.width + 2
-        visible: model.isMessageNew
-        height: model.isMessageNew ? Theme.paddingLarge : 0
-
-        Text {
-            text: qsTr("New messages")
-            width: parent.width
-            color: Theme.mainColor
-            font.pointSize: Theme.fontSizeSmall
-            horizontalAlignment: Text.AlignHCenter
-        }
-    }
-
     Column
     {
         id: content
-        anchors { top: newmessageframe.bottom; topMargin: newmessageframe.visible ? Theme.paddingSmall : 0 }
 
         width: {
             if(model.isMessageService)
