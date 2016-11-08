@@ -4,5 +4,6 @@
         <file>res/cloud.png</file>
         <file>res/channel.png</file>
         <file>res/chat.png</file>
+        <file>res/mute.png</file>
     </qresource>
 </RCC>

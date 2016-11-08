@@ -20,6 +20,14 @@ ThemeListItem
             text: qsTr("Delete")
             onClicked: context.dialogs.removeDialog(model.index)
         }
+
+        ThemeListMenuItem {
+            text: model.isMuted ? qsTr("Enable notifications") : qsTr("Disable notifications")
+
+            onClicked: {
+                model.isMuted = !model.isMuted;
+            }
+        }
     }
 
     PeerImage
@@ -68,6 +76,7 @@ ThemeListItem
             messageDate: model.topMessageDate
             isMessageOut: model.isTopMessageOut
             isMessageUnread: model.isTopMessageUnread
+            isMute: model.isMuted
             dateFirst: false
         }
     }

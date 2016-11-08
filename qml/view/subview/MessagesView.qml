@@ -43,7 +43,7 @@ ViewContainer
         Component.onCompleted: lvmessages.positionViewAtIndex(messagesmodel.newMessageIndex, ListView.Center);
 
         delegate: Column {
-            width: parent.width
+            width: lvmessages.width
             spacing: Theme.paddingSmall
 
             NewMessage { id: newmessage; visible: model.isMessageNew }

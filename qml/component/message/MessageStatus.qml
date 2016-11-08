@@ -7,6 +7,7 @@ Text
     property bool isMessageUnread
     property bool isMessageOut
     property bool isMessageEdited: false
+    property bool isMute: false
     property bool dateFirst: true
     property bool dateOnly: false
 
@@ -20,6 +21,9 @@ Text
             return messageDate;
 
         var status = "";
+
+        if(isMute)
+            status += "<img align='middle' width='" + font.pixelSize + "' height='" + font.pixelSize + "' src='qrc:///res/mute.png'> ";
 
         if(isMessageEdited)
             status += qsTr("edited") + " ";
