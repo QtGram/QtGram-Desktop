@@ -48,7 +48,11 @@ ApplicationWindow
     {
         id: topbar
         anchors { left: parent.left; top: parent.top; right: parent.right }
-        connected: context.telegram.connected
+
+        connectionStatus {
+            syncing: context.telegram.syncing
+            connected: context.telegram.connected
+        }
 
         model: ListModel {
             ListElement { text: qsTr("Telegram"); value: 0 }

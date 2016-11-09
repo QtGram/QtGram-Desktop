@@ -4,7 +4,7 @@ import ".."
 
 Rectangle
 {
-    property alias connected: connectionstatus.connected
+    property alias connectionStatus: connectionstatus
     property alias model: lvitems.model
 
     signal menuClicked(var value)
