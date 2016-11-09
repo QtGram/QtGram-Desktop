@@ -13,7 +13,7 @@ Item
     property real maxMediaWidth
 
     id: messagemodelitem
-    height: content.height
+    height: content.height + Theme.paddingSmall
 
     MessageBubble
     {
