@@ -1,8 +1,10 @@
 import QtQuick 2.0
+import "../.."
 import ".."
 
 Rectangle
 {
+    property alias connected: connectionstatus.connected
     property alias model: lvitems.model
 
     signal menuClicked(var value)
@@ -13,7 +15,22 @@ Rectangle
     clip: true
     z: 10
 
-    ListView {
+    ConnectionStatus
+    {
+        id: connectionstatus
+
+        anchors {
+            left: parent.left
+            top: parent.top
+            bottom: parent.bottom
+            leftMargin: Theme.paddingMedium
+            topMargin: Theme.paddingSmall
+            bottomMargin: Theme.paddingSmall
+        }
+    }
+
+    ListView
+    {
         function getItemText(index) {
             return lvitems.model.get(index).text;
         }
@@ -23,7 +40,16 @@ Rectangle
         }
 
         id: lvitems
-        anchors { fill: parent; leftMargin: Theme.paddingMedium; rightMargin: Theme.paddingMedium }
+
+        anchors {
+            left: connectionstatus.right
+            top: parent.top
+            right: parent.right
+            bottom: parent.bottom
+            leftMargin: Theme.paddingMedium
+            rightMargin: Theme.paddingMedium
+        }
+
         orientation: ListView.Horizontal
         spacing: Theme.paddingMedium
 
