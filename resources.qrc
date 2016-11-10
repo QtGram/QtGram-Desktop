@@ -5,5 +5,6 @@
         <file>res/channel.png</file>
         <file>res/chat.png</file>
         <file>res/mute.png</file>
+        <file>res/play.png</file>
     </qresource>
 </RCC>

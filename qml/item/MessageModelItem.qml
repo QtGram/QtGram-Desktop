@@ -1,4 +1,5 @@
 import QtQuick 2.4
+import QtQuick.Controls 1.4
 import LibQTelegram 1.0
 import "../component/theme"
 import "../component/message"
@@ -78,6 +79,10 @@ Item
 
         MediaMessageItem
         {
+            MouseArea { anchors.fill: parent; onClicked: mediamessageitem.download() }
+
+            BusyIndicator { running: mediamessageitem.downloading }
+
             id: mediamessageitem
             message: model.item
             size: parent.width
@@ -112,6 +117,13 @@ Item
                 description: mediamessageitem.webPageDescription
                 url: mediamessageitem.webPageUrl
                 source: mediamessageitem.source
+            }
+
+            audioDelegate: AudioMessage {
+                width: Math.min(contentWidth, maxWidth)
+                duration: mediamessageitem.duration
+                barColor: model.isMessageOut ? Theme.mainColor : Theme.alternateMainColor
+                source: model.item
             }
 
             fileDelegate: FileMessage {

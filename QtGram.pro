@@ -68,7 +68,8 @@ DISTFILES += \
     qml/view/FloodLockView.qml \
     qml/component/message/NewMessage.qml \
     qml/component/message/FirstMessageButton.qml \
-    qml/component/ConnectionStatus.qml
+    qml/component/ConnectionStatus.qml \
+    qml/component/message/media/AudioMessage.qml
 
 HEADERS += \
     qtgram.h \
