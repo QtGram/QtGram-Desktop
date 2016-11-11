@@ -16,22 +16,24 @@ Item
         id: imgplay
         width: Theme.itemSizeMedium
         height: Theme.itemSizeMedium
-        anchors.verticalCenter: parent.verticalCenter
+        anchors { verticalCenter: parent.verticalCenter; verticalCenterOffset: Theme.paddingMedium }
         fillMode: Image.PreserveAspectFit
         source: "qrc:///res/play.png"
+
+        MouseArea { anchors.fill: parent }
     }
 
     Waveform
     {
         id: waveform
-        anchors { left: imgplay.right; right: parent.right; leftMargin: Theme.paddingSmall }
+        anchors { left: imgplay.right; top: parent.top; topMargin: Theme.paddingSmall; right: parent.right; leftMargin: Theme.paddingSmall }
         height: Theme.itemSizeSmall
     }
 
     Text
     {
         id: lblduration
-        anchors { left: imgplay.right; top: waveform.bottom; right: parent.right; leftMargin: Theme.paddingSmall; topMargin: Theme.paddingSmall }
+        anchors { left: imgplay.right; top: waveform.bottom; right: parent.right; leftMargin: Theme.paddingSmall; topMargin: Theme.paddingMedium }
         font.pointSize: Theme.fontSizeSmall
         color: Theme.mainTextColor
     }
