@@ -6,8 +6,26 @@ Item
 {
     signal sendRequested(string content)
 
+    function editMessage(messagetext) {
+        tisendmessage.text = messagetext;
+        tisendmessage.focusTextInput();
+    }
+
     id: messagetextinput
     height: visible ? Theme.defaultHeight : 0
+
+    ThemeButton
+    {
+        id: btnattach
+        width: parent.height
+        image: "qrc:///res/attach.png"
+
+        anchors {
+            left: parent.left
+            top: parent.top
+            bottom: parent.bottom
+        }
+    }
 
     ThemeTextField
     {
@@ -15,7 +33,7 @@ Item
         placeholderText: qsTr("Send message...")
 
         anchors {
-            left: parent.left
+            left: btnattach.right
             top: parent.top
             bottom: parent.bottom
             right: btnsend.left
@@ -40,6 +58,7 @@ Item
     {
         id: btnsend
         width: Theme.itemSizeMedium
+        enabled: tisendmessage.text.length > 0
         text: "❯❯"
 
         anchors {

@@ -23,6 +23,6 @@ Item
         radius: needsBlur ? 32.0 : 0.0
     }
 
-    BusyIndicator { z: 2; running: mediamessageitem.downloading }
+    BusyIndicator { z: 2; anchors.centerIn: parent; running: mediamessageitem.downloading }
     MouseArea { anchors.fill: parent; onClicked: mediamessageitem.download() }
 }

@@ -1,19 +1,39 @@
 import QtQuick 2.4
 import LibQTelegram 1.0
 import "../component/theme"
+import "../component/theme/listview"
 import "../component/message"
 import "../component/message/reply"
 import "../component/message/media"
 import "../js/Colors.js" as Colors
 
-Item
+ThemeListItem
 {
     property var context
     property real maxWidth
     property real maxMediaWidth
 
     id: messagemodelitem
-    height: content.height + Theme.paddingSmall
+    contentHeight: content.height + Theme.paddingSmall
+
+    menu: ThemeListMenu {
+        ThemeListMenuItem {
+            text: qsTr("Reply")
+        }
+
+        ThemeListMenuItem {
+            text: qsTr("Edit")
+            visible: model.isMessageOut
+
+            onClicked: {
+                messagesview.selectedMessage = model.item;
+                messagesview.editMode = true;
+
+                messagetextinput.editMessage(model.messageText);
+
+            }
+        }
+    }
 
     MessageBubble
     {

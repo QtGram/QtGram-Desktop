@@ -2,6 +2,10 @@ import QtQuick 2.0
 
 ThemeFrame
 {
+    function focusTextInput() {
+        titextinput.forceActiveFocus();
+    }
+
     property alias placeholderText: tiplaceholder.text
     property alias echoMode: titextinput.echoMode
     property alias text: titextinput.text

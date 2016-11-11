@@ -28,6 +28,17 @@ ThemeListItem
                 model.isMuted = !model.isMuted;
             }
         }
+
+        ThemeListMenuItem {
+            text: qsTr("Profile")
+
+            onClicked: {
+                var component = Qt.createComponent("../dialogs/ProfileDialog.qml");
+                var dlgprofile = component.createObject(applicationwindow, { context: applicationwindow.context, peer: model.item });
+                dlgprofile.open();
+
+            }
+        }
     }
 
     PeerImage

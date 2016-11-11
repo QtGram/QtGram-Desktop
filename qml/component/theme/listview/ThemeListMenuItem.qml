@@ -11,6 +11,10 @@ MouseArea
     height: Theme.itemSizeSmall
     hoverEnabled: true
 
+    onClicked: {
+        parent.visible = false;
+    }
+
     onPositionChanged: {
         canHighlight = true;
     }

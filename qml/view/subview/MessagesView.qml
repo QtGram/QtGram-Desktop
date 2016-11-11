@@ -8,6 +8,8 @@ import "../../js/Colors.js" as Colors
 
 ViewContainer
 {
+    property Message selectedMessage: null
+    property bool editMode: false
     property var dialog
 
     id: messagesview
@@ -96,6 +98,15 @@ ViewContainer
             right: parent.right
         }
 
-        onSendRequested: messagesmodel.sendMessage(content)
+        onSendRequested: {
+            if(editMode) {
+                messagesmodel.editMessage(content, selectedMessage);
+                selectedMessage = null;
+                editMode = false;
+                return;
+            }
+
+            messagesmodel.sendMessage(content)
+        }
     }
 }
