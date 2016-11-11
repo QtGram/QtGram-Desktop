@@ -1,4 +1,5 @@
 import QtQuick 2.4
+import QtQuick.Controls 1.4
 import LibQTelegram 1.0
 
 Item
@@ -20,7 +21,8 @@ Item
         fillMode: Image.PreserveAspectFit
         source: "qrc:///res/play.png"
 
-        MouseArea { anchors.fill: parent }
+        BusyIndicator { z: 2; running: mediamessageitem.downloading }
+        MouseArea { anchors.fill: parent; onClicked: mediamessageitem.download() }
     }
 
     Waveform
