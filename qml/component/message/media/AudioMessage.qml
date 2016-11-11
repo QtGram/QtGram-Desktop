@@ -24,7 +24,6 @@ Item
     Waveform
     {
         id: waveform
-        clip: true
         anchors { left: imgplay.right; right: parent.right; leftMargin: Theme.paddingSmall }
         height: Theme.itemSizeSmall
     }
