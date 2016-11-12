@@ -39,13 +39,7 @@ Dialog
             width: parent.width
             horizontalAlignment: Text.AlignHCenter
             font { bold: true; pointSize: Theme.fontSizeMedium }
-
-            text: {
-                if(peerprofile.isUser && peerprofile.hasUsername)
-                    return qsTr("%1 (@%2)").arg(peerprofile.title).arg(peerprofile.username);
-
-                return qsTr("%1").arg(peerprofile.title);
-            }
+            text: peerprofile.title
         }
 
         Text
