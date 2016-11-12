@@ -53,9 +53,42 @@ Dialog
             width: parent.width
             text: peerprofile.statusText
             horizontalAlignment: Text.AlignHCenter
-            font.pointSize: Theme.fontSizeSmall
             color: Theme.mainColor
         }
+
+        Item { width: parent.width; height: Theme.paddingMedium }
+
+        Text
+        {
+            x: Theme.paddingSmall
+            font.bold: true
+            width: parent.width - (x * 2)
+            text: qsTr("Info:")
+            horizontalAlignment: Text.AlignLeft
+            color: Theme.mainColor
+        }
+
+        Text
+        {
+            x: Theme.paddingSmall
+            width: parent.width - (x * 2)
+            text: "<font color='" + Theme.mainColor + "'<b>" + qsTr("Phone number") + ": </b></font>+" + peerprofile.phoneNumber
+            visible: peerprofile.hasPhoneNumber
+            horizontalAlignment: Text.AlignLeft
+            elide: Text.ElideRight
+        }
+
+        Text
+        {
+            x: Theme.paddingSmall
+            width: parent.width - (x * 2)
+            text: "<font color='" + Theme.mainColor + "'<b>" + qsTr("Username") + ": </b></font>@" + peerprofile.username
+            visible: peerprofile.hasUsername
+            horizontalAlignment: Text.AlignLeft
+            elide: Text.ElideRight
+        }
+
+        Item { width: parent.width; height: Theme.paddingMedium }
 
         ThemeButton
         {
@@ -67,6 +100,10 @@ Dialog
                     return qsTr("Enable notifications");
 
                 return qsTr("Disable notifications");
+            }
+
+            onClicked: {
+                peerprofile.isMuted = !peerprofile.isMuted;
             }
         }
 
