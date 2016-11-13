@@ -97,13 +97,13 @@ ThemeListItem
         anchors {
             left: peerimage.right
             top: headerrow.bottom
-            bottom: parent.bottom
             right: parent.right
             leftMargin: Theme.paddingSmall
             rightMargin: Theme.paddingMedium
         }
 
         spacing: Theme.paddingSmall
+        height: parent.contentHeight - headerrow.height
 
         Text
         {
