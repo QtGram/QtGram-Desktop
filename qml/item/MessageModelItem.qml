@@ -14,7 +14,7 @@ ThemeListItem
     property real maxMediaWidth
 
     id: messagemodelitem
-    contentHeight: content.height + Theme.paddingSmall
+    contentHeight: content.height + Theme.paddingMedium
 
     menu: ThemeListMenu {
         ThemeListMenuItem {

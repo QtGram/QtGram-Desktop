@@ -55,10 +55,11 @@ Item
             {
                 id: lblmessage
                 width: parent.width - Theme.paddingSmall
-                font { italic: true; pointSize: Theme.fontSizeMedium }
+                font { italic: true; pointSize: Theme.fontSizeSmall }
                 emojiPath: context.qtgram.emojiPath
                 rawText: model.replyText
-                wrapMode: Text.NoWrap
+                maximumLineCount: 3
+                wrapMode: Text.Wrap
                 elide: Text.ElideRight
                 color: Theme.textColor
                 horizontalAlignment: Text.AlignLeft
