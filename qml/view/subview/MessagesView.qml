@@ -19,6 +19,7 @@ ViewContainer
         id: messagesmodel
         telegram: messagesview.context.telegram
         dialog: messagesview.dialog
+        isActive: Qt.application.state === Qt.ApplicationActive
     }
 
     DialogHeader
