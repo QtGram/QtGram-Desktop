@@ -182,7 +182,7 @@ ThemeListItem
                 text: model.unreadCount
                 color: Theme.mainTextColor
                 anchors.centerIn: parent
-                font.pointSize: Theme.fontSizeSmall
+                font { bold: true; pointSize: Theme.fontSizeSmall }
             }
         }
     }
