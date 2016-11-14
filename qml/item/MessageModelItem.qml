@@ -84,7 +84,7 @@ ThemeListItem
             width: parent.width
             horizontalAlignment: Text.AlignLeft
             rawText: model.isMessageForwarded ? qsTr("Forwarded from %1").arg(model.forwardedFromName) : model.messageFrom
-            color: model.isMessageForwarded ? Colors.getColor(model.forwardedFromUser.id) : Colors.getColor(model.item.fromId)
+            color: model.isMessageForwarded ? Colors.getColor(model.forwardedFromPeer.id) : Colors.getColor(model.item.fromId)
         }
 
         MessageReplyItem
