@@ -3,13 +3,13 @@ import "../../message"
 
 Column
 {
-    readonly property real calculatedWidth: Math.max(wpurl.calculatedWidth,
+    readonly property real calculatedWidth: Math.max(wpmessage.calculatedWidth,
                                                      wptitle.calculatedWidth,
                                                      wpdescription.calculatedWidth,
                                                      imgthumbnail.sourceSize.width)
 
     property var context
-    property alias url: wpurl.rawText
+    property alias messageText: wpmessage.rawText
     property alias title: wptitle.rawText
     property alias description: wpdescription.rawText
     property alias source: imgthumbnail.source
@@ -20,7 +20,7 @@ Column
 
     MessageText
     {
-        id: wpurl
+        id: wpmessage
         emojiPath: context.qtgram.emojiPath
         width: parent.width
         wrapMode: Text.Wrap
@@ -45,6 +45,7 @@ Column
             {
                 id: wptitle
                 emojiPath: context.qtgram.emojiPath
+                visible: rawText.length > 0
                 width: parent.width
                 wrapMode: Text.Wrap
                 font { bold: true; pointSize: Theme.fontSizeMedium }
@@ -54,6 +55,7 @@ Column
             {
                 id: wpdescription
                 emojiPath: context.qtgram.emojiPath
+                visible: rawText.length > 0
                 width: parent.width
                 wrapMode: Text.Wrap
                 font { pointSize: Theme.fontSizeSmall; italic: true }

@@ -70,14 +70,14 @@ ThemeListItem
 
         anchors {
             left: {
-                if(model.isServiceMessage)
+                if(model.isMessageService)
                     return parent.left;
 
                 return model.isMessageOut ? undefined : parent.left
             }
 
             right: {
-                if(model.isServiceMessage)
+                if(model.isMessageService)
                     return parent.right;
 
                 return !model.isMessageOut ? undefined : parent.right
@@ -142,7 +142,7 @@ ThemeListItem
                 context: messagemodelitem.context
                 title: mediamessageitem.webPageTitle
                 description: mediamessageitem.webPageDescription
-                url: mediamessageitem.webPageUrl
+                messageText: model.messageText
                 source: mediamessageitem.source
             }
 
@@ -165,9 +165,16 @@ ThemeListItem
             id: lblmessage
             emojiPath: context.qtgram.emojiPath
             width: parent.width
-            rawText: model.messageText
             wrapMode: Text.Wrap
             font { italic: model.isMessageService }
+            visible: rawText.length > 0
+
+            rawText: {
+                if(model.isMessageMedia)
+                    return model.messageCaption;
+
+                return model.messageText;
+            }
 
             color: {
                 if(model.isMessageService)
