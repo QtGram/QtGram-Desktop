@@ -12,7 +12,7 @@ Text
 
     id: messagetext
     textFormat: Text.StyledText
-    text: TextElaborator.elaborate(rawText, emojiPath, font.pixelSize, "#888888", openUrls)
+    text: TextElaborator.elaborate(rawText, emojiPath, font.pixelSize, "#0000FF", openUrls)
     verticalAlignment: Text.AlignTop
 
     onLinkActivated: {

@@ -54,7 +54,7 @@ ThemeListItem
 
         width: {
             if(model.isMessageService)
-                return maxWidth;
+                return parent.width;
 
             var w = Math.max(messagereply.calculatedWidth,
                              lblfrom.calculatedWidth,
@@ -69,8 +69,20 @@ ThemeListItem
         }
 
         anchors {
-            right: !model.isMessageOut ? undefined : parent.right
-            left: model.isMessageOut ? undefined : parent.left
+            left: {
+                if(model.isServiceMessage)
+                    return parent.left;
+
+                return model.isMessageOut ? undefined : parent.left
+            }
+
+            right: {
+                if(model.isServiceMessage)
+                    return parent.right;
+
+                return !model.isMessageOut ? undefined : parent.right
+            }
+
             rightMargin: Theme.paddingMedium
             leftMargin: Theme.paddingMedium
         }
