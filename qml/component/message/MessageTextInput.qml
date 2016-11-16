@@ -1,4 +1,5 @@
 import QtQuick 2.4
+import QtQuick.Dialogs 1.2
 import LibQTelegram 1.0
 import "../theme"
 
@@ -14,6 +15,13 @@ Item
     id: messagetextinput
     height: visible ? Theme.defaultHeight : 0
 
+    FileDialog
+    {
+        id: filedialog
+        title: qsTr("Send file...")
+        onAccepted: messagesmodel.sendMedia(filedialog.fileUrl, tisendmessage.text, MessagesModel.MessageMediaPhoto);
+    }
+
     ThemeButton
     {
         id: btnattach
@@ -25,6 +33,8 @@ Item
             top: parent.top
             bottom: parent.bottom
         }
+
+        onClicked: filedialog.open()
     }
 
     ThemeTextField
