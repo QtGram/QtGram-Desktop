@@ -200,6 +200,7 @@ ThemeListItem
             isMessageOut: model.isMessageOut
             isMessageUnread: model.isMessageUnread
             isMessageEdited: model.isMessageEdited
+            isMessagePending: model.isMessagePending
             messageDate: model.messageDate
         }
     }

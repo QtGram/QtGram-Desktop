@@ -19,7 +19,7 @@ Item
     {
         id: filedialog
         title: qsTr("Send file...")
-        onAccepted: messagesmodel.sendFile(filedialog.fileUrl, tisendmessage.text);
+        onAccepted: messagesmodel.sendPhoto(filedialog.fileUrl, tisendmessage.text);
     }
 
     ThemeButton

@@ -7,6 +7,7 @@ Text
     property bool isMessageUnread
     property bool isMessageOut
     property bool isMessageEdited: false
+    property bool isMessagePending: false
     property bool isMute: false
     property bool dateFirst: true
     property bool dateOnly: false
@@ -32,9 +33,12 @@ Text
             status += messageDate + " ";
 
         if(isMessageOut) {
+
             status += "<font color=\"" + ticksColor + "\">";
 
-            if(!isMessageUnread)
+            if(isMessagePending)
+                status += " <b>⏱</b>";
+            else if(!isMessageUnread)
                 status += " <b>✓✓</b> ";
             else
                 status += " <b>✓</b> ";
