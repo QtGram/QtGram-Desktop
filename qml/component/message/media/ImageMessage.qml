@@ -1,6 +1,7 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.4
 import QtGraphicalEffects 1.0
+import ".."
 
 Item
 {
@@ -27,14 +28,11 @@ Item
     BusyIndicator { z: 2; anchors.centerIn: parent; running: mediamessageitem.downloading }
     MouseArea { anchors.fill: parent; onClicked: mediamessageitem.download() }
 
-    ProgressBar
+    CircularProgressBar
     {
-        x: Theme.paddingMedium
-        width: parent.width - (x * 2)
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.centerIn: parent
         visible: mediamessageitem.uploading
-        value: mediamessageitem.progress
-        minimumValue: 0.0
-        maximumValue: 1.0
+        progress: mediamessageitem.progress
+        rotating: visible
     }
 }

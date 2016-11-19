@@ -70,7 +70,8 @@ DISTFILES += \
     qml/component/message/FirstMessageButton.qml \
     qml/component/ConnectionStatus.qml \
     qml/component/message/media/AudioMessage.qml \
-    qml/dialogs/ProfileDialog.qml
+    qml/dialogs/ProfileDialog.qml \
+    qml/component/message/CircularProgressBar.qml
 
 HEADERS += \
     qtgram.h \
