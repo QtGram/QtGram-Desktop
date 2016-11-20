@@ -38,7 +38,6 @@ ThemeListItem
     MessageBubble
     {
         anchors { fill: content; leftMargin: -Theme.paddingSmall; rightMargin: -Theme.paddingSmall}
-        message: model.item
 
         visible: {
             if(mediamessageitem.isSticker || mediamessageitem.isAnimated)

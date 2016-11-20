@@ -3,8 +3,6 @@ import LibQTelegram 1.0
 
 Item
 {
-    property Message message
-
     id: messagebubble
     layer.enabled: true
     opacity: 0.80
@@ -12,7 +10,7 @@ Item
     Rectangle
     {
         id: mainbubble
-        color: message.isOut ? Theme.alternateMainColor : Theme.mainColor
+        color: model.isMessageOut ? Theme.alternateMainColor : Theme.mainColor
         anchors.fill: parent
         radius: 12
         smooth: true
@@ -26,10 +24,10 @@ Item
         color: mainbubble.color
 
         anchors {
-            top: !message.isOut ? undefined : parent.top
-            right: !message.isOut ? undefined : parent.right
-            bottom: message.isOut ? undefined: parent.bottom
-            left: message.isOut ? undefined : parent.left
+            top: !model.isMessageOut ? undefined : parent.top
+            right: !model.isMessageOut ? undefined : parent.right
+            bottom: model.isMessageOut ? undefined: parent.bottom
+            left: model.isMessageOut ? undefined : parent.left
         }
     }
 }

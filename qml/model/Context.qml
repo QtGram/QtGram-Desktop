@@ -13,6 +13,8 @@ Item
     property QtGram qtgram: QtGram { }
 
     property Telegram telegram: Telegram {
+        autoDownload: true
+
         initializer: TelegramInitializer {
             debugMode: true
             apiId: context.apiId
