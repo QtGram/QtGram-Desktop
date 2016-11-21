@@ -29,6 +29,32 @@ Rectangle
         }
     }
 
+    Rectangle
+    {
+        id: unreadcount
+        width: height
+        radius: width * 0.5
+        color: Theme.mainTextColor
+
+        anchors {
+            left: connectionstatus.right
+            top: parent.top
+            bottom: parent.bottom
+            leftMargin: Theme.paddingLarge
+            topMargin: Theme.paddingSmall
+            bottomMargin: Theme.paddingSmall
+        }
+
+        Text {
+            anchors.centerIn: parent
+            text: context.telegram.unreadCount
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            font { bold: true; pointSize: Theme.fontSizeSmall }
+            color: Theme.mainColor
+        }
+    }
+
     ListView
     {
         function getItemText(index) {
@@ -42,7 +68,7 @@ Rectangle
         id: lvitems
 
         anchors {
-            left: connectionstatus.right
+            left: unreadcount.right
             top: parent.top
             right: parent.right
             bottom: parent.bottom
