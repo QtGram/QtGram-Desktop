@@ -26,7 +26,20 @@ Item
     }
 
     BusyIndicator { z: 2; anchors.centerIn: parent; running: mediamessageitem.downloading }
-    MouseArea { anchors.fill: parent; onClicked: mediamessageitem.download() }
+
+    MouseArea
+    {
+        anchors.fill: parent
+
+        onClicked: {
+            if(mediamessageitem.downloaded) {
+                Qt.openUrlExternally("file://" + mediamessageitem.source);
+                return;
+            }
+
+            mediamessageitem.download();
+        }
+    }
 
     CircularProgressBar
     {
