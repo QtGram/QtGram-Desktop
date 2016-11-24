@@ -1,13 +1,15 @@
 import QtQuick 2.4
 import QtGraphicalEffects 1.0
 
-Item
+MouseArea
 {
     property bool syncing: false
     property bool connected: false
 
     id: connectionstatus
     width: height
+    enabled: !context.telegram.connected
+    onClicked: context.telegram.reconnect()
 
     layer.enabled: true
     layer.effect: OpacityMask {

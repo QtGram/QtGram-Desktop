@@ -18,18 +18,10 @@ ViewContainer
                          replace: true });
     }
 
-    function openDialog(index, dialog) {
-        lvdialogs.currentIndex = index;
-
-        stackview.push({ item: Qt.resolvedUrl("../subview/MessagesView.qml"),
-                         properties: { context: dialogsview.context, dialog: dialog },
-                         replace: true });
-    }
-
     Connections
     {
         target: context.contacts
-        onDialogCreated: openDialog(context.dialogs.indexOf(dialog), dialog)
+        onDialogCreated: context.openDialog(dialog)
     }
 
     Item
@@ -62,7 +54,7 @@ ViewContainer
                     if(mouse.button !== Qt.LeftButton)
                         return;
 
-                    openDialog(model.index, model.item);
+                    context.openDialog(model.item);
                 }
             }
         }
@@ -77,6 +69,10 @@ ViewContainer
 
         initialItem: PlaceholderView {
             context: dialogsview.context
+        }
+
+        Component.onCompleted: {
+            context.stackView = stackview;
         }
     }
 }

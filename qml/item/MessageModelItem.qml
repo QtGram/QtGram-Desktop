@@ -18,10 +18,6 @@ ThemeListItem
 
     menu: ThemeListMenu {
         ThemeListMenuItem {
-            text: qsTr("Reply")
-        }
-
-        ThemeListMenuItem {
             text: qsTr("Edit")
             visible: model.isMessageOut
 
@@ -30,8 +26,31 @@ ThemeListItem
                 messagesview.editMode = true;
 
                 messagetextinput.editMessage(model.messageText);
-
             }
+        }
+
+        ThemeListMenuItem {
+            text: qsTr("Reply")
+        }
+
+        ThemeListMenuItem {
+            text: qsTr("Forward")
+
+            onClicked: {
+                var component = Qt.createComponent("../dialogs/ForwardDialog.qml");
+                var dlgforward = component.createObject(messagesview, { context: messagemodelitem.context, fromDialog: messagesmodel.dialog });
+
+                dlgforward.forwardDialogSelected.connect(function(todialog) {
+                    messagesmodel.forwardMessages(todialog, [model.item]);
+                    context.openDialog(todialog);
+                });
+
+                dlgforward.open();
+            }
+        }
+        ThemeListMenuItem {
+            text: qsTr("Delete")
+            onClicked: messagesmodel.deleteMessages([model.item])
         }
     }
 

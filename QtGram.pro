@@ -71,7 +71,8 @@ DISTFILES += \
     qml/component/ConnectionStatus.qml \
     qml/component/message/media/AudioMessage.qml \
     qml/dialogs/ProfileDialog.qml \
-    qml/component/message/CircularProgressBar.qml
+    qml/component/message/CircularProgressBar.qml \
+    qml/dialogs/ForwardDialog.qml
 
 HEADERS += \
     qtgram.h \
