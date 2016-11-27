@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import LibQTelegram 1.0
+import "../component"
 
 MouseArea
 {
@@ -22,9 +23,6 @@ MouseArea
         anchors { left: parent.left; top: parent.top }
         size: contactmodelitem.height
         peer: model.item
-        backgroundColor: "gray"
-        foregroundColor: "black"
-        fontPixelSize: Theme.fontSizeSmall
     }
 
     Text

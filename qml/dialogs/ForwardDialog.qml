@@ -2,6 +2,7 @@ import QtQuick 2.4
 import QtQuick.Dialogs 1.2
 import LibQTelegram 1.0 as LibQTelegram
 import "../component/theme"
+import "../component"
 
 Dialog
 {
@@ -36,14 +37,11 @@ Dialog
                 forwarddialog.close();
             }
 
-            LibQTelegram.PeerImage {
+            PeerImage {
                 id: peerimage
                 anchors { left: parent.left; top: parent.top }
                 size: parent.height
                 peer: model.item
-                backgroundColor: "gray"
-                foregroundColor: "black"
-                fontPixelSize: Theme.fontSizeSmall
             }
 
             Text {

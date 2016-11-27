@@ -2,6 +2,7 @@ import QtQuick 2.4
 import QtQuick.Dialogs 1.2
 import LibQTelegram 1.0 as LibQTelegram
 import "../component/theme"
+import "../component"
 
 Dialog
 {
@@ -24,13 +25,10 @@ Dialog
 
         Item { width: parent.width; height: Theme.paddingSmall }
 
-        LibQTelegram.PeerImage
+        PeerImage
         {
             anchors.horizontalCenter: parent.horizontalCenter
             size: Theme.itemSizeMedium
-            backgroundColor: Theme.mainColor
-            foregroundColor: Theme.mainTextColor
-            fontPixelSize: Theme.fontSizeLarge
             peer: contactsdialog.peer
         }
 

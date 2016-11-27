@@ -2,6 +2,7 @@ import QtQuick 2.4
 import LibQTelegram 1.0
 import "../component/message"
 import "../component/theme/listview"
+import "../component"
 
 ThemeListItem
 {
@@ -46,9 +47,6 @@ ThemeListItem
         id: peerimage
         anchors { left: parent.left; top: parent.top }
         size: dialogmodelitem.contentHeight
-        backgroundColor: Theme.mainColor
-        foregroundColor: Theme.mainTextColor
-        fontPixelSize: Theme.fontSizeLarge
         peer: model.item
     }
 

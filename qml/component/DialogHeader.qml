@@ -38,8 +38,5 @@ Rectangle
         anchors { top: parent.top; right: parent.right; rightMargin: Theme.paddingSmall }
         size: dialogheader.height
         peer: dialog
-        backgroundColor: "gray"
-        foregroundColor: "black"
-        fontPixelSize: Theme.fontSizeSmall
     }
 }
