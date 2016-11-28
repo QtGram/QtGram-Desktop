@@ -16,6 +16,20 @@ Row
         asynchronous: true
         width: Theme.itemSizeSmall
         height: Theme.itemSizeSmall
+
+        MouseArea
+        {
+            anchors.fill: parent
+
+            onClicked: {
+                if(!mediamessageitem.downloaded) {
+                    mediamessageitem.download();
+                    return;
+                }
+
+                Qt.openUrlExternally("file://" + mediamessageitem.source);
+            }
+        }
     }
 
     Column
