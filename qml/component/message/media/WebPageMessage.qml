@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import "../../message"
+import "../.."
 
 Column
 {
@@ -61,12 +62,10 @@ Column
                 font { pointSize: Theme.fontSizeSmall; italic: true }
             }
 
-            Image
+            BlurredImage
             {
                 id: imgthumbnail
                 width: parent.width
-                asynchronous: true
-                fillMode: Image.PreserveAspectFit
             }
         }
     }

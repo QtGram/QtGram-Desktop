@@ -16,7 +16,7 @@ Item
     property QtGram qtgram: QtGram { }
 
     property Telegram telegram: Telegram {
-        //autoDownload: true
+        autoDownload: true
         online: Qt.application.state === Qt.ApplicationActive
 
         initializer: TelegramInitializer {

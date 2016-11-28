@@ -48,9 +48,16 @@ ThemeListItem
                 dlgforward.open();
             }
         }
+
         ThemeListMenuItem {
             text: qsTr("Delete")
             onClicked: messagesmodel.deleteMessages([model.item])
+        }
+
+        ThemeListMenuItem {
+            text: qsTr("Save to Downloads")
+            visible: model.isMessageMedia
+            onClicked: mediamessageitem.saveToDownloads()
         }
     }
 
@@ -134,7 +141,6 @@ ThemeListItem
 
             imageDelegate: ImageMessage {
                 anchors.fill: parent
-                needsBlur: !mediamessageitem.downloaded
                 source: mediamessageitem.isVideo ? mediamessageitem.videoThumbnail : mediamessageitem.source
             }
 

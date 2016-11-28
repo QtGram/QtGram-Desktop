@@ -73,7 +73,8 @@ DISTFILES += \
     qml/dialogs/ProfileDialog.qml \
     qml/component/message/CircularProgressBar.qml \
     qml/dialogs/ForwardDialog.qml \
-    qml/component/PeerImage.qml
+    qml/component/PeerImage.qml \
+    qml/component/BlurredImage.qml
 
 HEADERS += \
     qtgram.h \

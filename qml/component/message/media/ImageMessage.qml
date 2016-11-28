@@ -2,27 +2,19 @@ import QtQuick 2.4
 import QtQuick.Controls 1.4
 import QtGraphicalEffects 1.0
 import ".."
+import "../.."
 
 Item
 {
     property alias source: image.source
-    property bool needsBlur: false
 
     id: imagemessage
 
-    Image
+    BlurredImage
     {
         id: image
         anchors.fill: parent
-        asynchronous: true
-    }
-
-    FastBlur
-    {
-        anchors.fill: image
-        source: image
-        radius: needsBlur ? 32.0 : 0.0
-        visible: needsBlur
+        needsBlur: !mediamessageitem.downloaded
     }
 
     BusyIndicator { z: 2; anchors.centerIn: parent; running: mediamessageitem.downloading }
