@@ -7,10 +7,13 @@ Item
     property alias sourceSize: image.sourceSize
     property bool needsBlur: false
 
+    id: blurredimage
+    height: image.height
+
     Image
     {
         id: image
-        anchors.fill: parent
+        width: parent.width
         asynchronous: true
         fillMode: Image.PreserveAspectFit
     }
