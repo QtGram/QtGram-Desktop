@@ -78,7 +78,8 @@ DISTFILES += \
     qml/dialogs/stickers/StickerSetDialog.qml \
     qml/item/StickerSetItem.qml \
     qml/component/StickerImage.qml \
-    qml/component/message/media/StickerMessage.qml
+    qml/component/message/media/StickerMessage.qml \
+    qml/dialogs/stickers/StickerPackDialog.qml
 
 HEADERS += \
     qtgram.h \

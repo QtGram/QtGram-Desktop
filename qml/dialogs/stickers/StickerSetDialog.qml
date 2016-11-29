@@ -8,7 +8,7 @@ Dialog
 {
     property var context
 
-    id: contactsdialog
+    id: stickersetdialog
     title: qsTr("Stickers")
 
     contentItem: Item {
@@ -26,6 +26,11 @@ Dialog
             delegate: StickerSetItem {
                 width: parent.width
                 height: Theme.itemSizeSmall
+
+                onClicked: {
+                    close();
+                    context.openStickers(model.item);
+                }
             }
         }
     }

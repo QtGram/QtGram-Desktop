@@ -2,26 +2,36 @@ import QtQuick 2.4
 import LibQTelegram 1.0
 import "../component"
 
-Row
+MouseArea
 {
     id: stickersetitem
-    spacing: Theme.paddingMedium
 
     StickerImage
     {
         id: stickerimage
         width: parent.height
-        height: parent.height
         sticker: model.stickerPreview
         showThumbnail: true
+
+        anchors {
+            left: parent.left
+            top: parent.top
+            bottom: parent.bottom
+        }
     }
 
     Text
     {
-        width: parent.width - stickerimage.width
-        height: parent.height
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
         text: model.title
+
+        anchors {
+            left: stickerimage.right
+            top: parent.top
+            bottom: parent.bottom
+            right: parent.right
+            leftMargin: Theme.paddingSmall
+        }
     }
 }

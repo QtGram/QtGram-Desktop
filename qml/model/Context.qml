@@ -55,6 +55,12 @@ Item
         telegram: context.telegram
     }
 
+    function openStickers(stickerset) {
+        var component = Qt.createComponent("../dialogs/stickers/StickerPackDialog.qml");
+        var dlgstickerpack = component.createObject(applicationwindow, { context: context, stickerSet: stickerset });
+        dlgstickerpack.open()
+    }
+
     function openDialog(dialog) {
         stackView.push({ item: Qt.resolvedUrl("../view/subview/MessagesView.qml"),
                          properties: { context: context, dialog: dialog },
