@@ -58,9 +58,10 @@ ApplicationWindow
             ListElement { text: qsTr("Telegram"); value: 0 }
             ListElement { text: qsTr("Cloud"); value: 1 }
             ListElement { text: qsTr("Contacts"); value: 2 }
-            ListElement { text: qsTr("Settings"); value: 3 }
-            ListElement { text: qsTr("Debug"); value: 4 }
-            ListElement { text: qsTr("Info"); value: 5 }
+            ListElement { text: qsTr("Stickers"); value: 3 }
+            ListElement { text: qsTr("Settings"); value: 4 }
+            ListElement { text: qsTr("Debug"); value: 5 }
+            ListElement { text: qsTr("Info"); value: 6 }
         }
 
         onMenuClicked: {
@@ -83,7 +84,12 @@ ApplicationWindow
                 var dlgcontacts = component.createObject(applicationwindow, { context: applicationwindow.context });
                 dlgcontacts.open()
             }
-            else if(value === 4) {
+            else if(value === 3) {
+                component = Qt.createComponent("dialogs/stickers/StickerSetDialog.qml");
+                var dlgstickers = component.createObject(applicationwindow, { context: applicationwindow.context });
+                dlgstickers.open()
+            }
+            else if(value === 5) {
                 component = Qt.createComponent("dialogs/DebugDialog.qml");
                 var dlgdebug = component.createObject(applicationwindow);
                 dlgdebug.open()
