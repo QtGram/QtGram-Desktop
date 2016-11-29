@@ -77,7 +77,8 @@ DISTFILES += \
     qml/component/BlurredImage.qml \
     qml/dialogs/stickers/StickerSetDialog.qml \
     qml/item/StickerSetItem.qml \
-    qml/component/StickerImage.qml
+    qml/component/StickerImage.qml \
+    qml/component/message/media/StickerMessage.qml
 
 HEADERS += \
     qtgram.h \

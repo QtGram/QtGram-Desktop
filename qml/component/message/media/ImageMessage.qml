@@ -14,7 +14,7 @@ Item
     {
         id: image
         anchors.fill: parent
-        needsBlur: !mediamessageitem.downloaded
+        needsBlur: !mediamessageitem.isSticker && !mediamessageitem.downloaded
     }
 
     BusyIndicator { z: 2; anchors.centerIn: parent; running: mediamessageitem.downloading }

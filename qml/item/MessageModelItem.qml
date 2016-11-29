@@ -144,9 +144,13 @@ ThemeListItem
                 source: mediamessageitem.isVideo ? mediamessageitem.videoThumbnail : mediamessageitem.source
             }
 
+            stickerDelegate: StickerMessage {
+                anchors.fill: parent
+            }
+
             animatedDelegate: AnimatedMessage {
                 anchors.fill: parent
-                source: mediamessageitem.source
+                source: mediamessageitem.downloaded ? mediamessageitem.source : "";
             }
 
             locationDelegate: LocationMessage {
