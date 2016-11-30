@@ -6,6 +6,7 @@ import "../theme"
 Item
 {
     signal sendRequested(string content)
+    signal stickersRequested()
 
     function editMessage(messagetext) {
         tisendmessage.text = messagetext;
@@ -37,13 +38,28 @@ Item
         onClicked: filedialog.open()
     }
 
+    ThemeButton
+    {
+        id: btnstickers
+        width: parent.height
+        image: "qrc:///res/sticker.png"
+
+        anchors {
+            left: btnattach.right
+            top: parent.top
+            bottom: parent.bottom
+        }
+
+        onClicked: stickersRequested()
+    }
+
     ThemeTextField
     {
         id: tisendmessage
         placeholderText: qsTr("Send message...")
 
         anchors {
-            left: btnattach.right
+            left: btnstickers.right
             top: parent.top
             bottom: parent.bottom
             right: btnsend.left

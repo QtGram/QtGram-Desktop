@@ -12,6 +12,7 @@ ThemeFrame
     signal returnPressed()
 
     id: themetextfield
+    clip: true
 
     MouseArea
     {

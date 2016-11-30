@@ -36,7 +36,7 @@ ViewContainer
     {
         id: lvmessages
         clip: true
-        anchors { left: parent.left; top: dialogheader.bottom; right: parent.right; bottom: messagetextinput.top }
+        anchors { left: parent.left; top: dialogheader.bottom; right: parent.right; bottom: stickersbar.top }
         verticalLayoutDirection: ListView.BottomToTop
         cacheBuffer: parent.height * 2
         frameVisible: false
@@ -88,6 +88,24 @@ ViewContainer
         FirstMessageButton { id: btnfirstmessage; flickable: lvmessages }
     }
 
+    StickersBar
+    {
+        id: stickersbar
+        model: context.stickers
+
+        anchors {
+            left: parent.left
+            bottom: messagetextinput.top
+            right: parent.right
+        }
+
+        onOpenStickers: {
+            context.openStickers(stickerset, function(sticker) {
+                messagesmodel.sendSticker(sticker);
+            });
+        }
+    }
+
     MessageTextInput
     {
         id: messagetextinput
@@ -99,6 +117,8 @@ ViewContainer
             right: parent.right
         }
 
+        onStickersRequested: stickersbar.toggle()
+
         onSendRequested: {
             if(editMode) {
                 messagesmodel.editMessage(content, selectedMessage);
@@ -107,7 +127,7 @@ ViewContainer
                 return;
             }
 
-            messagesmodel.sendMessage(content)
+            messagesmodel.sendMessage(content);
         }
     }
 }

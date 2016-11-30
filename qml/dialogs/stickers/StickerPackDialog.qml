@@ -10,6 +10,8 @@ Dialog
     property var context
     property var stickerSet
 
+    signal stickerSelected(var sticker)
+
     LibQTelegram.StickerPackModel {
         id: stickerpackmodel
         telegram: context.telegram
@@ -35,6 +37,15 @@ Dialog
                 height: gvstickers.cellHeight
                 sticker: model.item
                 showThumbnail: true
+
+                MouseArea {
+                    anchors.fill: parent
+
+                    onClicked: {
+                        stickerSelected(model.item)
+                        stickerpackdialog.close();
+                    }
+                }
             }
         }
     }

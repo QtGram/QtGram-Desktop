@@ -51,13 +51,18 @@ Item
         telegram: context.telegram
     }
 
+    property StickerSetsModel stickers: StickerSetsModel {
+        telegram: context.telegram
+    }
+
     property TelegramNotifications notifications: TelegramNotifications {
         telegram: context.telegram
     }
 
-    function openStickers(stickerset) {
+    function openStickers(stickerset, stickerselected) {
         var component = Qt.createComponent("../dialogs/stickers/StickerPackDialog.qml");
         var dlgstickerpack = component.createObject(applicationwindow, { context: context, stickerSet: stickerset });
+        dlgstickerpack.stickerSelected.connect(stickerselected);
         dlgstickerpack.open()
     }
 

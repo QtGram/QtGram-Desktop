@@ -75,11 +75,10 @@ DISTFILES += \
     qml/dialogs/ForwardDialog.qml \
     qml/component/PeerImage.qml \
     qml/component/BlurredImage.qml \
-    qml/dialogs/stickers/StickerSetDialog.qml \
-    qml/item/StickerSetItem.qml \
     qml/component/StickerImage.qml \
     qml/component/message/media/StickerMessage.qml \
-    qml/dialogs/stickers/StickerPackDialog.qml
+    qml/dialogs/stickers/StickerPackDialog.qml \
+    qml/component/StickersBar.qml
 
 HEADERS += \
     qtgram.h \

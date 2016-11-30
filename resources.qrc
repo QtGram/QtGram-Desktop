@@ -7,5 +7,6 @@
         <file>res/mute.png</file>
         <file>res/play.png</file>
         <file>res/attach.png</file>
+        <file>res/sticker.png</file>
     </qresource>
 </RCC>
