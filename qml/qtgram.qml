@@ -21,8 +21,8 @@ ApplicationWindow
                var phonenumber = Settings.transactionGet(tx, "phonenumber");
 
                 if(phonenumber !== false) {
-                    context.telegram.initializer.phoneNumber = phonenumber;
-                    return
+                  context.telegram.initializer.phoneNumber = phonenumber;
+                  return
                 }
 
                 loader.setSource(Qt.resolvedUrl("view/login/PhoneNumberView.qml"), { "context": context });
@@ -48,6 +48,7 @@ ApplicationWindow
     {
         id: topbar
         anchors { left: parent.left; top: parent.top; right: parent.right }
+        visible: context.telegram.loggedIn
 
         connectionStatus {
             syncing: context.telegram.syncing

@@ -5,6 +5,8 @@ import "../../js/CountryList.js" as CountryList
 
 ViewContainer
 {
+    property bool isCodeValid: false
+
     id: phonenumberview
 
     Image
@@ -14,9 +16,9 @@ ViewContainer
         fillMode: Image.PreserveAspectFit
 
         anchors {
-            left: parent.left
-            verticalCenter: parent.verticalCenter
-            leftMargin: Theme.paddingLarge
+            top: parent.top
+            horizontalCenter: parent.horizontalCenter
+            topMargin: -Theme.paddingMedium
         }
     }
 
@@ -24,13 +26,12 @@ ViewContainer
     {
         id: column
         spacing: Theme.paddingMedium
+        width: btnnext.width * 3
 
         anchors {
-            left: imglogo.right
-            right: parent.right
-            verticalCenter: parent.verticalCenter
-            leftMargin: Theme.paddingMedium
-            rightMargin: Theme.paddingMedium
+            top: imglogo.bottom
+            horizontalCenter: parent.horizontalCenter
+            topMargin: Theme.paddingLarge
         }
 
         Text
@@ -46,6 +47,7 @@ ViewContainer
             width: parent.width * 0.6
             anchors.horizontalCenter: parent.horizontalCenter
             model: CountryList.countries
+            invalidText: qsTr("Invalid code")
         }
 
         Row
@@ -55,17 +57,28 @@ ViewContainer
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: Theme.paddingSmall
 
+            Text { id: txtplus; text: "+"; anchors.verticalCenter: tfcode.verticalCenter }
+
             ThemeTextField
             {
                 id: tfcode
                 width: Theme.itemSizeSmall
-                text: "+" + CountryList.countries[cbcountries.currentIndex].code
+                text: CountryList.countries[cbcountries.currentIndex].code
+
+                onTextChanged: {
+                    var index = CountryList.index[tfcode.text];
+
+                    if(index === undefined)
+                        cbcountries.currentIndex = -1;
+                    else
+                        cbcountries.currentIndex = index;
+                }
             }
 
             ThemeTextField
             {
                 id: tfphonenumber
-                width: parent.width - tfcode.width - row.spacing
+                width: parent.width - txtplus.width - tfcode.width - (row.spacing * 2)
                 placeholderText: qsTr("Phone Number")
             }
         }
@@ -75,13 +88,13 @@ ViewContainer
             id: btnnext
             anchors.horizontalCenter: parent.horizontalCenter
             text: qsTr("Next")
-            enabled: tfphonenumber.text.length > 0
+            enabled: (cbcountries.currentIndex !== -1) && (tfphonenumber.text.length > 4)
 
             onClicked: {
                 btnnext.enabled = false;
                 btnnext.text = qsTr("Sending request...");
 
-                context.telegram.initializer.phoneNumber = tfcode.text + tfphonenumber.text;
+                context.telegram.initializer.phoneNumber = "+" + tfcode.text + tfphonenumber.text;
             }
         }
     }

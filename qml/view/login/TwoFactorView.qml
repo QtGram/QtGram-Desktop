@@ -26,9 +26,9 @@ ViewContainer
         fillMode: Image.PreserveAspectFit
 
         anchors {
-            left: parent.left
-            verticalCenter: parent.verticalCenter
-            leftMargin: Theme.paddingLarge
+            top: parent.top
+            horizontalCenter: parent.horizontalCenter
+            topMargin: -Theme.paddingMedium
         }
     }
 
@@ -36,13 +36,12 @@ ViewContainer
     {
         id: column
         spacing: Theme.paddingMedium
+        width: btnsubmit.width * 3
 
         anchors {
-            left: imglogo.right
-            right: parent.right
-            verticalCenter: parent.verticalCenter
-            leftMargin: Theme.paddingMedium
-            rightMargin: Theme.paddingMedium
+            top: imglogo.bottom
+            horizontalCenter: parent.horizontalCenter
+            topMargin: Theme.paddingLarge
         }
 
         Text

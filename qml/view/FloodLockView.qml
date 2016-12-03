@@ -15,9 +15,9 @@ ViewContainer
         fillMode: Image.PreserveAspectFit
 
         anchors {
-            left: parent.left
-            verticalCenter: parent.verticalCenter
-            leftMargin: Theme.paddingLarge
+            top: parent.top
+            horizontalCenter: parent.horizontalCenter
+            topMargin: -Theme.paddingMedium
         }
     }
 
@@ -25,13 +25,12 @@ ViewContainer
     {
         id: column
         spacing: Theme.paddingMedium
+        width: btnclose.width * 3
 
         anchors {
-            left: imglogo.right
-            right: parent.right
-            verticalCenter: parent.verticalCenter
-            leftMargin: Theme.paddingMedium
-            rightMargin: Theme.paddingMedium
+            top: imglogo.bottom
+            horizontalCenter: parent.horizontalCenter
+            topMargin: Theme.paddingLarge
         }
 
         Text
@@ -55,6 +54,14 @@ ViewContainer
                 now.setSeconds(now.getSeconds() + floodlockview.seconds);
                 return qsTr("Unlock at: %1").arg(now.toLocaleString());
             }
+        }
+
+        ThemeButton
+        {
+            id: btnclose
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: qsTr("Close")
+            onClicked: Qt.quit();
         }
     }
 }
