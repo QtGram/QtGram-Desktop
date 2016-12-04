@@ -1,5 +1,5 @@
 import QtQuick 2.4
-import "theme"
+import "../theme"
 
 ThemeListView
 {
@@ -17,10 +17,10 @@ ThemeListView
 
     id: stickersbar
     anchors { leftMargin: -1; rightMargin: -1 }
+    orientation: ListView.Horizontal
     spacing: Theme.paddingMedium
     visible: height > 0
     height: 0
-    orientation: ListView.Horizontal
     clip: true
 
     delegate: StickerImage {

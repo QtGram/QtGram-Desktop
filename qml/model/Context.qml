@@ -78,6 +78,12 @@ Item
         dlgcreatechat.open();
     }
 
+    function openNewChannel() {
+        var component = Qt.createComponent("../dialogs/chat/CreateChannelDialog.qml");
+        var dlgcreatechat = component.createObject(applicationwindow, { context: context });
+        dlgcreatechat.open();
+    }
+
     function openContacts() {
         var component = Qt.createComponent("../dialogs/ContactsDialog.qml");
         var dlgcontacts = component.createObject(applicationwindow, { context: context });

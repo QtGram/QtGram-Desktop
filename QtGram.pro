@@ -4,8 +4,7 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     qtgram.cpp \
-    theme.cpp \
-    debugcaller.cpp
+    theme.cpp
 
 RESOURCES += \
     resources.qrc
@@ -48,7 +47,6 @@ DISTFILES += \
     qml/component/theme/ThemeTextField.qml \
     qml/component/theme/menu/ThemeMenuBar.qml \
     qml/component/message/MessageTextInput.qml \
-    qml/dialogs/DebugDialog.qml \
     qml/component/message/MessageStatus.qml \
     qml/component/message/media/AnimatedMessage.qml \
     qml/component/message/media/ImageMessage.qml \
@@ -75,16 +73,17 @@ DISTFILES += \
     qml/dialogs/ForwardDialog.qml \
     qml/component/PeerImage.qml \
     qml/component/BlurredImage.qml \
-    qml/component/StickerImage.qml \
     qml/component/message/media/StickerMessage.qml \
     qml/dialogs/stickers/StickerPackDialog.qml \
-    qml/component/StickersBar.qml \
     qml/component/main/SearchBox.qml \
     qml/component/main/DialogView.qml \
     qml/component/theme/ThemeItem.qml \
-    qml/component/dialog/UnreadCounter.qml
+    qml/component/dialog/UnreadCounter.qml \
+    qml/dialogs/chat/CreateChannelDialog.qml \
+    qml/component/theme/ThemeButtonBox.qml \
+    qml/component/sticker/StickerImage.qml \
+    qml/component/sticker/StickersBar.qml
 
 HEADERS += \
     qtgram.h \
-    theme.h \
-    debugcaller.h
+    theme.h

@@ -1,9 +1,7 @@
 import QtQuick 2.4
 import QtQuick.Dialogs 1.2
 import LibQTelegram 1.0 as LibQTelegram
-import "../../component/theme"
-import "../../component"
-import "../../item"
+import "../../component/sticker"
 
 Dialog
 {

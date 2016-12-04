@@ -26,7 +26,7 @@ Dialog
 
         ThemeListView {
             id: lvcontacts
-            anchors { left: parent.left; top: parent.top; bottom: bottombar.top; right: parent.right }
+            anchors { left: parent.left; top: parent.top; bottom: buttonbox.top; right: parent.right }
             placeholderText: qsTr("Contact list is empty")
             clip: true
 
@@ -64,46 +64,23 @@ Dialog
             }
         }
 
-        Row
+        ThemeButtonBox
         {
-            id: bottombar
-            height: Theme.defaultHeight + (Theme.paddingMedium * 2)
-            layoutDirection: Qt.RightToLeft
-            spacing: Theme.paddingMedium
+            id: buttonbox
+            acceptText: qsTr("Create")
+            canAccept: (lvcontacts.headerItem.text.length > 0) && (createchat.usersCount > 0)
 
-            anchors {
-                left: parent.left
-                bottom: parent.bottom
-                right: parent.right
-                leftMargin: Theme.paddingMedium
-                rightMargin: Theme.paddingMedium
+            onAccepted: {
+                var userlist = []
+
+                for(var key in createchat.users)
+                    userlist.push(createchat.users[key]);
+
+                enabled = false;
+                contactsmodel.createChat(lvcontacts.headerItem.text, userlist);
             }
 
-            ThemeButton
-            {
-                autoSize: true
-                enabled: (lvcontacts.headerItem.text.length > 0) && (createchat.usersCount > 0)
-                anchors.verticalCenter: parent.verticalCenter
-                text: qsTr("Create")
-
-                onClicked: {
-                    var userlist = []
-
-                    for(var key in createchat.users)
-                        userlist.push(createchat.users[key]);
-
-                    enabled = false;
-                    contactsmodel.createChat(lvcontacts.headerItem.text, userlist);
-                }
-            }
-
-            ThemeButton
-            {
-                autoSize: true
-                anchors.verticalCenter: parent.verticalCenter
-                text: qsTr("Cancel")
-                onClicked: createchat.close()
-            }
+            onRejected: createchat.close()
         }
     }
 }

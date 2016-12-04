@@ -49,7 +49,7 @@ Dialog
                     anchors.fill: parent
 
                     onClicked: {
-                        createdialog.createGroup(false);
+                        context.openNewChannel();
                         createdialog.close();
                     }
                 }

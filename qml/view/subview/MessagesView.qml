@@ -1,8 +1,9 @@
 import QtQuick 2.4
 import LibQTelegram 1.0
-import "../../component"
-import "../../component/theme"
 import "../../component/message"
+import "../../component/theme"
+import "../../component/sticker"
+import "../../component"
 import "../../item"
 import "../../js/Colors.js" as Colors
 
