@@ -31,6 +31,10 @@ ThemeListItem
 
         ThemeListMenuItem {
             text: qsTr("Reply")
+
+            onClicked: {
+                messagetextinput.replyMessage = model.item;
+            }
         }
 
         ThemeListMenuItem {

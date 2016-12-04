@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import "../../dialog"
 import "../.."
 import ".."
 
@@ -15,43 +16,17 @@ Rectangle
     clip: true
     z: 10
 
-    ConnectionStatus
+    UnreadCounter
     {
-        id: connectionstatus
+        id: unreadcounter
+        alternateColor: true
+        y: Theme.paddingSmall
+        size: parent.height - (y * 2)
+        unreadCount: context.telegram.unreadCount
 
         anchors {
             left: parent.left
-            top: parent.top
-            bottom: parent.bottom
-            leftMargin: Theme.paddingMedium
-            topMargin: Theme.paddingSmall
-            bottomMargin: Theme.paddingSmall
-        }
-    }
-
-    Rectangle
-    {
-        id: unreadcount
-        width: height
-        radius: width * 0.5
-        color: Theme.mainTextColor
-
-        anchors {
-            left: connectionstatus.right
-            top: parent.top
-            bottom: parent.bottom
             leftMargin: Theme.paddingLarge
-            topMargin: Theme.paddingSmall
-            bottomMargin: Theme.paddingSmall
-        }
-
-        Text {
-            anchors.centerIn: parent
-            text: context.telegram.unreadCount
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            font { bold: true; pointSize: Theme.fontSizeSmall }
-            color: Theme.mainColor
         }
     }
 
@@ -66,18 +41,16 @@ Rectangle
         }
 
         id: lvitems
+        orientation: ListView.Horizontal
 
         anchors {
-            left: unreadcount.right
+            left: unreadcounter.right
             top: parent.top
-            right: parent.right
+            right: connectionstatus.right
             bottom: parent.bottom
             leftMargin: Theme.paddingMedium
             rightMargin: Theme.paddingMedium
         }
-
-        orientation: ListView.Horizontal
-        spacing: Theme.paddingMedium
 
         delegate: ThemeButton {
             implicitWidth: thememenubar.implicitHeight * 3
@@ -88,6 +61,20 @@ Rectangle
                 var value = lvitems.getItemValue(model.index);
                 thememenubar.menuClicked(value);
             }
+        }
+    }
+
+    ConnectionStatus
+    {
+        id: connectionstatus
+
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            right: parent.right
+            rightMargin: Theme.paddingMedium
+            topMargin: Theme.paddingSmall
+            bottomMargin: Theme.paddingSmall
         }
     }
 }

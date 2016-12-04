@@ -32,13 +32,13 @@ MouseArea
             }
 
             GradientStop {
-                position: 0.9
+                position: 0.6
 
                 color: {
                     if(syncing)
-                        return "yellow";
+                        return "#c3c342";
 
-                    return connected ? "green" : "red";
+                    return connected ? "#80c342" : "#c38042";
                 }
             }
         }

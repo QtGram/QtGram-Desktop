@@ -126,6 +126,10 @@ ViewContainer
                 editMode = false;
                 return;
             }
+            else if(replymessage) {
+                messagesmodel.replyMessage(content, replymessage);
+                return
+            }
 
             messagesmodel.sendMessage(content);
         }

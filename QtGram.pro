@@ -78,7 +78,11 @@ DISTFILES += \
     qml/component/StickerImage.qml \
     qml/component/message/media/StickerMessage.qml \
     qml/dialogs/stickers/StickerPackDialog.qml \
-    qml/component/StickersBar.qml
+    qml/component/StickersBar.qml \
+    qml/component/main/SearchBox.qml \
+    qml/component/main/DialogView.qml \
+    qml/component/theme/ThemeItem.qml \
+    qml/component/dialog/UnreadCounter.qml
 
 HEADERS += \
     qtgram.h \

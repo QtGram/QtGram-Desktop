@@ -1,28 +1,36 @@
 import QtQuick 2.4
+import QtQuick.Controls 1.4
 import QtGraphicalEffects 1.0
 
-Item
+Image
 {
-    property alias source: image.source
-    property alias sourceSize: image.sourceSize
     property bool needsBlur: false
 
     id: blurredimage
-    height: image.height
+    asynchronous: true
+    fillMode: Image.PreserveAspectFit
 
-    Image
-    {
-        id: image
-        width: parent.width
-        asynchronous: true
-        fillMode: Image.PreserveAspectFit
+    layer.enabled: !mediamessageitem.downloaded
+
+    layer.effect: FastBlur {
+        width: blurredimage.width
+        height: blurredimage.height
+        radius: 32.0
     }
 
-    FastBlur
+    BusyIndicator { z: 2; anchors.centerIn: parent; running: mediamessageitem.downloading }
+
+    MouseArea
     {
-        anchors.fill: image
-        source: image
-        radius: needsBlur ? 32.0 : 0.0
-        visible: needsBlur
+        anchors.fill: parent
+
+        onClicked: {
+            if(mediamessageitem.downloaded) {
+                Qt.openUrlExternally("file://" + mediamessageitem.source);
+                return;
+            }
+
+            mediamessageitem.download();
+        }
     }
 }

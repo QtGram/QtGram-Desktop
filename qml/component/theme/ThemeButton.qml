@@ -6,6 +6,9 @@ MouseArea
     property alias text: txtcontent.text
     property alias font: txtcontent.font
     property bool autoSize: false
+    property bool alternateColor: false
+
+    readonly property color color: alternateColor ? Theme.alternateMainColor : Theme.mainColor
 
     id: themebutton
     hoverEnabled: true
@@ -20,24 +23,25 @@ MouseArea
 
     Rectangle
     {
+        id: color
         anchors.fill: parent
 
         color: {
             if(!themebutton.enabled)
-                return Qt.darker(Theme.mainColor, Theme.colorSweep);
+                return Qt.darker(themebutton.color, Theme.colorSweep);
 
             if(themebutton.containsMouse)
-                return Qt.lighter(Theme.mainColor, Theme.colorSweep);
+                return Qt.lighter(themebutton.color, Theme.colorSweep);
 
-            return Theme.mainColor;
+            return themebutton.color;
         }
 
         Image
         {
             id: imgcontent
             anchors.centerIn: parent
-            width: Math.min(parent.width, parent.height) - Theme.paddingSmall
-            height: Math.min(parent.width, parent.height) - Theme.paddingSmall
+            width: Math.min(parent.width, parent.height) - Theme.paddingLarge
+            height: Math.min(parent.width, parent.height) - Theme.paddingLarge
             fillMode: Image.PreserveAspectFit
             visible: txtcontent.text.length <= 0
         }

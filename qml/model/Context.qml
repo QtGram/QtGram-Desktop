@@ -16,7 +16,7 @@ Item
     property QtGram qtgram: QtGram { }
 
     property Telegram telegram: Telegram {
-        autoDownload: true
+        //autoDownload: true
         online: Qt.application.state === Qt.ApplicationActive
 
         initializer: TelegramInitializer {
@@ -63,13 +63,35 @@ Item
         var component = Qt.createComponent("../dialogs/stickers/StickerPackDialog.qml");
         var dlgstickerpack = component.createObject(applicationwindow, { context: context, stickerSet: stickerset });
         dlgstickerpack.stickerSelected.connect(stickerselected);
-        dlgstickerpack.open()
+        dlgstickerpack.open();
+    }
+
+    function openDialogSelector() {
+        var component = Qt.createComponent("../dialogs/CreateDialog.qml");
+        var dlgcreate = component.createObject(applicationwindow, { context: context });
+        dlgcreate.open()
+    }
+
+    function openNewGroup() {
+        var component = Qt.createComponent("../dialogs/chat/CreateChatDialog.qml");
+        var dlgcreatechat = component.createObject(applicationwindow, { context: context });
+        dlgcreatechat.open();
+    }
+
+    function openContacts() {
+        var component = Qt.createComponent("../dialogs/ContactsDialog.qml");
+        var dlgcontacts = component.createObject(applicationwindow, { context: context });
+        dlgcontacts.open();
     }
 
     function openDialog(dialog) {
         stackView.push({ item: Qt.resolvedUrl("../view/subview/MessagesView.qml"),
                          properties: { context: context, dialog: dialog },
                          replace: true });
+    }
+
+    function openCloud() {
+        openDialog(context.dialogs.cloudDialog);
     }
 
     id: context

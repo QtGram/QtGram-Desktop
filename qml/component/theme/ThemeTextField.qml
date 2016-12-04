@@ -27,7 +27,6 @@ ThemeFrame
         id: titextinput
         anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
         onAccepted: returnPressed()
-        Component.onCompleted: forceActiveFocus()
     }
 
     Text

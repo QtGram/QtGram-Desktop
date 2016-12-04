@@ -5,7 +5,9 @@ import "../theme"
 
 Item
 {
-    signal sendRequested(string content)
+    property Message replyMessage: null
+
+    signal sendRequested(string content, var replymessage)
     signal stickersRequested()
 
     function editMessage(messagetext) {
@@ -69,20 +71,22 @@ Item
 
         onTextChanged: {
             if(text.length < 2)
-                return;
+                return
 
             messagesmodel.sendAction(MessagesModel.TypingAction);
         }
 
         onReturnPressed: {
-            messagetextinput.sendRequested(tisendmessage.text);
+            messagetextinput.sendRequested(tisendmessage.text, replyMessage);
             tisendmessage.text = "";
+            replyMessage = null;
         }
     }
 
     ThemeButton
     {
         id: btnsend
+        alternateColor: true
         width: Theme.itemSizeMedium
         enabled: tisendmessage.text.length > 0
         text: "❯❯"
@@ -94,8 +98,9 @@ Item
         }
 
         onClicked: {
-            messagetextinput.sendRequested(tisendmessage.text);
+            messagetextinput.sendRequested(tisendmessage.text, replyMessage);
             tisendmessage.text = "";
+            replyMessage = NULL;
         }
     }
 }

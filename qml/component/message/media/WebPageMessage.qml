@@ -6,8 +6,7 @@ Column
 {
     readonly property real calculatedWidth: Math.max(wpmessage.calculatedWidth,
                                                      wptitle.calculatedWidth,
-                                                     wpdescription.calculatedWidth,
-                                                     imgthumbnail.sourceSize.width)
+                                                     wpdescription.calculatedWidth)
 
     property var context
     property alias messageText: wpmessage.rawText
@@ -66,6 +65,7 @@ Column
             {
                 id: imgthumbnail
                 width: parent.width
+                height: mediamessageitem.webPageThumbnailHeight
             }
         }
     }

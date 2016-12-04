@@ -1,7 +1,8 @@
 import QtQuick 2.4
 import LibQTelegram 1.0
-import "../component/message"
 import "../component/theme/listview"
+import "../component/message"
+import "../component/dialog"
 import "../component"
 
 ThemeListItem
@@ -81,7 +82,7 @@ ThemeListItem
             id: lblstatus
             horizontalAlignment: Text.AlignRight
             visible: !model.isTopMessageService
-            ticksColor: Theme.mainColor
+            ticksColor: Theme.alternateMainColor
             messageDate: model.topMessageDate
             isMessageOut: model.isTopMessageOut
             isMessageUnread: model.isTopMessageUnread
@@ -146,8 +147,8 @@ ThemeListItem
                 if(lblfrom.visible)
                     w -= lblfrom.contentWidth + Theme.paddingSmall;
 
-                if(rectunreadcount.visible)
-                    w -= rectunreadcount.width + Theme.paddingSmall;
+                if(unreadcounter.visible)
+                    w -= unreadcounter.width + Theme.paddingSmall;
 
                 return w;
             }
@@ -167,21 +168,11 @@ ThemeListItem
             }
         }
 
-        Rectangle
+        UnreadCounter
         {
-            id: rectunreadcount
-            width: parent.height
-            height: parent.height
-            color: Theme.mainColor
-            radius: width * 0.5
-            visible: model.unreadCount > 0
-
-            Text {
-                text: model.unreadCount
-                color: Theme.mainTextColor
-                anchors.centerIn: parent
-                font { bold: true; pointSize: Theme.fontSizeSmall }
-            }
+            id: unreadcounter
+            size: parent.height
+            unreadCount: model.unreadCount
         }
     }
 }

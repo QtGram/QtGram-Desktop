@@ -26,6 +26,7 @@ class Theme : public QObject
     Q_PROPERTY(qreal colorSweep READ colorSweep CONSTANT FINAL)
 
     Q_PROPERTY(QColor backgroundColor READ backgroundColor CONSTANT FINAL)
+    Q_PROPERTY(QColor itemColor READ itemColor CONSTANT FINAL)
     Q_PROPERTY(QColor textColor READ textColor CONSTANT FINAL)
     Q_PROPERTY(QColor mainColor READ mainColor CONSTANT FINAL)
     Q_PROPERTY(QColor alternateMainColor READ alternateMainColor CONSTANT FINAL)
@@ -56,6 +57,7 @@ class Theme : public QObject
 
     public: // Colors
         QColor backgroundColor() const;
+        QColor itemColor() const;
         QColor textColor() const;
         QColor mainColor() const;
         QColor alternateMainColor() const;

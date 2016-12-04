@@ -3,69 +3,71 @@ import QtQuick.Layouts 1.1
 import QtQuick.Dialogs 1.2
 import QtQuick.Controls 1.4
 import "../component/theme"
+import "../component/main"
 
 Dialog
 {
     property var context
 
-    signal createGroup(bool ischannel)
-
     id: createdialog
     title: qsTr("Create...")
 
-    contentItem: Item {
-        implicitWidth: Math.max(lblgroups.contentWidth, lblchannels.contentWidth) + Theme.paddingLarge
-        implicitHeight: content.height + Theme.paddingMedium
+    contentItem: ThemeItem {
+        implicitWidth: 600
+        implicitHeight: content.height + Theme.paddingLarge
 
-        ColumnLayout {
+        Column
+        {
             id: content
-            x: Theme.paddingSmall
-            y: Theme.paddingSmall
-            width: parent.width - (x * 2)
+            anchors { top: parent.top; topMargin: Theme.paddingSmall }
+            width: parent.width
             spacing: Theme.paddingMedium
 
-            ExclusiveGroup { id: exclusivegroup }
-
-            RadioButton
+            DialogView
             {
-                id: rbnewgroup
-                text: qsTr("New Group")
-                exclusiveGroup: exclusivegroup
+                icon: "qrc:///res/group_big.png"
+                title: qsTr("New Group")
+                description: qsTr("Groups are ideal for limited communities they can have up to 5000 members")
+
+                MouseArea {
+                    anchors.fill: parent
+
+                    onClicked: {
+                        context.openNewGroup();
+                        createdialog.close();
+                    }
+                }
             }
 
-            Text
+            DialogView
             {
-                id: lblgroups
-                text: qsTr("Groups are ideal for limited communities they can have up to 5000 members")
-                wrapMode: Text.Wrap
-                color: Theme.placeholderTextColor
+                icon: "qrc:///res/channel_big.png"
+                title: qsTr("New Channel")
+                description: qsTr("Channels are a tool for broadcasting your messages to unlimited audiences")
+
+                MouseArea {
+                    anchors.fill: parent
+
+                    onClicked: {
+                        createdialog.createGroup(false);
+                        createdialog.close();
+                    }
+                }
             }
 
-            RadioButton
+            DialogView
             {
-                id: rbnewchannel
-                text: qsTr("New Channel")
-                exclusiveGroup: exclusivegroup
-            }
+                icon: "qrc:///res/cloud_big.png"
+                title: qsTr("Cloud Chat")
+                description: qsTr("Store your files across your Telegram clients")
 
-            Text
-            {
-                id: lblchannels
-                text: qsTr("Channels are a tool for broadcasting your messages to unlimited audiences")
-                wrapMode: Text.Wrap
-                color: Theme.placeholderTextColor
-            }
+                MouseArea {
+                    anchors.fill: parent
 
-            ThemeButton
-            {
-                text: qsTr("Create")
-                anchors { right: parent.right; rightMargin: Theme.paddingMedium }
-                enabled: rbnewgroup.checked || rbnewchannel.checked
-                autoSize: true
-
-                onClicked: {
-                    createdialog.createGroup(rbnewchannel.checked);
-                    createdialog.close();
+                    onClicked: {
+                        context.openCloud();
+                        createdialog.close();
+                    }
                 }
             }
         }

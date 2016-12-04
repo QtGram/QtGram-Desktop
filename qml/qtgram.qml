@@ -30,12 +30,6 @@ ApplicationWindow
         }
     }
 
-    function openChatDialog(ischannel) {
-        var component = Qt.createComponent("dialogs/chat/CreateChatDialog.qml");
-        var dlgcreatechat = component.createObject(applicationwindow, { context: applicationwindow.context });
-        dlgcreatechat.open();
-    }
-
     id: applicationwindow
     visible: true
     x: 550
@@ -56,39 +50,14 @@ ApplicationWindow
         }
 
         model: ListModel {
-            ListElement { text: qsTr("Telegram"); value: 0 }
-            ListElement { text: qsTr("Cloud"); value: 1 }
-            ListElement { text: qsTr("Contacts"); value: 2 }
-            ListElement { text: qsTr("Settings"); value: 3 }
-            ListElement { text: qsTr("Debug"); value: 4 }
-            ListElement { text: qsTr("Info"); value: 5 }
+            ListElement { text: qsTr("Contacts"); value: 0 }
+            ListElement { text: qsTr("Settings"); value: 1 }
+            ListElement { text: qsTr("Info"); value: 2 }
         }
 
         onMenuClicked: {
-            var component = null;
-
-            if(value === 0) {
-                component = Qt.createComponent("dialogs/CreateDialog.qml");
-                var dlgcreate = component.createObject(applicationwindow, { context: applicationwindow.context });
-                dlgcreate.createGroup.connect(applicationwindow.openChatDialog);
-                dlgcreate.open()
-            }
-            else if(value === 1) {
-                if(!loader.item.isDialogsView)
-                    return;
-
-                loader.item.openCloud();
-            }
-            else if(value === 2) {
-                component = Qt.createComponent("dialogs/ContactsDialog.qml");
-                var dlgcontacts = component.createObject(applicationwindow, { context: applicationwindow.context });
-                dlgcontacts.open()
-            }
-            else if(value === 4) {
-                component = Qt.createComponent("dialogs/DebugDialog.qml");
-                var dlgdebug = component.createObject(applicationwindow);
-                dlgdebug.open()
-            }
+            if(value === 0)
+                context.openContacts();
         }
     }
 

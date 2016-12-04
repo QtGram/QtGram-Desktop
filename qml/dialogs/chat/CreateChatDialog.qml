@@ -20,7 +20,7 @@ Dialog
         users = new Object;
     }
 
-    contentItem: Item {
+    contentItem: ThemeItem {
         implicitWidth: 500
         implicitHeight: 400
 

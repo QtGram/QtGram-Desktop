@@ -8,5 +8,9 @@
         <file>res/play.png</file>
         <file>res/attach.png</file>
         <file>res/sticker.png</file>
+        <file>res/new.png</file>
+        <file>res/group_big.png</file>
+        <file>res/channel_big.png</file>
+        <file>res/cloud_big.png</file>
     </qresource>
 </RCC>

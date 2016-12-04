@@ -4,6 +4,7 @@ ThemeFrame
 {
     property alias model: lvelements.model
     property alias currentIndex: lvelements.currentIndex
+    property string invalidText
 
     id: themecombobox
     implicitWidth: Theme.defaultWidth + Theme.itemSizeSmall
@@ -40,7 +41,7 @@ ThemeFrame
             if(lvelements.currentIndex > -1)
                 return lvelements.getCurrentText();
 
-            return "";
+            return themecombobox.invalidText;
         }
     }
 

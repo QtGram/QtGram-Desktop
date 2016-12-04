@@ -3,6 +3,7 @@ import QtQuick.Controls 1.4
 import LibQTelegram 1.0
 import "../../component"
 import "../../component/theme"
+import "../../component/main"
 import "../../item"
 import "../subview"
 
@@ -11,12 +12,6 @@ ViewContainer
     readonly property bool isDialogsView: true
 
     id: dialogsview
-
-    function openCloud() {
-        stackview.push({ item: Qt.resolvedUrl("../subview/MessagesView.qml"),
-                         properties: { context: dialogsview.context, dialog: context.dialogs.cloudDialog },
-                         replace: true });
-    }
 
     Connections
     {
@@ -30,17 +25,16 @@ ViewContainer
         anchors { left: parent.left; top: parent.top; bottom: parent.bottom }
         width: parent.width * 0.35
 
-        ThemeTextField
+        SearchBox
         {
-            id: tfsearch
+            id: sbsearch
             anchors { left: parent.left; top: parent.top; right: parent.right; topMargin: -1 }
-            placeholderText: qsTr("Search...")
         }
 
         ThemeListView
         {
             id: lvdialogs
-            anchors { left: parent.left; top: tfsearch.bottom; right: parent.right; bottom: parent.bottom; topMargin: -1 }
+            anchors { left: parent.left; top: sbsearch.bottom; right: parent.right; bottom: parent.bottom; topMargin: -1 }
             spacing: Theme.paddingSmall
             placeholderText: qsTr("Chat list is empty")
             model: context.dialogs
